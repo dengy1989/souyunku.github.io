@@ -20,8 +20,8 @@ permalink: /links/
  * [编程之法：面试和算法心得](https://github.com/waylau/books-collection)
  
 ### 推荐网站
-[公众号编辑器 ](http://md.barretlee.com/) 可以以优雅的方式在微信公众号去发布markdown文章
-[git-简明指南 ](http://rogerdudler.github.io/git-guide/index.zh.html) 助你入门 git 的简明指南，木有高深内容
+ * [公众号编辑器 ](http://md.barretlee.com/) 可以以优雅的方式在微信公众号去发布markdown文章
+ * [git - 简明指南 ](http://rogerdudler.github.io/git-guide/index.zh.html) 助你入门 git 的简明指南，木有高深内容
 
 ### 其它
 
