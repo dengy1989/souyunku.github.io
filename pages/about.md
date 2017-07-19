@@ -26,6 +26,8 @@ permalink: /about/
  - GitHub： [https://github.com/souyunku](https://github.com/souyunku)
  - Cnblogs： [www.penglei.net](http://www.penglei.net)
  - QQ：35200100 75997533
- - Wechat：关注公众号
-[1]: http://www.penglei.net/imagespengleikeji.jpg "鹏磊科技"
-  
+ - Wechat：关注公众号，鹏磊科技
+ 
+![Wechat：关注公众号][1]
+
+  [1]: http://www.penglei.net/images/pengleikeji.jpg "鹏磊科技"
