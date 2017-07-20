@@ -46,8 +46,6 @@ git push origin master
 $ git remote -v
 ```
 
-> 从上面的结果可以看出，远程仓库一个是origin
-
 ### 4.从远程获取最新版本到本地
 
 > 从远程的origin仓库的master分支下载代码到本地的origin master
