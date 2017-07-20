@@ -1,4 +1,4 @@
-﻿---
+---
 layout: post
 title: Git 简单命令,木有高深内容
 categories: Git
