@@ -1,4 +1,3 @@
-
 ---
 layout: post
 title: 防守式编程的艺术
@@ -7,12 +6,7 @@ description: 为什么开发人员不编写安全代码？
 keywords: 编程的艺术
 ---
 
-
 > * 原文地址：[The Art of Defensive Programming](https://dev.to/0x13a/the-art-of-defensive-programming)
-* 原文作者：[Diego Mariani](https://dev.to/0x13a)
-* 译文出自：[掘金翻译计划](https://github.com/xitu/gold-miner)
-* 译者：[GiggleAll](https://github.com/GiggleAll)
-* 校对者：[tanglie1993](https://github.com/tanglie1993) , [fghpdf](https://github.com/fghpdf)
 
 # 防守式编程的艺术 #
 
