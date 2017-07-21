@@ -36,7 +36,7 @@ keywords: Jekyll
 - DevKit-mingw 是一个自解压档案，执行该文件时，会要求您提供文件的目的地，输入一个没有空格的路径，我建议简单一点，C:\RubyDevKit\。单击提取并等待，直到进程完成。
 
 ## 初始化 RubyDevKit
-- 接下来，您需要初始化DevKit并将其绑定到您的Ruby安装。打开您最喜欢的命令行工具，并导航到您将DevKit解压缩到的文件夹。
+- 接下来，您需要初始化DevKit并将其绑定到您的Ruby安装。打开您最喜欢的命令行工具，并进入到您将DevKit解压缩到的文件夹。
 
 ```
 cd C:\RubyDevKit
