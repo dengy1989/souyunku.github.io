@@ -1,4 +1,4 @@
-﻿---
+---
 layout: post
 title: 在Windows上安装Jekyll
 categories: Jekyll
