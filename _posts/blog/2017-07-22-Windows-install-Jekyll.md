@@ -6,7 +6,6 @@ description: Jekyll 安装
 keywords: Jekyll
 ---
 
-
 # 在Windows上安装Jekyll
 
 ## Jekyll介绍
@@ -22,7 +21,7 @@ keywords: Jekyll
 
 - 执行安装程序并执行安装步骤。当您进入下面的屏幕时，请确保检查“将Ruby可执行文件添加到PATH”框中。
 
-![image](http://wwww.penglei.net/images/2017-07-22/rubu-install.png)
+<img src="/images/2017-07-22/rubu-install.png" width="100%" />
 
 > 单击安装和Ruby将在几秒钟内安装。
 
@@ -32,12 +31,12 @@ keywords: Jekyll
 
 [Ruby DevKit 下载 ](https://rubyinstaller.org/downloads/)
 
-![image](http://wwww.penglei.net/images/2017-07-22/ruby-dev-kit.png)
+<img src="/images/2017-07-22/ruby-dev-kit.png" width="100%" />
 
 - DevKit-mingw 是一个自解压档案，执行该文件时，会要求您提供文件的目的地，输入一个没有空格的路径，我建议简单一点，C:\RubyDevKit\。单击提取并等待，直到进程完成。
 
 ## 初始化 RubyDevKit
-- 接下来，您需要初始化DevKit并将其绑定到您的Ruby安装。打开您最喜欢的命令行工具，并导航到您将DevKit解压缩到的文件夹。
+- 接下来，您需要初始化DevKit并将其绑定到您的Ruby安装。打开您最喜欢的命令行工具，并进入到您将DevKit解压缩到的文件夹。
 
 ```
 cd C:\RubyDevKit
@@ -49,7 +48,7 @@ cd C:\RubyDevKit
 ruby dk.rb init
 ```
 
-![image](http://wwww.penglei.net/images/2017-07-22/ruby-dk-rb-init.png)
+<img src="/images/2017-07-22/ruby-dk-rb-init.png" width="100%" />
 
 - 安装DevKit，将其绑定到您的Ruby安装。
 
@@ -75,8 +74,7 @@ $ gem sources -l
 https://gems.ruby-china.org
 ```
 
-![image](http://wwww.penglei.net/images/2017-07-22/ruby-gems.png)
-
+<img src="/images/2017-07-22/ruby-gems.png" width="100%" />
 
 > Jekyll 本身是一个Ruby Gem的形式，它是一个易于安装的软件包。要安装Jekyll及其所有默认依赖项，请启动您习惯的命令行工具并输入以下命令
 
@@ -86,7 +84,7 @@ https://gems.ruby-china.org
 ```
 gem install bundler
 ```
-![image](http://wwww.penglei.net/images/2017-07-22/gem-install-bundler.png)
+<img src="/images/2017-07-22/gem-install-bundler.png" width="100%" />
 
 ### install　jekyll
 
@@ -94,7 +92,7 @@ gem install bundler
 gem install jekyll
 ```
 
-![image](http://wwww.penglei.net/images/2017-07-22/gem-install-jekyll.png)
+<img src="/images/2017-07-22/gem-install-jekyll.png" width="100%" />
 
 
 ### 以上安装成功，本地就可以快速搭建一个jekyll博客了
@@ -103,7 +101,7 @@ gem install jekyll
 jekyll new myblog  
 ```
 
-![image](http://wwww.penglei.net/images/2017-07-22/jekyll-new-myblog.png)
+<img src="/images/2017-07-22/jekyll-new-myblog.png" width="100%" />
 
 ### 进入上面新建的博客目录，并且启动博客服务，默认访问地址:
 [http://localhost:4000](http://localhost:4000/)
@@ -113,14 +111,12 @@ cd myblog
 jekyll serve  
 ```
 
-![image](http://wwww.penglei.net/images/2017-07-22/jekyll-serve.png)
+<img src="/images/2017-07-22/jekyll-serve.png" width="100%" />
 
-
-![image](http://wwww.penglei.net/images/2017-07-22/myblog-succ.png)
-
+<img src="/images/2017-07-22/myblog-succ.png" width="100%" />
 ### 生成的博客文件
 
-![image](http://wwww.penglei.net/images/2017-07-22/myblog.png)
+<img src="/images/2017-07-22/myblog.png" width="100%" />
 
 ### 
 [jekyll 基本用法 官方中文文档](http://jekyll.com.cn/docs/usage/)
