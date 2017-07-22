@@ -67,8 +67,8 @@ ruby dk.rb install
 > 
 
 ``` sh
-$ gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/
-$ gem sources -l
+gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/
+gem sources -l
 *** CURRENT SOURCES ***
 
 https://gems.ruby-china.org
