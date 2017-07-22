@@ -95,7 +95,7 @@ gem install jekyll
 <img src="/images/2017-07-22/gem-install-jekyll.png" width="100%" />
 
 
-### 以上安装成功，本地就可以快速搭建一个jekyll博客了
+## 以上安装成功，本地就可以快速搭建一个jekyll博客了
 
 ```
 jekyll new myblog  
@@ -103,7 +103,7 @@ jekyll new myblog
 
 <img src="/images/2017-07-22/jekyll-new-myblog.png" width="100%" />
 
-### 进入上面新建的博客目录，并且启动博客服务，默认访问地址:
+## 进入上面新建的博客目录，并且启动博客服务，默认访问地址:
 [http://localhost:4000](http://localhost:4000/)
 
 ```
@@ -114,11 +114,11 @@ jekyll serve
 <img src="/images/2017-07-22/jekyll-serve.png" width="100%" />
 
 <img src="/images/2017-07-22/myblog-succ.png" width="100%" />
-### 生成的博客文件
+## 生成的博客文件
 
 <img src="/images/2017-07-22/myblog.png" width="100%" />
 
-### 
+## 
 [jekyll 基本用法 官方中文文档](http://jekyll.com.cn/docs/usage/)
 
 
