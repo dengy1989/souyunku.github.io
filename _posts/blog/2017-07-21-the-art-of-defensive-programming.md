@@ -72,7 +72,7 @@ keywords: 编程的艺术
 
 > ### 不要：未初始化的属性 ###
 
-```
+``` php
 
 <?php
 
@@ -96,7 +96,7 @@ $bankAccount->payTo($joe,100);
 
 在这种情况下，我们可以做得更好，将未初始化的属性封装到 **Money** 对象中。
 
-```
+``` php
 
 <?php
 
@@ -114,7 +114,7 @@ $bankAccount->payTo($joe,newMoney(100,newCurrency('GBP')));
 
 > ### 不要：类作用域之外的暴露状态。
 
-```
+``` php
 
 <?php
 
@@ -153,7 +153,7 @@ $bobMailer->sendMessage();
 
 在这种情况下，**消息**通过引用传递，结果将在两种情况下都是 *“joe message”* 。 解决方案是在 Mailer 构造函数中克隆消息对象。 但是我们应该总是尝试使用一个（**不可变的**）[值对象](https://en.wikipedia.org/wiki/Value_object)去替代一个简单的 _Message_ mutable对象。**当你可以的时候使用不可变对象**。
 
-```
+``` php
 
 <?php
 
