@@ -31,3 +31,8 @@ permalink: /about/
 ![Wechat：关注公众号][1]
 
   [1]: http://www.penglei.net/images/pengleikeji.jpg "鹏磊科技"
+  
+  
+<audio  autoplay="autoplay" controls="controls"  title="文静 - 一人饮酒醉">
+  <source src="/music/yirenyinjiuzui.mp3" type="audio/mpeg" />
+</audio>

@@ -44,7 +44,7 @@ cd C:\RubyDevKit
 
 - 自动检测Ruby安装并将其添加到配置文件中以进行下一步。
 
-```
+``` sh
 ruby dk.rb init
 ```
 
@@ -53,7 +53,7 @@ ruby dk.rb init
 - 安装DevKit，将其绑定到您的Ruby安装。
 
 
-```
+``` sh
 ruby dk.rb install
 ```
 
@@ -66,7 +66,7 @@ ruby dk.rb install
 
 > 
 
-```
+``` sh
 $ gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/
 $ gem sources -l
 *** CURRENT SOURCES ***
@@ -81,14 +81,14 @@ https://gems.ruby-china.org
 
 ### install　bundler
 
-```
+``` sh
 gem install bundler
 ```
 <img src="/images/2017-07-22/gem-install-bundler.png" width="100%" />
 
 ### install　jekyll
 
-```
+``` sh
 gem install jekyll
 ```
 
@@ -97,7 +97,7 @@ gem install jekyll
 
 ## 以上安装成功，本地就可以快速搭建一个jekyll博客了
 
-```
+``` sh
 jekyll new myblog  
 ```
 
@@ -106,7 +106,7 @@ jekyll new myblog
 ## 进入上面新建的博客目录，并且启动博客服务，默认访问地址:
 [http://localhost:4000](http://localhost:4000/)
 
-```
+``` sh
 cd myblog  
 jekyll serve  
 ```
@@ -118,7 +118,7 @@ jekyll serve
 
 <img src="/images/2017-07-22/myblog.png" width="100%" />
 
-## 
+##  jekyll 文档
 [jekyll 基本用法 官方中文文档](http://jekyll.com.cn/docs/usage/)
 
 

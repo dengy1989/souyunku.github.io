@@ -11,20 +11,20 @@ keywords: Git
 
 > 下载一个项目和它的整个代码历史
 
-```
+``` sh
 $ git clone [url]
 ```
 
 > 你可以提出更改（把它们添加到暂存区），使用如下命令：
 
-```
+``` sh
 git add <filename>
 git add *
 ```
 
 > 这是 git 基本工作流程的第一步；使用如下命令以实际提交改动：
 
-```
+``` sh
 git commit -m "代码提交信息"
 ```
 
@@ -34,7 +34,7 @@ git commit -m "代码提交信息"
 
 > 执行如下命令以将这些改动提交到远端仓库：
 
-```
+``` sh
 git push origin master
 ```
 
@@ -42,7 +42,7 @@ git push origin master
 
 ### 3. 查看远程仓库
 
-```
+``` sh
 $ git remote -v
 ```
 
@@ -50,17 +50,18 @@ $ git remote -v
 
 > 从远程的origin仓库的master分支下载代码到本地的origin master
 
-```
+``` sh
 $ git fetch origin master
 ```
 
 ### 5. 比较本地的仓库和远程参考的区别
 
-```
+``` sh
 $  git log -p master.. origin/master
 ```
 ### 6. 把远程下载下来的代码合并到本地仓库，远程的和本地的合并
-```
+
+``` sh
 $ git merge origin/master
 ```
 
