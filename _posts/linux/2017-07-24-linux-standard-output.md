@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Linux下" >/dev/null 2>&1 "相关知识说明
+title: Linux下 标准错误输出重定向
 categories: Linux
 description: Linux标准输出
 keywords: Linux
