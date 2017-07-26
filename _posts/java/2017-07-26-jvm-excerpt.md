@@ -2,7 +2,7 @@
 layout: post
 title: jvm系列 网络收集
 category: java 
-tags: [java]
+tags: java
 ---
 
 ##  jvm系类
