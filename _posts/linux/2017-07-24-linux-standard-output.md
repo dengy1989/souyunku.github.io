@@ -19,6 +19,7 @@ command >/dev/null 2>&1 &  == command 1>/dev/null 2>&1 &
 - 1:表示标准输出(stdout),系统默认是1 
 - 2:表示错误输出(stderr)
 
+
 - 1)command : 表示shell命令或者为一个可执行程序
 - 2)> : 表示重定向到哪里 
 - 3)/dev/null : 表示linux的空设备文件 
