@@ -18,6 +18,7 @@ permalink: /links/
  * [免费的计算机编程类中文书籍](https://github.com/kanwangzjm/free-programming-books-zh_CN)
  * [给程序员的开源、免费图书集合](https://github.com/waylau/books-collection)
  * [编程之法：面试和算法心得](https://github.com/waylau/books-collection)
+ * [IntelliJ-IDEA-Tutorial](https://github.com/judasn/IntelliJ-IDEA-Tutorial)
  
 ### 推荐网站
  * [公众号编辑器 ](http://md.barretlee.com/) 可以以优雅的方式在微信公众号去发布markdown文章
