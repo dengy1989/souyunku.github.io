@@ -28,11 +28,15 @@ permalink: /about/
  - QQ：35200100 75997533
  - Wechat：关注公众号，鹏磊科技
  
+ 博客主题使用:[码志/ mzlogin](https://github.com/mzlogin/mzlogin.github.io)
+ 
 ![Wechat：关注公众号][1]
 
   [1]: http://www.penglei.net/images/pengleikeji.jpg "鹏磊科技"
   
   
-<audio  autoplay="autoplay" controls="controls"  title="文静 - 一人饮酒醉">
+<audio  autoplay="autoplay" title="文静 - 一人饮酒醉">
   <source src="/music/yirenyinjiuzui.mp3" type="audio/mpeg" />
 </audio>
+
+
