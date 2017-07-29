@@ -59,8 +59,4 @@ tags: java
   [23]: http://ifeve.com/jvm-troubleshooting-guide-3/
   [24]: http://ifeve.com/jvm-troubleshooting-guide-4/
  
- 
-  
- - **作者：Peng Lei** 
- - **出处：[http://www.penglei.net](http://www.penglei.net/)**      
- - **版权归作者所有，转载请注明出处** 
+

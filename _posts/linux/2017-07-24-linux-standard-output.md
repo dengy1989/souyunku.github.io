@@ -40,6 +40,3 @@ command >/dev/null 2>&1 &  == command 1>/dev/null 2>&1 &
 所以可以看出" >/dev/null 2>&1 "常用来避免shell命令或者程序等运行中有内容输出。
 
 
- - **作者：Peng Lei** 
- - **出处：[http://www.penglei.net](http://www.penglei.net/)**      
- - **版权归作者所有，转载请注明出处** 
