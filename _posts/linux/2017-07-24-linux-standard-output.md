@@ -38,3 +38,8 @@ command >/dev/null 2>&1 &  == command 1>/dev/null 2>&1 &
 
 > 这条命令的意思就是在后台执行这个程序,并将错误输出2重定向到标准输出1,然后将标准输出1全部放到/dev/null文件,也就是清空.
 所以可以看出" >/dev/null 2>&1 "常用来避免shell命令或者程序等运行中有内容输出。
+
+
+ - **作者：Peng Lei** 
+ - **出处：[http://www.penglei.net](http://www.penglei.net/)**      
+ - **版权归作者所有，转载请注明出处** 

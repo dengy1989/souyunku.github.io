@@ -122,4 +122,7 @@ jekyll serve
 [jekyll 基本用法 官方中文文档](http://jekyll.com.cn/docs/usage/)
 
 
+ - **作者：Peng Lei** 
+ - **出处：[http://www.penglei.net](http://www.penglei.net/)**      
+ - **版权归作者所有，转载请注明出处** 
 
