@@ -5,6 +5,11 @@ category: java
 tags: java
 ---
 
+##  深入理解Java虚拟机
+
+ - [《深入理解Java虚拟机》（一）](https://segmentfault.com/a/1190000010412685)
+ - [《深入理解Java虚拟机》（二）](https://segmentfault.com/a/1190000010412582)
+
 ##  jvm系类
 
  - [jvm系列(一):java类的加载机制][1]  
