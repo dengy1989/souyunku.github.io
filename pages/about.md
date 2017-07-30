@@ -25,6 +25,7 @@ permalink: /about/
  - Email：admin@souyunku.com
  - GitHub： [https://github.com/souyunku](https://github.com/souyunku)
  - Cnblogs： [www.penglei.net](http://www.penglei.net)
+ - Segment Fault：[https://segmentfault.com/u/www_penglei_net](https://segmentfault.com/u/www_penglei_net)
  - QQ：35200100 75997533
  - Wechat：关注公众号，鹏磊科技
  
