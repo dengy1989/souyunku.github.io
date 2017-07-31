@@ -9,6 +9,7 @@ tags: java
 
  - [《深入理解Java虚拟机》（一）](https://segmentfault.com/a/1190000010412685)
  - [《深入理解Java虚拟机》（二）](https://segmentfault.com/a/1190000010412582)
+ - [《深入理解Java虚拟机》（三）](https://segmentfault.com/a/1190000010421285)
 
 ##  jvm系类
 
