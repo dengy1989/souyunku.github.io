@@ -21,7 +21,7 @@ keywords: Jekyll
 
 - 执行安装程序并执行安装步骤。当您进入下面的屏幕时，请确保检查“将Ruby可执行文件添加到PATH”框中。
 
-<img src="/images/2017/jekyll/rubu-install.png" width="100%" />
+<img src="/images/2017/jekyll/rubu-install.png"  />
 
 > 单击安装和Ruby将在几秒钟内安装。
 
@@ -31,7 +31,7 @@ keywords: Jekyll
 
 [Ruby DevKit 下载 ](https://rubyinstaller.org/downloads/)
 
-<img src="/images/2017/jekyll/ruby-dev-kit.png" width="100%" />
+<img src="/images/2017/jekyll/ruby-dev-kit.png"  />
 
 - DevKit-mingw 是一个自解压档案，执行该文件时，会要求您提供文件的目的地，输入一个没有空格的路径，我建议简单一点，C:\RubyDevKit\。单击提取并等待，直到进程完成。
 
@@ -48,7 +48,7 @@ cd C:\RubyDevKit
 ruby dk.rb init
 ```
 
-<img src="/images/2017/jekyll/ruby-dk-rb-init.png" width="100%" />
+<img src="/images/2017/jekyll/ruby-dk-rb-init.png"  />
 
 - 安装DevKit，将其绑定到您的Ruby安装。
 
@@ -74,7 +74,7 @@ gem sources -l
 https://gems.ruby-china.org
 ```
 
-<img src="/images/2017/jekyll/ruby-gems.png" width="100%" />
+<img src="/images/2017/jekyll/ruby-gems.png"  />
 
 > Jekyll 本身是一个Ruby Gem的形式，它是一个易于安装的软件包。要安装Jekyll及其所有默认依赖项，请启动您习惯的命令行工具并输入以下命令
 
@@ -84,7 +84,7 @@ https://gems.ruby-china.org
 ``` sh
 gem install bundler
 ```
-<img src="/images/2017/jekyll/gem-install-bundler.png" width="100%" />
+<img src="/images/2017/jekyll/gem-install-bundler.png"  />
 
 ### install　jekyll
 
@@ -92,7 +92,7 @@ gem install bundler
 gem install jekyll
 ```
 
-<img src="/images/2017/jekyll/gem-install-jekyll.png" width="100%" />
+<img src="/images/2017/jekyll/gem-install-jekyll.png"  />
 
 
 ## 以上安装成功，本地就可以快速搭建一个jekyll博客了
@@ -101,7 +101,7 @@ gem install jekyll
 jekyll new myblog  
 ```
 
-<img src="/images/2017/jekyll/jekyll-new-myblog.png" width="100%" />
+<img src="/images/2017/jekyll/jekyll-new-myblog.png"  />
 
 ## 进入上面新建的博客目录，并且启动博客服务，默认访问地址:
 [http://localhost:4000](http://localhost:4000/)
@@ -111,12 +111,12 @@ cd myblog
 jekyll serve  
 ```
 
-<img src="/images/2017/jekyll/jekyll-serve.png" width="100%" />
+<img src="/images/2017/jekyll/jekyll-serve.png"  />
 
-<img src="/images/2017/jekyll/myblog-succ.png" width="100%" />
+<img src="/images/2017/jekyll/myblog-succ.png"  />
 ## 生成的博客文件
 
-<img src="/images/2017/jekyll/myblog.png" width="100%" />
+<img src="/images/2017/jekyll/myblog.png"  />
 
 ##  jekyll 文档
 [jekyll 基本用法 官方中文文档](http://jekyll.com.cn/docs/usage/)
