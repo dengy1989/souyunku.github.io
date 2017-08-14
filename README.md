@@ -6,7 +6,7 @@
 
 这是我的个人博客项目，里面会记录生活和技术的点点滴滴, 欢迎 Star 和 Fork。
 
-访问地址： [www.penglei.net](http://www.penglei.net)
+访问地址： [www.ymq.io](http://www.ymq.io/)
 
 博客主题使用:[码志/ mzlogin](https://github.com/mzlogin/mzlogin.github.io)
 
@@ -19,4 +19,4 @@
  
 ![Wechat：关注公众号][1]
 
-  [1]: http://www.penglei.net/images/pengleikeji.jpg "鹏磊科技"
+  [1]: http://www.ymq.io/images/pengleikeji.jpg "鹏磊科技"
