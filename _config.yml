@@ -6,7 +6,7 @@ author: Peng Lei
 subtitle: "Talk is cheap. Show me the code."
 description: "鹏磊的个人博客"
 baseurl:
-url: http://www.penglei.net
+url: http://www.ymq.io
 date_format: "ordinal"
 keywords: souyunku, penglei
 favicon: /favicon.ico
@@ -18,8 +18,8 @@ side_bar_repo_limit: 5
 #      Author      #
 # ---------------- #
 author:  Peng Lei
-organization: penglei.net
-organization_url: http://www.penglei.net
+organization: www.ymq.io
+organization_url: http://www.ymq.io
 github_username: souyunku
 location: beijing, China
 email: admin@souyunku.com

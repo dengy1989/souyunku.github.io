@@ -30,5 +30,5 @@ permalink: /links/
 
 #### 格式要求如下：
 * 网站名称：penglei
-* 网站链接：http://www.penglei.net
+* 网站链接：http://www.ymq.io
 * 网站描述：鹏磊的个人博客，分享技术，分享生活

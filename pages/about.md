@@ -24,7 +24,7 @@ permalink: /about/
 ### Contact
  - Email：admin@souyunku.com
  - GitHub： [https://github.com/souyunku](https://github.com/souyunku)
- - Cnblogs： [www.penglei.net](http://www.penglei.net)
+ - Cnblogs： [www.ymq.io](http://www.ymq.io)
  - Segment Fault：[https://segmentfault.com/u/www_penglei_net](https://segmentfault.com/u/www_penglei_net)
  - QQ：35200100 75997533
  - Wechat：关注公众号，鹏磊科技
@@ -33,7 +33,7 @@ permalink: /about/
  
 ![Wechat：关注公众号][1]
 
-  [1]: http://www.penglei.net/images/pengleikeji.jpg "鹏磊科技"
+  [1]: http://www.ymq.io/images/pengleikeji.jpg "鹏磊科技"
   
   
 <audio  autoplay="autoplay" title="文静 - 一人饮酒醉">
