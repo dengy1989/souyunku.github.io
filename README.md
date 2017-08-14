@@ -13,7 +13,7 @@
 ### 联系方式
  - Email：admin@souyunku.com
  - GitHub： [https://github.com/souyunku](https://github.com/souyunku)
- - Cnblogs： [www.penglei.net](http://www.penglei.net)
+ - Cnblogs： [www.ymq.io](http://www.ymq.io)
  - QQ：35200100 75997533
  - Wechat：关注公众号，鹏磊科技
  
