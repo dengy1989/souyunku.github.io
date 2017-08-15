@@ -240,7 +240,7 @@ cluster setslot <slot> stable ：取消对槽 slot 的导入（ import）或者�
 ```
 cluster keyslot <key> ：计算键 key 应该被放置在哪个槽上。
 cluster countkeysinslot <slot> ：返回槽 slot 目前包含的键值对数量。
-cluster getkeysinslot <slot> <count> ：返回 count 个 slot 槽中的键  
+cluster getkeysinslot <slot> <count> ：返回 count 个 slot 槽中的键 。
 ```
 
 
