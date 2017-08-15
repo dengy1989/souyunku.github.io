@@ -32,12 +32,12 @@ $ yum -y update
 centos 6.5
 
 ```
-service iptables stop # 关闭命令：
+$ service iptables stop # 关闭命令：
 ```
 
 centos 7.0
 ```
-systemctl stop firewalld.service # 停止firewall
+$ systemctl stop firewalld.service # 停止firewall
 ```
 
 
@@ -176,7 +176,7 @@ $ /opt/redis-4.0.1/src/redis-cli -h 192.168.252.150 -c -p 7000
 OK
 192.168.252.150:7000> get name
 "www.ymq.io"
-192.168.252.153:7000>
+192.168.252.150:7000>
 ```
 
 ### 检查集群状态
