@@ -64,15 +64,16 @@ $ make distclean
 
 ### 创建节点
 
-首先在 192.168.252.150机器上 /opt/redis-4.0.1目录下创建 `redis_cluster` 目录
+1.首先在 192.168.252.150机器上 /opt/redis-4.0.1目录下创建 `redis_cluster` 目录
 
 ```sh
 $ mkdir /opt/redis-4.0.1/redis_cluster
 ```
 
-在 `redis_cluster` 目录下，创建名为`7000、7001、7002`的目录，并将 `redis.conf` 拷贝到这三个目录中
+2.在 `redis_cluster` 目录下，创建名为`7000、7001、7002`的目录
 
 ```sh
+
 $ mkdir 7000 7001 7002
 
 $ vi redis_cluster/7000
@@ -80,20 +81,20 @@ $ vi redis_cluster/7001
 $ vi redis_cluster/7002
 ```
 
-分别修改这三个配置文件，修改如下内容
+3.分别修改这三个配置文件，把如下内容粘贴进去
  
 ```sh
-port                  7000                        //端口7000,7002,7003        
-bind                  本机ip                      //默认ip为127.0.0.1，需要改为其他节点机器可访问的ip，否则创建集群时无法访问对应的端口，无法创建集群
-daemonize             yes                         //redis后台运行
-pidfile               /var/run/redis_7000.pid     //pidfile文件对应7000，7001，7002
-cluster-enabled       yes                         //开启集群，把注释#去掉
-cluster-config-file   nodes_7000.conf             //集群的配置，配置文件首次启动自动生成 7000，7001，7002
-cluster-node-timeout  15000                       //请求超时，默认15秒，可自行设置
-appendonly            yes                         //aof日志开启，有需要就开启，它会每次写操作都记录一条日志　
+port                  7000                        #端口7000,7002,7003        
+bind                  本机ip                      #默认ip为127.0.0.1，需要改为其他节点机器可访问的ip，否则创建集群时无法访问对应的端口，无法创建集群
+daemonize             yes                         #redis后台运行
+pidfile               /var/run/redis_7000.pid     #pidfile文件对应7000，7001，7002
+cluster-enabled       yes                         #开启集群，把注释#去掉
+cluster-config-file   nodes_7000.conf             #集群的配置，配置文件首次启动自动生成 7000，7001，7002
+cluster-node-timeout  15000                       #请求超时，默认15秒，可自行设置
+appendonly            yes                         #aof日志开启，有需要就开启，它会每次写操作都记录一条日志　
 ```
 
-**接着在另外两台机器上(192.168.252.151，192.168.252.151)重复以上三步，只是把目录改为7003、7004、7005、7006、7007、7008对应的配置文件也按照这个规则修改即可**
+**接着在另外两台机器上`(192.168.252.151，192.168.252.152)`重复以上三步，只是把目录改为`7003、7004、7005、7006、7007、7008`对应的配置文件也按照这个规则修改即可**
 
 
 
