@@ -1,64 +1,88 @@
 ---
 layout: post
-title: Redis集群搭建与简单使用
+title: CentOS6.5 Redis-4.0.1集群搭建与简单使用
 categories: Redis
-description: Redis集群搭建与简单使用
+description: Redis-4.0.1集群搭建与简单使用
 keywords: Redis
 ---
 
 ## 环境
 
-VMware版本号：12.0.0
-CentOS版本：CentOS release 6.5 (Final)
-三台虚拟机(IP)：192.168.252.150，192.168.252.151，192.168.252.151
+ - VMware版本号：12.0.0
+ - CentOS版本：CentOS release 6.5
+ - 三台虚拟机(IP)：192.168.252.150,192.168.252..151,192.168.252..152
 
-## 安装
+### 注意事项
  
-**本文使用的最新稳定版本 redis-4.0.1** 
 
- 
-**安裝 GCC 编译工具 不然会有编译不过的问题**
+安裝 GCC 编译工具 不然会有编译不过的问题
+
+```sh
+$ yum install -y gcc g++ gcc-c++ make
+```
+
+升级所有的包，防止出现版本过久不兼容问题
+
+```sh
+$ yum -y update
+```
+
+关闭防火墙 节点之前需要开放指定端口，为了方便，生产不要禁用
+
+centos 6.5
 
 ```
-yum install -y gcc g++ gcc-c++ make
+service iptables stop # 关闭命令：
 ```
+
+centos 7.0
+```
+systemctl stop firewalld.service # 停止firewall
+```
+
+
+
+## 集群搭建
+
+### 安装 Redis
 
 **下载，解压，编译安装**
 
 ```sh
-wget http://download.redis.io/releases/redis-4.0.1.tar.gz
-tar xzf redis-4.0.1.tar.gz
-cd redis-4.0.1
-make
-```
-如果因为上次编译失败，有残留的文件
- 
-```
-make distclean
+$ wget http://download.redis.io/releases/redis-4.0.1.tar.gz
+$ tar xzf redis-4.0.1.tar.gz
+$ cd redis-4.0.1
+$ make
 ```
 
-## 创建 Redis 节点
+**如果因为上次编译失败，有残留的文件**
+ 
+```sh
+$ make distclean
+```
+
+
+### 创建节点
 
 首先在 192.168.252.150机器上 /opt/redis-4.0.1目录下创建 `redis_cluster` 目录
 
-```
-mkdir /opt/redis-4.0.1/redis_cluster
+```sh
+$ mkdir /opt/redis-4.0.1/redis_cluster
 ```
 
 在 `redis_cluster` 目录下，创建名为`7000、7001、7002`的目录，并将 `redis.conf` 拷贝到这三个目录中
 
-```
-mkdir 7000 7001 7002
+```sh
+$ mkdir 7000 7001 7002
 
-cp /opt/redis-4.0.1/redis.conf /opt/redis-4.0.1/redis_cluster/7000
-cp /opt/redis-4.0.1/redis.conf /opt/redis-4.0.1/redis_cluster/7001
-cp /opt/redis-4.0.1/redis.conf /opt/redis-4.0.1/redis_cluster/7002
-
+$ vi redis_cluster/7000
+$ vi redis_cluster/7001
+$ vi redis_cluster/7002
 ```
 
 分别修改这三个配置文件，修改如下内容
  
-```
+```sh
 port                  7000                        //端口7000,7002,7003        
 bind                  本机ip                      //默认ip为127.0.0.1，需要改为其他节点机器可访问的ip，否则创建集群时无法访问对应的端口，无法创建集群
 daemonize             yes                         //redis后台运行
@@ -73,65 +97,106 @@ appendonly            yes                         //aof日志开启，有需要�
 
 
 
-## 关闭防火墙
+### 启动集群
 
-```
-service   iptables stop
-```
+```sh
+#第一台机器上执行 3个节点
+$ for((i=0;i<=3;i++)); do /opt/redis-4.0.1/src/redis-server /opt/redis-4.0.1/redis_cluster/700$i/redis.conf; done
 
-
-## 启动各个节点
-
-```
-
-##第一台机器上执行
-/opt/redis-4.0.1/src/redis-server /opt/redis-4.0.1/redis_cluster/7000/redis.conf
-/opt/redis-4.0.1/src/redis-server /opt/redis-4.0.1/redis_cluster/7001/redis.conf
-/opt/redis-4.0.1/src/redis-server /opt/redis-4.0.1/redis_cluster/7002/redis.conf
-
-##第二台机器上执行
-/opt/redis-4.0.1/src/redis-server /opt/redis-4.0.1/redis_cluster/7003/redis.conf
-/opt/redis-4.0.1/src/redis-server /opt/redis-4.0.1/redis_cluster/7004/redis.conf
-/opt/redis-4.0.1/src/redis-server /opt/redis-4.0.1/redis_cluster/7005/redis.conf
+#第二台机器上执行 3个节点
+$ for((i=3;i<=3;i++)); do /opt/redis-4.0.1/src/redis-server /opt/redis-4.0.1/redis_cluster/700$i/redis.conf; done
                      
-##第三台机器上执行   
-/opt/redis-4.0.1/src/redis-server /opt/redis-4.0.1/redis_cluster/7006/redis.conf
-/opt/redis-4.0.1/src/redis-server /opt/redis-4.0.1/redis_cluster/7007/redis.conf
-/opt/redis-4.0.1/src/redis-server /opt/redis-4.0.1/redis_cluster/7008/redis.conf
-
+#第三台机器上执行 3个节点 
+$ for((i=6;i<=3;i++)); do /opt/redis-4.0.1/src/redis-server /opt/redis-4.0.1/redis_cluster/700$i/redis.conf; done
 ```
 
-## 检查各 Redis 启动情况
+### 检查服务
 
-```
-##第一台机器
+检查各 Redis 各个节点启动情况
+ 
+```sh
 $ ps -ef | grep redis           //redis是否启动成功
 $ netstat -tnlp | grep redis    //监听redis端口
 ```
 
+### 安装 Ruby
 
-
-## 安装 Ruby
-
-```
-yum -y install ruby ruby-devel rubygems rpm-build
-gem install redis
+```sh
+$ yum -y install ruby ruby-devel rubygems rpm-build
+$ gem install redis
 ```
 
-Redis 官方提供了 redis-trib.rb 这个工具，就在解压目录的 src 目录中
+### 创建集群
  
-```
-/opt/redis-4.0.1/src/redis-trib.rb create --replicas 1 192.168.252.150:7000 192.168.252.150:7001 192.168.252.150:7002 192.168.252.151:7003 192.168.252.151:7004 192.168.252.151:7005 192.168.252.152:7006 192.168.252.152:7007 192.168.252.152:7008
+Redis 官方提供了 `redis-trib.rb` 这个工具，就在解压目录的 src 目录中,每个节点正常开启后，在任意一台上运行
+ 
+```sh
+$ /opt/redis-4.0.1/src/redis-trib.rb create --replicas 1 192.168.252.150:7000 192.168.252.150:7001 192.168.252.150:7002 192.168.252.151:7003 192.168.252.151:7004 192.168.252.151:7005 192.168.252.152:7006 192.168.252.152:7007 192.168.252.152:7008
 ```
 
-输入 yes，然后出现如下内容，说明安装成功
- 
+出现以下内容
+
+```sh
+Can I set the above configuration? (type 'yes' to accept): yes
+```
+
+**输入 yes**
+
+
+
+
+### 关闭集群
+
+这样也可以，推荐
+
+```sh
+$ pkill redis
+```
+
+
+循环节点逐个关闭
+
+```sh
+$ for((i=0;i<3;i++)); do /opt/redis-4.0.1/src/redis-cli -c -h 192.168.252.150 -p 700$i shutdown; done
+```
+
+
 ## 集群验证
-在第一台机器上连接集群的7000节点，在另外一台连接7004节点，连接方式为：
- 
-```
-##加参数 -C 可连接到集群，因为 redis.conf 将 bind 改为了ip地址，所以 -h 参数不可以省略，-p 参数为端口号
 
-/opt/redis-4.0.1/src/redis-cli -h 192.168.252.152 -c -p 7006
+ 
+### 连接集群测试
+ 
+参数 -C 可连接到集群，因为 redis.conf 将 bind 改为了ip地址，所以 -h 参数不可以省略，-p 参数为端口号
+ 
+```sh
+$ /opt/redis-4.0.1/src/redis-cli -h 192.168.252.150 -c -p 7000
+
+192.168.252.150:7000> set name www.ymq.io
+-> Redirected to slot [5798] located at 192.168.252.150:7000
+OK
+192.168.252.150:7000> get name
+"www.ymq.io"
+192.168.252.153:7000>
 ```
+
+### 检查集群状态
+ 
+```sh
+$ /opt/redis-4.0.1/src/redis-trib.rb check 192.168.252.150:7000
+```
+
+### 列出集群节点
+
+列出集群当前已知的所有节点（node），以及这些节点的相关信息
+ 
+```sh
+$ /opt/redis-4.0.1/src/redis-cli -h 192.168.252.150 -c -p 7000 cluster nodes_7000
+```
+### 打印集群信息 
+ 
+```sh
+$ /opt/redis-4.0.1/src/redis-cli -h 192.168.252.150 -c -p 7000 cluster info
+```
+
+
 
