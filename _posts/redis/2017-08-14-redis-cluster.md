@@ -1,8 +1,8 @@
 ---
 layout: post
-title: CentOS6.5 Redis-4.0.1集群搭建与简单使用
+title: Redis-4.0.1 Cluster 集群搭建与简单使用
 categories: Redis
-description: Redis-4.0.1集群搭建与简单使用
+description: Redis-4.0.1 Cluster 集群搭建与简单使用
 keywords: Redis
 ---
 
