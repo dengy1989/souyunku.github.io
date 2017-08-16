@@ -29,13 +29,13 @@ $ yum -y update
 
 关闭防火墙 节点之前需要开放指定端口，为了方便，生产不要禁用
 
-centos 6.5
+centos 6.x
 
 ```
 $ service iptables stop # 关闭命令：
 ```
 
-centos 7.0
+centos 7.x
 ```
 $ systemctl stop firewalld.service # 停止firewall
 ```
