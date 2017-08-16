@@ -1,12 +1,12 @@
 ---
 layout: post
-title: Centos7.3 安装 RabbitMQ 3.6
+title: RabbitMQ 3.6 搭建
 categories: RabbitMQ
 description: Centos7.3 安装 RabbitMQ 3.6
 keywords: RabbitMQ
 ---
 
-# Centos7.3 安装 RabbitMQ
+# RabbitMQ 3.6 搭建
 
 ## 环境
  - VMware版本号：12.0.0
@@ -72,6 +72,7 @@ systemctl enable iptables.service
 RabbitMQ 安装需要依赖 Erlang 环境
 
 ```sh
+$ cd /opt
 $ wget http://www.rabbitmq.com/releases/erlang/erlang-19.0.4-1.el7.centos.x86_64.rpm
 
 $ yum install erlang-19.0.4-1.el7.centos.x86_64.rpm
@@ -81,6 +82,7 @@ $ yum install erlang-19.0.4-1.el7.centos.x86_64.rpm
 ## 安装 RabbitMQ
 
 ```sh
+$ cd /opt
 $ wget http://www.rabbitmq.com/releases/rabbitmq-server/v3.6.10/rabbitmq-server-3.6.10-1.el7.noarch.rpm
 $ yum install rabbitmq-server-3.6.10-1.el7.noarch.rpm
 ```
