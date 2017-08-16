@@ -228,24 +228,47 @@ $ service rabbitmq-server restart
 
 处于安全的考虑，guest这个默认的用户只能通过`http://localhost:15672` 来登录，其他的IP无法直接使用这个账号。 这对于服务器上没有安装桌面的情况是无法管理维护的，除非通过在前面添加一层代理向外提供服务，这个又有些麻烦了，这里通过配置文件来实现这个功能
 
+命令格式
+```sh
+rabbitmqctl add_user <username> <newpassword> 
+```
+
 ```sh
 $ rabbitmqctl add_user ymq 123456
 Creating user "ymq"
 ```
 
 ## 删除用户
+
+命令格式
+```sh
+rabbitmqctl delete_user <username>
+```
+
 ```sh
 $ rabbitmqctl  delete_user penglei
 Deleting user "penglei"
 ```
 
 ## 修改密码
+
+命令格式
+```sh
+rabbitmqctl  change_password  <username> <newpassword> 
+```
+
 ```sh
 $ rabbitmqctl  change_password  ymq 123456
 Changing password for user "ymq"
 ```
 
 ## 用户授权
+
+命令格式
+
+```sh
+rabbitmqctl set_permissions [-pvhostpath] {user} {conf} {write} {read}
+```
 
 该命令使用户ymq /(可以访问虚拟主机) 中所有资源的配置、写、读权限以便管理其中的资源
 
@@ -256,6 +279,11 @@ Setting permissions for user "ymq" in vhost "/"
 ```
 
 ## 查看用户授权
+
+命令格式
+```sh
+rabbitmqctl  list_permissions  [-p  VHostPath]
+```
 
 ```sh
 $ rabbitmqctl list_permissions -p /
@@ -279,6 +307,12 @@ ymq	[]
 
 这里我们也将ymq用户设置为`administrator`角色
 
+命令格式
+
+```sh
+rabbitmqctl set_user_tags <username> <tag>
+```
+
 ```sh
 $ rabbitmqctl set_user_tags ymq administrator
 Setting tags for user "ymq" to [administrator]
@@ -291,6 +325,18 @@ $ rabbitmqctl list_users
 Listing users
 guest	[administrator]
 ymq	[administrator]
+```
+
+清除权限信息
+
+命令格式
+```sh
+rabbitmqctl  clear_permissions  [-p VHostPath]  ymq
+```
+
+```sh
+rabbitmqctl  clear_permissions  -p /  ymq
+Clearing permissions for user "ymq" in vhost "/"
 ```
 
 ## 官方文档
