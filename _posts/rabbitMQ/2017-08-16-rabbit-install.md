@@ -17,22 +17,54 @@ keywords: RabbitMQ
 
 关闭防火墙
 
-centos 6.x
+centos 6.x 关闭 iptables
 ```sh
 $ service iptables stop # 关闭命令：
 ```
 
-centos 7.x
+centos 7.x 关闭firewall
+
 ```sh
 $ systemctl stop firewalld.service # 停止firewall
 ```
 
  
-不想关闭，就开放15672端口
+不想关闭防火墙，就开放15672端口,设置之后可以通过网页方式管理MQ
+
+安装安装iptables防火墙
+
 ```sh
-firewall-cmd --zone=public --add-port=15672/tcp --permanent
-firewall-cmd --reload 
+yum install iptables-services
 ```
+
+编辑配置
+```sh
+$ vi /etc/sysconfig/iptables-config
+```
+
+添加配置
+```sh
+iptables -I INPUT -p tcp --dport 5672 -j ACCEPT
+iptables -I INPUT -p tcp --dport 15672 -j ACCEPT
+```
+
+保存配置
+```sh
+$ service iptables save
+```
+
+重启
+```sh
+systemctl restart iptables.service
+```
+
+设置开机自启动
+```sh
+systemctl enable iptables.service 
+```
+ 
+ 
+# 安装
 
 ## 安装 Erlang
  
@@ -184,6 +216,7 @@ $ service rabbitmq-server restart
 
 通过 http://ip:15672 使用guest,guest 进行登陆了
 
+**如果不能访问，请检查防火墙**
 
 <img src="/images/2017/rabbit/rabbit-login.png" />
 
@@ -192,14 +225,28 @@ $ service rabbitmq-server restart
 
 ## 添加用户
 
-处于安全的考虑，guest这个默认的用户只能通过http://localhost:15672 来登录，其他的IP无法直接使用这个账号。 这对于服务器上没有安装桌面的情况是无法管理维护的，除非通过在前面添加一层代理向外提供服务，这个又有些麻烦了，这里通过配置文件来实现这个功能
+处于安全的考虑，guest这个默认的用户只能通过`http://localhost:15672` 来登录，其他的IP无法直接使用这个账号。 这对于服务器上没有安装桌面的情况是无法管理维护的，除非通过在前面添加一层代理向外提供服务，这个又有些麻烦了，这里通过配置文件来实现这个功能
 
 ```sh
 $ rabbitmqctl add_user ymq 123456
 Creating user "ymq"
 ```
 
+## 删除用户
+```sh
+$ rabbitmqctl  delete_user penglei
+Deleting user "penglei"
+```
+
+## 修改密码
+```sh
+$ rabbitmqctl  change_password  ymq 123456
+Changing password for user "ymq"
+```
+
 ## 用户授权
+
+该命令使用户ymq /(可以访问虚拟主机) 中所有资源的配置、写、读权限以便管理其中的资源
 
 ```sh
 $ rabbitmqctl set_permissions -p "/" ymq ".*" ".*" ".*"
@@ -207,18 +254,81 @@ Setting permissions for user "ymq" in vhost "/"
 
 ```
 
+## 查看用户授权
+
+```sh
+$ rabbitmqctl list_permissions -p /
+Listing permissions in vhost "/"
+guest	.*	.*	.*
+ymq	.*	.*	.*
+```
+
+## 查看当前用户列表
+
+可以看到添加用户成功了，但不是`administrator`角色
+
+```sh
+$ rabbitmqctl list_users
+Listing users
+guest	[administrator]
+ymq	[]
+```
+
+## 添加角色
+
+这里我们也将ymq用户设置为`administrator`角色
+
+```sh
+$ rabbitmqctl set_user_tags ymq administrator
+Setting tags for user "ymq" to [administrator]
+```
+
+再次查看权限
+
+```sh
+$ rabbitmqctl list_users
+Listing users
+guest	[administrator]
+ymq	[administrator]
+```
+
+## 官方文档
+
+ - 安装：[https://www.rabbitmq.com/install-debian.html](https://www.rabbitmq.com/install-debian.html)
+ - 访问控制：[https://www.rabbitmq.com/access-control.html](https://www.rabbitmq.com/access-control.html)
+ - 网络：[https://www.rabbitmq.com/networking.html](https://www.rabbitmq.com/access-control.html)
+ - 配置：[https://www.rabbitmq.com/configure.html](https://www.rabbitmq.com/configure.html)
+ - 集群：[https://www.rabbitmq.com/clustering.html](https://www.rabbitmq.com/configure.html)
+ - 命令：[https://www.rabbitmq.com/man/rabbitmqctl.1.man.html#set_user_tags](https://www.rabbitmq.com/man/rabbitmqctl.1.man.html#set_user_tags)
+	
 
 
+# 后台操作
+
+## 登录新用户
+
+可以看到 ymq 和 guest 的权限 一样
+
+<img src="/images/2017/rabbit/ymq-login.png" />
 
 
+## 添加用户
 
+鼠标点击，划红线的角色，选择一种
 
+<img src="/images/2017/rabbit/add-user.png" />
 
+## 设置权限
 
+该用户无权访问任何虚拟主机
 
+<img src="/images/2017/rabbit/update-user.png" />
 
+点击 Set permission
 
+ - 设置可以访问虚拟主机 中所有资源的配置、写、读权限以便管理其中的资源
 
+<img src="/images/2017/rabbit/setPermission.png" />
 
 
 
