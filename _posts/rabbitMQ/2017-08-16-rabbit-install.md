@@ -1,16 +1,17 @@
 ---
 layout: post
-title: Centos7.3 安装 RabbitMQ
+title: Centos7.3 安装 RabbitMQ 3.6
 categories: RabbitMQ
-description: Centos7.3 安装 RabbitMQ
+description: Centos7.3 安装 RabbitMQ 3.6
 keywords: RabbitMQ
 ---
 
-# 环境
+# Centos7.3 安装 RabbitMQ
 
+## 环境
  - VMware版本号：12.0.0
  - CentOS版本：CentOS 7.3.1611
- - 三台虚拟机(IP)：192.168.252.101,192.168.102..102,192.168.252.103
+ - 虚拟机(IP)：192.168.252.101
 
 ## 注意事项
  
