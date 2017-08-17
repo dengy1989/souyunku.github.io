@@ -1,12 +1,12 @@
 ---
 layout: post
-title: CentOS7 安装 iptables 与详细使用
+title: CentOS7.3 安装 iptables 与详细使用
 categories: iptables
-description: CentOS7 安装 iptables 与详细使用
+description: CentOS7.3 安装 iptables 与详细使用
 keywords: iptables
 ---
 
-# CentOS7 安装 iptables 与详细使用
+# CentOS7.3 安装 iptables 与详细使用
 
 ## 安装操作
 
