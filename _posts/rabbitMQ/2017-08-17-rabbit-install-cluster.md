@@ -2,7 +2,7 @@
 layout: post
 title: CentOs7.3 搭建 RabbitMQ 3.6 Cluster 集群服务
 categories: RabbitMQ
-description:CentOs7.3 搭建 RabbitMQ 3.6 Cluster 集群服务
+description: CentOs7.3 搭建 RabbitMQ 3.6 Cluster 集群服务
 keywords: RabbitMQ
 ---
 
