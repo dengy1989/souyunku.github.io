@@ -72,6 +72,7 @@ systemctl restart iptables.service
 systemctl enable iptables.service 
 ```
  
+[CentOS7.3 安装 iptables 与详细使用](https://segmentfault.com/a/1190000010713423)
  
 # 安装
 
