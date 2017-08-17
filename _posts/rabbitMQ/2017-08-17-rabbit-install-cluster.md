@@ -1,14 +1,14 @@
 ---
 layout: post
-title: RabbitMQ 3.6 Cluster 集群搭建
+title: CentOs7.3 搭建 RabbitMQ 3.6 Cluster 集群服务
 categories: RabbitMQ
-description: RabbitMQ 3.6 Cluster 集群搭建
+description:CentOs7.3 搭建 RabbitMQ 3.6 Cluster 集群服务
 keywords: RabbitMQ
 ---
 
-# RabbitMQ 3.6 Cluster 集群搭建
+# CentOs7.3 搭建 RabbitMQ 3.6 Cluster 集群服务
 
-## RabbitMQ简介
+## CentOs7.3 搭建 RabbitMQ 3.6 Cluster 集群服务
  
 
 RabbitMQ是一个开源的AMQP实现，服务器端用Erlang语言编写，支持多种客户端，如：Python、Ruby、.NET、Java、JMS、C、PHP、ActionScript、XMPP、STOMP等，支持AJAX。用于在分布式系统中存储转发消息，在易用性、扩展性、高可用性等方面表现不俗。

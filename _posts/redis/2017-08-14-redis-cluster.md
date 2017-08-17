@@ -1,10 +1,12 @@
 ---
 layout: post
-title: Redis-4.0.1 Cluster 集群搭建与简单使用
+title: CentOs7.3 搭建 Redis-4.0.1 Cluster 集群服务
 categories: Redis
-description: Redis-4.0.1 Cluster 集群搭建与简单使用
+description: CentOs7.3 搭建 Redis-4.0.1 Cluster 集群服务
 keywords: Redis
 ---
+
+# CentOs7.3 搭建 Redis-4.0.1 Cluster 集群服务
 
 ## 环境
 
