@@ -44,6 +44,8 @@ $ vi /etc/sysconfig/iptables-config
 
 ### 添加配置
 
+ -  示例：开放RabbitMQ 的 对外端口
+
 ```sh
 iptables -I INPUT -p tcp --dport 5672 -j ACCEPT
 iptables -I INPUT -p tcp --dport 15672 -j ACCEPT
