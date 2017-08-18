@@ -12,7 +12,7 @@ keywords: iptables
 
 ### 检查状态
 
- - 先检查是否安装了iptables
+先检查是否安装了iptables
  
 ```sh
 $ service iptables status
