@@ -6,116 +6,155 @@ description: CentOs7.3 ssh 免密登录
 keywords: Linux
 ---
 
-## 修改所有主机 `/etc/hosts` 文件
+## 环境
 
-三台虚拟机(IP)：192.168.252.101,192.168.102..102,192.168.252.103
+三台虚拟机(IP)：
+ - 192.168.252.121
+ - 192.168.252.122
+ - 192.168.252.123
+
+
+## 1.修改主机名
+
+修改三台主机名，以此类推，node1，node3，node3
+
+命令格式
+
+```sh
+hostnamectl set-hostname <hostname>
+```
+```sh
+$ hostnamectl set-hostname node1
+```
+剩下的虚拟机依次修改`hostnamectl set-hostname[1-3]`
+
+
+**重启操作系统**
+```sh
+$ reboot
+```
+
+## 2.修改映射关系
+
+1.在 node1 的 `/etc/hosts` 文件下添加如下内容
 
 ```sh
 $ vi /etc/hosts
 ```
 
-添加如下内容
+2.查看修改后的`/etc/hosts` 文件内容
 
 ```sh
-192.168.252.101 node1
-192.168.252.102 node2
-192.168.252.103 node3
+$ cat /etc/hosts
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+# 以下是添加的
+192.168.252.121 node1
+192.168.252.122 node2
+192.168.252.123 node3
+```
+
+2.将集群node1 上的文件`hosts`文件 通过 `scp` 命令复制发送到集群的每一个节点
+
+```sh
+$ for a in {1..3} ; do scp /etc/hosts node$a:/etc/hosts ; done
+```
+
+3.检查是否集群每一个节点的 `hosts` 文件都已经修改过来了
+
+```sh
+$ for a in {1..3} ; do ssh node$a cat /etc/hosts ; done
 ```
 
 
-## 启动 ssh 无密登录
+## 3.启动 ssh 无密登录
 
-CentOS 默认没有启动 ssh 无密登录,去掉 `/etc/ssh/sshd_config` 其中 2 行的注释，每台服务器都要设置。
+1.在集群node1的 `/etc/ssh/sshd_config ` 文件去掉以下选项的注释
 
 ```sh
 $ vi /etc/ssh/sshd_config 
+
+PermitRootLogin yes        #禁止root登陆
+RSAAuthentication yes      #开启私钥验证
+PubkeyAuthentication yes   #开启公钥验证
+
+#这个默认没有的
+StrictHostKeyChecking no #配置达到连接新主机不需要输入 Y 验证的目的
 ```
 
-``` 
-# 去掉这下满的 “#” 注释
-#RSAAuthentication yes
-#PubkeyAuthentication yes
-```
-
-## 生成公钥、私钥对
-
-每台服务器下都输入命令 `ssh-keygen -t rsa`，生成 key，一律不输入密码，直接回车，/root 就会生成 `.ssh `文件夹。
+2.将集群node1 修改后的 `/etc/ssh/sshd_config ` 通过 `scp` 命令复制发送到集群的每一个节点
 
 ```sh
-$ ssh-keygen -t rsa
+$ for a in {1..3} ; do scp /etc/ssh/sshd_config node$a:/etc/ssh/sshd_config ; done
 ```
 
-## 合并公钥
+## 4.生成公钥、私钥
 
-每台服务器下都输入命令,进入到生成密钥文件夹中，`/root/.ssh/` 一个隐藏的.ssh文件夹中。
+1.在集群的每一个节点节点输入命令 `ssh-keygen -t rsa -P ''`，生成 key，一律回车
 
 ```sh
-$ cd /root/.ssh 
-$ cat id_rsa.pub >> authorized_keys  
+$ ssh-keygen -t rsa -P ''
 ```
 
-## 修改 hosts 文件
-
-`vi /etc/hosts`
-
 ```
-192.168.252.101 node1
-192.168.252.102 node2
-192.168.252.103 node2
+[root@node1 ~]# ssh-keygen -t rsa -P ''
+Generating public/private rsa key pair.
+Enter file in which to save the key (/root/.ssh/id_rsa): 
+Your identification has been saved in /root/.ssh/id_rsa.
+Your public key has been saved in /root/.ssh/id_rsa.pub.
+The key fingerprint is:
+22:42:2d:15:39:cc:f6:4a:9c:da:57:5b:55:b8:18:5d root@node1
+The key's randomart image is:
++--[ RSA 2048]----+
+|   ooo     . +E  |
+|   o*     . +    |
+|  oo.+     + .   |
+| . .+ . . o .    |
+|  .+....So       |
+|  ..o....        |
+|     .           |
+|                 |
+|                 |
++-----------------+
 ```
 
-## 复制公钥
+2.在集群的node1 节点输入命令
 
-把 node1 服务器的 `id_rsa` ，`authorized_keys` 复制到 `node2,node3` 服务器的 `/root/.ssh` 目录
+将集群每一个节点的公钥`id_rsa.pub`放入到自己的认证文件中`authorized_keys`;
 
 ```sh
-$ scp id_rsa node2:/root/.ssh/
-$ scp id_rsa node3:/root/.ssh/
+for a in {1..3}; do ssh node$a cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys; done
+
 ```
+
+3.在集群的node1 节点输入命令
+
+将自己的认证文件 `authorized_keys` ` 通过 `scp` 命令复制发送到每一个节点上去: `/root/.ssh/authorized_keys`
 
 ```sh
-$ scp authorized_keys node2:/root/.ssh/
-$ scp authorized_keys node3:/root/.ssh/
+for a in {1..3}; do scp /root/.ssh/authorized_keys node$a:/root/.ssh/authorized_keys ; done
 ```
 
+4.在集群的每一个节点节点输入命令
 
-## 验证登录
-
-此时ssh登录 node2，node3 不用输入密码
+接重启ssh服务
 
 ```sh
-$ ssh node2
-$ ssh node3
+systemctl status sshd.service
 ```
 
+## 5.验证 ssh 无密登录
 
+5.开一个其他窗口测试下能否免密登陆
 
+例如：在node3
 
+```sh
+[root@node3 ~]# ssh node1
+Last login: Fri Aug 18 18:25:17 2017 from node2
+```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+注意：开新的其他窗口测试下能否免密登陆，把当前窗口都关了
 
 
 
