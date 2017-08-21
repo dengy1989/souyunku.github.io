@@ -22,7 +22,7 @@ ZooKeeper版本：ZooKeeper-3.4.9.tar.gz
 
 集群主机用户：都是用root用户
 
-集群JDK环境：jdk-8u144-linux-x64.tar.gz 具体参考[CentOs7.3 安装 JDK1.8](https://segmentfault.com/a/1190000010716919)
+集群JDK环境：jdk-8u144-linux-x64.tar.gz 具体参考[《CentOs7.3 安装 JDK1.8》](https://segmentfault.com/a/1190000010716919)
 
 集群主机之间设置免密登陆：设置方式见：[《CentOs7.3 ssh 免密登录》](https://segmentfault.com/a/1190000010738165)
 

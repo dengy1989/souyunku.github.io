@@ -74,12 +74,8 @@ $ for a in {1..3} ; do ssh node$a cat /etc/hosts ; done
 ```sh
 $ vi /etc/ssh/sshd_config 
 
-PermitRootLogin yes        #禁止root登陆
 RSAAuthentication yes      #开启私钥验证
 PubkeyAuthentication yes   #开启公钥验证
-
-#这个默认没有的
-StrictHostKeyChecking no #配置达到连接新主机不需要输入 Y 验证的目的
 ```
 
 2.将集群node1 修改后的 `/etc/ssh/sshd_config ` 通过 `scp` 命令复制发送到集群的每一个节点
@@ -140,7 +136,7 @@ for a in {1..3}; do scp /root/.ssh/authorized_keys node$a:/root/.ssh/authorized_
 接重启ssh服务
 
 ```sh
-systemctl status sshd.service
+systemctl restart sshd.service
 ```
 
 ## 5.验证 ssh 无密登录
