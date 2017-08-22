@@ -147,7 +147,18 @@ systemctl restart sshd.service
 
 ```sh
 [root@node3 ~]# ssh node1
-Last login: Fri Aug 18 18:25:17 2017 from node2
+The authenticity of host 'node1 (192.168.252.121)' can't be established.
+ECDSA key fingerprint is ab:0f:08:20:3d:7a:11:05:ea:d9:b0:0c:9e:e1:d0:97.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'node1,192.168.252.121' (ECDSA) to the list of known hosts.
+Last login: Tue Aug 22 14:00:18 2017 from 192.168.252.1
+```
+
+`exit` 退出
+```sh
+[root@node1 ~]# exit
+logout
+Connection to node1 closed.
 ```
 
 注意：开新的其他窗口测试下能否免密登陆，把当前窗口都关了
