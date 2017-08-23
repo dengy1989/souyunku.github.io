@@ -8,11 +8,12 @@ keywords: ZooKeeper
 
 #  CentOs7.3 搭建 ZooKeeper-3.4.9 单机服务
 
+
 # Zookeeper 概述
 
 zookeeper实际上是yahoo开发的，用于分布式中**一致性处理的框架**。最初其作为研发Hadoop时的副产品。由于分布式系统中一致性处理较为困难，其他的分布式系统没有必要 费劲重复造轮子，故随后的分布式系统中大量应用了zookeeper，以至于zookeeper成为了各种分布式系统的基础组件，其地位之重要，可想而知。著名的**hadoop，kafka，dubbo 都是基于zookeeper而构建**。
 
-要想理解zookeeper到底是做啥的，那首先得理解清楚，**什么是一致性？**。
+要想理解zookeeper到底是做啥的，那首先得理解清楚，**什么是一致性？**
 
 所谓的一致性，实际上就是围绕着“看见”来的。谁能看见？能否看见？什么时候看见？举个例子：淘宝后台卖家，在后台上架一件大促的商品，通过服务器A提交到主数据库，假设刚提交后立马就有用户去通过应用服务器B去从数据库查询该商品，就会出现一个现象，卖家已经更新成功了，然而买家却看不到；而经过一段时间后，主数据库的数据同步到了从数据库，买家就能查到了。
 
@@ -23,7 +24,13 @@ zookeeper实际上是yahoo开发的，用于分布式中**一致性处理的框�
 而卖家更新成功后，买家经过一段时间最终能看到卖家的更新，则称为**最终一致性**
 
 
-[Zookeeper 概述引用 http://blog.csdn.net/liweisnake/article/details/63251252](http://blog.csdn.net/liweisnake/article/details/63251252)
+[《一致性协议》](http://www.cnblogs.com/leesf456/p/6001278.html)
+
+[《ZooKeeper应用场景》](http://www.cnblogs.com/leesf456/p/6036548.html)
+
+[《分布式架构》](http://www.cnblogs.com/leesf456/p/5992377.html)
+
+[《分布式 ZooKeeper 系列》](http://www.cnblogs.com/leesf456/tag/%E5%88%86%E5%B8%83%E5%BC%8F/)
 
 ## 环境
 
@@ -67,7 +74,7 @@ $ cd zookeeper-3.4.9
 创建`data`文件夹 用于存储数据文件
 
 ```sh
-$ mkdir data
+$ mkdir data  logs
 ```
 
 创建`logs`文件夹 用于存储日志
@@ -80,7 +87,7 @@ $ mkdir logs
 使用命令 `vi conf/zoo.cfg` 创建配置文件并打开，ps (其实目录`conf` 下有默认的配置文件，但是注释太多，英文一大堆，太乱)
 
 ```sh
-$ vi conf/zoo.cfg
+$ vi  /opt/zookeeper-3.4.9/conf/zoo.cfg
 ```
 
 编辑内容如下
@@ -93,13 +100,40 @@ tickTime = 2000
 clientPort = 2181
 initLimit = 5
 syncLimit = 2
-
 ```
 
-## 4.启动ZooKeeper服务
+
+
+### 配置文件描述
+
+
+**tickTime** 
+
+ - tickTime则是上述两个超时配置的基本单位，例如对于initLimit，其配置值为5，说明其超时时间为 2000ms * 5 = 10秒。
+
+**dataDir**
+
+ - 其配置的含义跟单机模式下的含义类似，不同的是集群模式下还有一个myid文件。myid文件的内容只有一行，且内容只能为1 - 255之间的数字，这个数字亦即上面介绍server.id中的id，表示zk进程的id。
+
+**dataLogDir**
+
+ - 如果没提供的话使用的则是dataDir。zookeeper的持久化都存储在这两个目录里。dataLogDir里是放到的顺序日志(WAL)。而dataDir里放的是内存数据结构的snapshot，便于快速恢复。为了达到性能最大化，一般建议把dataDir和dataLogDir分到不同的磁盘上，这样就可以充分利用磁盘顺序写的特性。
+
+**initLimit**
+
+ - ZooKeeper集群模式下包含多个zk进程，其中一个进程为leader，余下的进程为follower。 
+当follower最初与leader建立连接时，它们之间会传输相当多的数据，尤其是follower的数据落后leader很多。initLimit配置follower与leader之间建立连接后进行同步的最长时间。
+
+**syncLimit**
+
+ - 配置follower和leader之间发送消息，请求和应答的最大时间长度。
+
+# ZooKeeper操作
+
+## 启动服务
 
 ```sh
-$ bin/zkServer.sh start
+$ /opt/zookeeper-3.4.9/bin/zkServer.sh start
 ```
 
 响应
@@ -110,12 +144,12 @@ Using config: /opt/zookeeper-3.4.9/bin/../conf/zoo.cfg
 Starting zookeeper ... STARTED
 ```
 
-## 5.启动CLI
+## 连接服务
 
 连接到ZooKeeper服务
 
 ```sh
-$ bin/zkCli.sh
+$ /opt/zookeeper-3.4.9/bin/zkCli.sh
 ```
 
 响应
@@ -152,10 +186,24 @@ WatchedEvent state:SyncConnected type:None path:null
 
 ```
 
-## 6.停止ZooKeeper服务
+## 服务状态
 
 ```sh
-$ bin/zkServer.sh stop
+$ /opt/zookeeper-3.4.9/bin/zkServer.sh status
+```
+
+响应
+
+```
+ZooKeeper JMX enabled by default
+Using config: /opt/zookeeper-3.4.9/bin/../conf/zoo.cfg
+Mode: standalone
+```
+
+## 停止服务
+
+```sh
+$ /opt/zookeeper-3.4.9/bin/zkServer.sh stop
 ```
 
 响应
@@ -165,5 +213,4 @@ bin/zkServer.sh stop
 ZooKeeper JMX enabled by default
 Using config: /opt/zookeeper-3.4.9/bin/../conf/zoo.cfg
 Stopping zookeeper ... STOPPED
-
 ```

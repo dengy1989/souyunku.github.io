@@ -198,11 +198,11 @@ $ for a in {2..3} ; do scp -r /opt/zookeeper-3.4.9/ node$a:/opt/zookeeper-3.4.9 
 $ for a in {1..3} ; do ssh node$a "source /etc/profile; echo $a > /opt/zookeeper-3.4.9/data/myid" ; done
 ```
 
-## 6.集群操作
+# 集群操作
 
 **在集群任意一台机器上执行**
 
-### 启动集群
+## 启动集群
 ```sh
 $ for a in {1..3} ; do ssh node$a "source /etc/profile; /opt/zookeeper-3.4.9/bin/zkServer.sh start" ; done
 ```
@@ -221,7 +221,7 @@ Starting zookeeper ... STARTED
 
 ```
 
-### 连接集群
+## 连接集群
 
 ```sh
 $ /opt/zookeeper-3.4.9/bin/zkCli.sh -server node1:2181,node2:2181,node3:2181
@@ -269,7 +269,7 @@ JLine support is enabled
 ```
 
 
-### 集群状态
+## 集群状态
 
 ```sh
 $ for a in {1..3} ; do ssh node$a "source /etc/profile; /opt/zookeeper-3.4.9/bin/zkServer.sh status" ; done
@@ -291,7 +291,7 @@ Mode: follower
 通过日志我可以看到  node2 leader (ps 是老大)，其他 node1 ,node2 follower   (ps 都是小弟)
 
 Leader 怎么选举的可以参考[《Zookeeper的Leader选举》](http://www.cnblogs.com/leesf456/p/6107600.html)
-### 停止集群
+## 停止集群
 
 ```sh
 $ for a in {1..3} ; do ssh node$a "source /etc/profile; /opt/zookeeper-3.4.9/bin/zkServer.sh stop" ; done
