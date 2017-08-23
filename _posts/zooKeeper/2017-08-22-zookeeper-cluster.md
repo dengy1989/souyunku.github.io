@@ -23,9 +23,16 @@ zookeeper实际上是yahoo开发的，用于分布式中**一致性处理的框�
 而卖家更新成功后，买家经过一段时间最终能看到卖家的更新，则称为**最终一致性**
 
 
-[Zookeeper 概述引用 http://blog.csdn.net/liweisnake/article/details/63251252](http://blog.csdn.net/liweisnake/article/details/63251252)
+[《一致性协议》](http://www.cnblogs.com/leesf456/p/6001278.html)
 
-## 环境
+[《ZooKeeper应用场景》](http://www.cnblogs.com/leesf456/p/6036548.html)
+
+[《分布式架构》](http://www.cnblogs.com/leesf456/p/5992377.html)
+
+[《分布式 ZooKeeper 系列》](http://www.cnblogs.com/leesf456/tag/%E5%88%86%E5%B8%83%E5%BC%8F/)
+
+
+# 环境
 
 
 VMware版本号：12.0.0
@@ -101,7 +108,10 @@ $ mkdir /opt/zookeeper-3.4.9/logs
 
 ## 3.创建配置文件
 
-使用命令 `vi conf/zoo.cfg` 创建配置文件并打开，ps (其实目录`conf` 下有默认的配置文件，但是注释太多，英文一大堆，太乱)
+**zoo.cfg**
+
+zookeeper的主要配置文件，因为Zookeeper是一个集群服务，集群的每个节点都需要这个配置文件。为了避免出差错，zoo.cfg这个配置文件里没有跟特定节点相关的配置，所以每个节点上的这个zoo.cfg都是一模一样的配置。这样就非常便于管理了，比如我们可以把这个文件提交到版本控制里管理起来。其实这给我们设计集群系统的时候也是个提示：集群系统一般有很多配置，应该尽量将通用的配置和特定每个服务的配置(比如服务标识)分离，这样通用的配置在不同服务之间copy就ok了
+
 
 ```sh
 $ vi /opt/zookeeper-3.4.9/conf/zoo.cfg
@@ -123,12 +133,51 @@ server.2=node2:2888:3888
 server.3=node3:2888:3888
 ```
 
+### 配置文件描述
+
+
+**tickTime** 
+
+ - tickTime则是上述两个超时配置的基本单位，例如对于initLimit，其配置值为5，说明其超时时间为 2000ms * 5 = 10秒。
+
+**dataDir**
+
+ - 其配置的含义跟单机模式下的含义类似，不同的是集群模式下还有一个myid文件。myid文件的内容只有一行，且内容只能为1 - 255之间的数字，这个数字亦即上面介绍server.id中的id，表示zk进程的id。
+
+**dataLogDir**
+
+ - 如果没提供的话使用的则是dataDir。zookeeper的持久化都存储在这两个目录里。dataLogDir里是放到的顺序日志(WAL)。而dataDir里放的是内存数据结构的snapshot，便于快速恢复。为了达到性能最大化，一般建议把dataDir和dataLogDir分到不同的磁盘上，这样就可以充分利用磁盘顺序写的特性。
+
+**initLimit**
+
+ - ZooKeeper集群模式下包含多个zk进程，其中一个进程为leader，余下的进程为follower。 
+当follower最初与leader建立连接时，它们之间会传输相当多的数据，尤其是follower的数据落后leader很多。initLimit配置follower与leader之间建立连接后进行同步的最长时间。
+
+**syncLimit**
+
+ - 配置follower和leader之间发送消息，请求和应答的最大时间长度。
+
+
+**server.id=host:port1:port2**
+
+
+`server.id` 其中id为一个数字，表示zk进程的id，这个id也是data目录下myid文件的内容
+
+`host` 是该zk进程所在的IP地址
+
+`port1` 表示follower和leader交换消息所使用的端口
+
+`port2` 表示选举leader所使用的端口
+
+
 ## 4.创建myid 文件
 
-server.X 构成ZooKeeper服务的服务器。当服务器启动时，它通过查找data目录中的文件myid来知道它是哪个服务器 
+在data里会放置一个myid文件，里面就一个数字，用来唯一标识这个服务。这个id是很重要的，一定要保证整个集群中唯一
+
+ZooKeeper会根据这个id来取出server.x上的配置。比如当前id为1，则对应着zoo.cfg里的server.1的配置
 
 ```sh
-echo "1" > /opt/zookeeper-3.4.9/data/myid
+$ echo "1" > /opt/zookeeper-3.4.9/data/myid
 ```
 
 这样一台node1机器就配置完了
@@ -139,20 +188,22 @@ echo "1" > /opt/zookeeper-3.4.9/data/myid
 在集群node1 上执行,复制配置好的zookeeper到其他两台主机上 
 
 ```sh
-for a in {2..3} ; do scp -r /opt/zookeeper-3.4.9/ node$a:/opt/zookeeper-3.4.9 ; done
+$ for a in {2..3} ; do scp -r /opt/zookeeper-3.4.9/ node$a:/opt/zookeeper-3.4.9 ; done
 ```
 
 在集群node1 上执行 ,批量修改myid 文件
 
 
 ```sh
-for a in {1..3} ; do ssh node$a "source /etc/profile; echo $a > /opt/zookeeper-3.4.9/data/myid" ; done
+$ for a in {1..3} ; do ssh node$a "source /etc/profile; echo $a > /opt/zookeeper-3.4.9/data/myid" ; done
 ```
 
-## 6.启动集群
+## 6.集群操作
 
+
+### 启动集群
 ```sh
-for a in {1..3} ; do ssh node$a "source /etc/profile; /opt/zookeeper-3.4.9/bin/zkServer.sh start" ; done
+$ for a in {1..3} ; do ssh node$a "source /etc/profile; /opt/zookeeper-3.4.9/bin/zkServer.sh start" ; done
 ```
 
 响应
@@ -169,17 +220,80 @@ Starting zookeeper ... STARTED
 
 ```
 
-## 7.集群状态
+### 连接集群
 
 ```sh
-for a in {1..3} ; do ssh node$a "source /etc/profile; /opt/zookeeper-3.4.9/bin/zkServer.sh status" ; done
+$ /opt/zookeeper-3.4.9/bin/zkCli.sh -server node1:2181,node2:2181,node3:2181
+```
+
+响应
+```sh
+Connecting to node1:2181,node2:2181,node3:2181
+2017-08-23 11:08:10,323 [myid:] - INFO  [main:Environment@100] - Client environment:zookeeper.version=3.4.9-1757313, built on 08/23/2016 06:50 GMT
+2017-08-23 11:08:10,328 [myid:] - INFO  [main:Environment@100] - Client environment:host.name=node1
+2017-08-23 11:08:10,329 [myid:] - INFO  [main:Environment@100] - Client environment:java.version=1.8.0_144
+2017-08-23 11:08:10,331 [myid:] - INFO  [main:Environment@100] - Client environment:java.vendor=Oracle Corporation
+2017-08-23 11:08:10,331 [myid:] - INFO  [main:Environment@100] - Client environment:java.home=/usr/lib/jvm/jre
+2017-08-23 11:08:10,331 [myid:] - INFO  [main:Environment@100] - Client environment:java.class.path=/opt/zookeeper-3.4.9/bin/../build/classes:/opt/zookeeper-3.4.9/bin/../build/lib/*.jar:/opt/zookeeper-3.4.9/bin/../lib/slf4j-log4j12-1.6.1.jar:/opt/zookeeper-3.4.9/bin/../lib/slf4j-api-1.6.1.jar:/opt/zookeeper-3.4.9/bin/../lib/netty-3.10.5.Final.jar:/opt/zookeeper-3.4.9/bin/../lib/log4j-1.2.16.jar:/opt/zookeeper-3.4.9/bin/../lib/jline-0.9.94.jar:/opt/zookeeper-3.4.9/bin/../zookeeper-3.4.9.jar:/opt/zookeeper-3.4.9/bin/../src/java/lib/*.jar:/opt/zookeeper-3.4.9/bin/../conf:.:/lib/jvm/lib:/lib/jvm/jre/lib
+2017-08-23 11:08:10,331 [myid:] - INFO  [main:Environment@100] - Client environment:java.library.path=/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib
+2017-08-23 11:08:10,331 [myid:] - INFO  [main:Environment@100] - Client environment:java.io.tmpdir=/tmp
+2017-08-23 11:08:10,331 [myid:] - INFO  [main:Environment@100] - Client environment:java.compiler=<NA>
+2017-08-23 11:08:10,331 [myid:] - INFO  [main:Environment@100] - Client environment:os.name=Linux
+2017-08-23 11:08:10,331 [myid:] - INFO  [main:Environment@100] - Client environment:os.arch=amd64
+2017-08-23 11:08:10,331 [myid:] - INFO  [main:Environment@100] - Client environment:os.version=3.10.0-514.26.2.el7.x86_64
+2017-08-23 11:08:10,331 [myid:] - INFO  [main:Environment@100] - Client environment:user.name=root
+2017-08-23 11:08:10,332 [myid:] - INFO  [main:Environment@100] - Client environment:user.home=/root
+2017-08-23 11:08:10,332 [myid:] - INFO  [main:Environment@100] - Client environment:user.dir=/root
+2017-08-23 11:08:10,333 [myid:] - INFO  [main:ZooKeeper@438] - Initiating client connection, connectString=node1:2181,node2:2181,node3:2181 sessionTimeout=30000 watcher=org.apache.zookeeper.ZooKeeperMain$MyWatcher@506c589e
+2017-08-23 11:08:10,361 [myid:] - INFO  [main-SendThread(node3:2181):ClientCnxn$SendThread@1032] - Opening socket connection to server node3/192.168.252.123:2181. Will not attempt to authenticate using SASL (unknown error)
+Welcome to ZooKeeper!
+JLine support is enabled
+2017-08-23 11:08:10,474 [myid:] - INFO  [main-SendThread(node3:2181):ClientCnxn$SendThread@876] - Socket connection established to node3/192.168.252.123:2181, initiating session
+[zk: node1:2181,node2:2181,node3:2181(CONNECTING) 0] 2017-08-23 11:08:10,535 [myid:] - INFO  [main-SendThread(node3:2181):ClientCnxn$SendThread@1299] - Session establishment complete on server node3/192.168.252.123:2181, sessionid = 0x35e0d0716340000, negotiated timeout = 30000
+
+WATCHER::
+
+WatchedEvent state:SyncConnected type:None path:null
+
+[zk: node1:2181,node2:2181,node3:2181(CONNECTED) 0]
+```
+
+从日志可以看出客户端成功连接的是node3 连接上哪台机器的zk进程是随机的
+
+```sh
+
+2017-08-23 11:08:10,361 [myid:] - INFO  [main-SendThread(node3:2181):ClientCnxn$SendThread@1032] - Opening socket connection to server node3/192.168.252.123:2181. Will not attempt to authenticate using SASL (unknown error)
+Welcome to ZooKeeper!
+JLine support is enabled
 ```
 
 
-## 7.停止集群
+### 集群状态
 
 ```sh
-for a in {1..3} ; do ssh node$a "source /etc/profile; /opt/zookeeper-3.4.9/bin/zkServer.sh stop" ; done
+$ for a in {1..3} ; do ssh node$a "source /etc/profile; /opt/zookeeper-3.4.9/bin/zkServer.sh status" ; done
+```
+
+响应
+```sh
+ZooKeeper JMX enabled by default
+Using config: /opt/zookeeper-3.4.9/bin/../conf/zoo.cfg
+Mode: follower
+ZooKeeper JMX enabled by default
+Using config: /opt/zookeeper-3.4.9/bin/../conf/zoo.cfg
+Mode: leader
+ZooKeeper JMX enabled by default
+Using config: /opt/zookeeper-3.4.9/bin/../conf/zoo.cfg
+Mode: follower
+```
+
+通过日志我可以看到  node2 leader (ps 是老大)，其他 node1 ,node2 follower   (ps 都是小弟)
+
+Leader 怎么选举的可以参考[《Zookeeper的Leader选举》](http://www.cnblogs.com/leesf456/p/6107600.html)
+### 停止集群
+
+```sh
+$ for a in {1..3} ; do ssh node$a "source /etc/profile; /opt/zookeeper-3.4.9/bin/zkServer.sh stop" ; done
 ```
 
 响应
