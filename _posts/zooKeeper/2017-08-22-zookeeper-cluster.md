@@ -128,7 +128,7 @@ server.3=node3:2888:3888
 server.X 构成ZooKeeper服务的服务器。当服务器启动时，它通过查找data目录中的文件myid来知道它是哪个服务器 
 
 ```sh
-echo "0" > /opt/zookeeper-3.4.9/data/myid
+echo "1" > /opt/zookeeper-3.4.9/data/myid
 ```
 
 这样一台node1机器就配置完了
@@ -143,8 +143,10 @@ for a in {2..3} ; do scp -r /opt/zookeeper-3.4.9/ node$a:/opt/zookeeper-3.4.9 ; 
 ```
 
 在集群node1 上执行 ,批量修改myid 文件
+
+
 ```sh
-for a in {2..3} ; do ssh node$a "source /etc/profile; echo $a > /opt/zookeeper-3.4.9/data/myid" ; done
+for a in {1..3} ; do ssh node$a "source /etc/profile; echo $a > /opt/zookeeper-3.4.9/data/myid" ; done
 ```
 
 ## 6.启动集群
@@ -153,14 +155,43 @@ for a in {2..3} ; do ssh node$a "source /etc/profile; echo $a > /opt/zookeeper-3
 for a in {1..3} ; do ssh node$a "source /etc/profile; /opt/zookeeper-3.4.9/bin/zkServer.sh start" ; done
 ```
 
+响应
+```sh
+ZooKeeper JMX enabled by default
+Using config: /opt/zookeeper-3.4.9/bin/../conf/zoo.cfg
+Starting zookeeper ... STARTED
+ZooKeeper JMX enabled by default
+Using config: /opt/zookeeper-3.4.9/bin/../conf/zoo.cfg
+Starting zookeeper ... STARTED
+ZooKeeper JMX enabled by default
+Using config: /opt/zookeeper-3.4.9/bin/../conf/zoo.cfg
+Starting zookeeper ... STARTED
+
+```
+
 ## 7.集群状态
 
 ```sh
 for a in {1..3} ; do ssh node$a "source /etc/profile; /opt/zookeeper-3.4.9/bin/zkServer.sh status" ; done
 ```
 
+
 ## 7.停止集群
 
 ```sh
 for a in {1..3} ; do ssh node$a "source /etc/profile; /opt/zookeeper-3.4.9/bin/zkServer.sh stop" ; done
+```
+
+响应
+```
+ZooKeeper JMX enabled by default
+Using config: /opt/zookeeper-3.4.9/bin/../conf/zoo.cfg
+Stopping zookeeper ... STOPPED
+ZooKeeper JMX enabled by default
+Using config: /opt/zookeeper-3.4.9/bin/../conf/zoo.cfg
+Stopping zookeeper ... STOPPED
+ZooKeeper JMX enabled by default
+Using config: /opt/zookeeper-3.4.9/bin/../conf/zoo.cfg
+Stopping zookeeper ... STOPPED
+
 ```
