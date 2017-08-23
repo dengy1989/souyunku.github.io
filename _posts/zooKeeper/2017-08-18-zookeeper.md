@@ -214,3 +214,6 @@ ZooKeeper JMX enabled by default
 Using config: /opt/zookeeper-3.4.9/bin/../conf/zoo.cfg
 Stopping zookeeper ... STOPPED
 ```
+
+## 推荐阅读
+[CentOs7.3 搭建 ZooKeeper-3.4.9 Cluster 集群服务](https://segmentfault.com/a/1190000010807875)
