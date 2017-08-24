@@ -241,7 +241,7 @@ Solr process 2926 running on port 8983
     "liveNodes":"3",
     "collections":"1"}}
 ```
-## 6.停止集群
+## 7.停止集群
 
 在任意一台机器 ，停止 SolrCloud 集群 
 
@@ -258,7 +258,7 @@ $ for a in {1..3} ; do ssh node$a "source /etc/profile; /opt/solr-6.6.0/bin/solr
 ```
 
 
-## 7.副本状态
+## 8.副本状态
 
 `healthcheck` 命收集有关集合中每个副本的基本信息，例如副本数量，当前运行状态，是否正常，以及每个副本运行多长时间，内存 和地址（副本在群集中的位置）
 
