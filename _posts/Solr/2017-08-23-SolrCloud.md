@@ -99,21 +99,21 @@ $ for a in {2..3} ; do scp -r /opt/solr-6.6.0/ node$a:/opt/solr-6.6.0 ; done
 $ vi /opt/solr-6.6.0/bin/solr.in.sh
 ```
 
-## 3.启动 ZooKeeper
+## 3.启动 ZooKeeper 集群
 
 ```sh
 $ for a in {1..3} ; do ssh node$a "source /etc/profile; /opt/zookeeper-3.4.9/bin/zkServer.sh start" ; done
 ```
  
-## 3.启动集群
+## 4.启动 SolrCloud 集群
 
 在任意一台机器，启动 SolrCloud 集群 并且关联 ZooKeeper 集群
 
 ```sh
-$ for a in {1..3} ; do ssh node$a "source /etc/profile; /opt/solr-6.6.0/bin/solr start -cloud -z node1:2181, -z node2:2181, -z node3:2181 -p 8983 -force" ; done
+$ for a in {1..3} ; do ssh node$a "source /etc/profile; /opt/solr-6.6.0/bin/solr start -cloud -z node1:2181,node2:2181,node3:2181 -p 8983 -force" ; done
 ```
 
-## 4.创建集群库
+## 5.创建集群库
 
 在任意一台机器
 
@@ -164,21 +164,131 @@ http://192.168.252.121:8983/solr/admin/collections?action=CREATE&name=test_colle
 
 [1]: /images/2017/Solr/solrCloud/solrCloud-Graph.png
 
-
-
 **可以看到 solr 2个分片,个3个副本**
 
 ![可以看到 solr 2个分片,个3个副本][2]
 
  [2]: /images/2017/Solr/solrCloud/solrCloudShard.png
+ 
+ 
+## 6.服务状态
 
+如果您不确定SolrCloud状态
 
+```sh
+$ /opt/solr-6.6.0/bin/solr status
+```
 
-## 5.停止集群
+响应
+```sh
+Found 1 Solr nodes: 
+
+Solr process 2926 running on port 8983
+{
+  "solr_home":"/opt/solr-6.6.0/server/solr",
+  "version":"6.6.0 5c7a7b65d2aa7ce5ec96458315c661a18b320241 - ishan - 2017-05-30 07:32:53",
+  "startTime":"2017-08-24T08:32:16.683Z",
+  "uptime":"0 days, 0 hours, 34 minutes, 51 seconds",
+  "memory":"63.8 MB (%13) of 490.7 MB",
+  "cloud":{
+    "ZooKeeper":"node1:2181,node2:2181,node3:2181",
+    "liveNodes":"3",
+    "collections":"1"}}
+
+## 6.停止集群
 
 在任意一台机器 ，停止 SolrCloud 集群 
+
+在SolrCloud模式下停止Solr，可以使用 `-all`
+
+```sh
+$ /opt/solr-6.6.0/bin/solr stop -all
+```
+
+或者
 
 ```sh
 $ for a in {1..3} ; do ssh node$a "source /etc/profile; /opt/solr-6.6.0/bin/solr stop -cloud -z node1:2181, -z node2:2181, -z node3:2181 -p 8983 -force" ; done
 ```
+
+
+## 7.副本状态
+
+`healthcheck` 命收集有关集合中每个副本的基本信息，例如副本数量，当前运行状态，是否正常，以及每个副本运行多长时间，内存 和地址（副本在群集中的位置）
+
+```sh
+$ /opt/solr-6.6.0/bin/solr healthcheck -c test_collection -z node1:2181,node2:2181,node3:2181 -p 8983 -force
+```
+
+响应
+
+```sh
+INFO  - 2017-08-24 16:34:26.906; org.apache.solr.client.solrj.impl.ZkClientClusterStateProvider; Cluster at node1:2181,node2:2181,node3:2181 ready
+{
+  "collection":"test_collection",
+  "status":"healthy",
+  "numDocs":0,
+  "numShards":2,
+  "shards":[
+    {
+      "shard":"shard1",
+      "status":"healthy",
+      "replicas":[
+        {
+          "name":"core_node3",
+          "url":"http://node1:8983/solr/test_collection_shard1_replica1/",
+          "numDocs":0,
+          "status":"active",
+          "uptime":"0 days, 0 hours, 2 minutes, 10 seconds",
+          "memory":"58.6 MB (%12) of 490.7 MB",
+          "leader":true},
+        {
+          "name":"core_node5",
+          "url":"http://node2:8983/solr/test_collection_shard1_replica3/",
+          "numDocs":0,
+          "status":"active",
+          "uptime":"0 days, 0 hours, 1 minutes, 58 seconds",
+          "memory":"50.2 MB (%10.2) of 490.7 MB"},
+        {
+          "name":"core_node6",
+          "url":"http://node3:8983/solr/test_collection_shard1_replica2/",
+          "numDocs":0,
+          "status":"active",
+          "uptime":"0 days, 0 hours, 1 minutes, 46 seconds",
+          "memory":"56.3 MB (%11.5) of 490.7 MB"}]},
+    {
+      "shard":"shard2",
+      "status":"healthy",
+      "replicas":[
+        {
+          "name":"core_node1",
+          "url":"http://node1:8983/solr/test_collection_shard2_replica1/",
+          "numDocs":0,
+          "status":"active",
+          "uptime":"0 days, 0 hours, 2 minutes, 10 seconds",
+          "memory":"58.6 MB (%12) of 490.7 MB",
+          "leader":true},
+        {
+          "name":"core_node2",
+          "url":"http://node3:8983/solr/test_collection_shard2_replica2/",
+          "numDocs":0,
+          "status":"active",
+          "uptime":"0 days, 0 hours, 1 minutes, 46 seconds",
+          "memory":"58.8 MB (%12) of 490.7 MB"},
+        {
+          "name":"core_node4",
+          "url":"http://node2:8983/solr/test_collection_shard2_replica3/",
+          "numDocs":0,
+          "status":"active",
+          "uptime":"0 days, 0 hours, 1 minutes, 58 seconds",
+          "memory":"51.9 MB (%10.6) of 490.7 MB"}]}]}
+
+```
+
+# Solr 文档
+
+[Apache SolrCloud 参考指南](http://lucene.apache.org/solr/guide/6_6/solrcloud.html)  
+[Apache Solr文档](https://cwiki.apache.org/confluence/display/solr/)  
+[Solr 参数配置](https://cwiki.apache.org/confluence/display/solr/Format+of+solr.xml)  
+
 
