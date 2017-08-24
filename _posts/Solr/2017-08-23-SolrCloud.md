@@ -8,21 +8,67 @@ keywords: Solr
 
 # CentOs7.3 搭建 SolrCloud 集群服务
 
-## SolrCloud是什么？
+# 一、概述
 
-Apache Solr包括设置一个组合容错和高可用性的Solr服务器集群的功能。称为SolrCloud，这些功能提供分布式索引和搜索功能，支持以下功能：
+Lucene是一个Java语言编写的利用倒排原理实现的文本检索类库；
 
-整个集群的中央配置
+Solr是以Lucene为基础实现的文本检索应用服务。Solr部署方式有单机方式、多机Master-Slaver方式、Cloud方式。
 
-查询的自动负载平衡和故障切换
+SolrCloud是基于Solr和Zookeeper的分布式搜索方案。当索引越来越大，一个单一的系统无法满足磁盘需求，查询速度缓慢，此时就需要分布式索引。在分布式索引中，原来的大索引，将会分成多个小索引，solr可以将这些小索引返回的结果合并，然后返回给客户端。
 
-ZooKeeper集成，用于集群协调和配置。
+# 二、特色功能
+SolrCloud有几个特色功能：
 
-SolrCloud是灵活的分布式搜索和索引，没有主节点分配节点，分片和副本。相反，Solr使用ZooKeeper来管理这些位置，这取决于配置文件和模式。查询和更新可以发送到任何服务器。Solr将使用ZooKeeper数据库中的信息来确定哪些服务器需要处理该请求。
+**集中式的配置**信息使用ZK进行集中配置。启动时可以指定把Solr的相关配置文件上传 Zookeeper，多机器共用。这些ZK中的配置不会再拿到本地缓存，Solr直接读取ZK中的配置信息。配置文件的变动，所有机器都可以感知到。另外，Solr的一些任务也是通过ZK作为媒介发布的。目的是为了容错。接收到任务，但在执行任务时崩溃的机器，在重启后，或者集群选出候选者时，可以再次执行这个未完成的任务。
 
-[Apache SolrCloud 参考指南](http://lucene.apache.org/solr/guide/6_6/solrcloud.html)
+**自动容错**SolrCloud对索引分片，并对每个分片创建多个Replication。每个 Replication都可以对外提供服务。一个Replication挂掉不会影响索引服务。更强大的是，它还能自动的在其它机器上帮你把失败机器上的索引Replication重建并投入使用。
 
-[Apache Solr文档](https://cwiki.apache.org/confluence/display/solr/)
+**近实时搜索**立即推送式的replication（也支持慢推送）。可以在秒内检索到新加入索引。
+
+**查询时自动负载均衡**SolrCloud索引的多个Replication可以分布在多台机器上，均衡查询压力。如果查询压力大，可以通过扩展机器，增加Replication来减缓。
+
+**自动分发的索引和索引分片**发送文档到任何节点，它都会转发到正确节点。
+
+**事务日志**确保更新无丢失，即使文档没有索引到磁盘。
+
+其它值得一提的功能有：
+
+**索引存储在HDFS**上索引的大小通常在G和几十G，上百G的很少，这样的功能或许很难实用。但是，如果你有上亿数据来建索引的话，也是可以考虑一下的。我觉得这个功能最大的好处或许就是和下面这个“通过MR批量创建索引”联合实用。
+
+**通过MR批量创建索引**有了这个功能，你还担心创建索引慢吗？
+
+**强大的RESTful API**通常你能想到的管理功能，都可以通过此API方式调用。这样写一些维护和管理脚本就方便多了。
+
+**优秀的管理界面**主要信息一目了然；可以清晰的以图形化方式看到SolrCloud的部署分布；当然还有不可或缺的Debug功能。
+
+
+# 三、SolrCloud的基本概念
+
+Cluster集群：一组Solr节点，逻辑上作为一个单元进行管理，整个集群使用同一套Schema和SolrConfig
+
+Node节点：一个运行Solr的JVM实例
+
+Collection：在SolrCloud集群中逻辑意义上的完整的索引，常常被划分为一个或多个Shard。这些Shard使用相同的config set,如果Shard数超过一个，那么索引方案就是分布式索引。
+
+Core：也就是Solr Core，一个Solr中包含一个或者多个SolrCore，每个Solr Core可以独立提供索引和查询功能，Solr Core额提出是为了增加管理灵活性和共用资源。  
+SolrCloud中使用的配置是在Zookeeper中的，而传统的Solr Core的配置文件是在磁盘上的配置目录中。
+
+Config Set:Solr Core提供服务必须的一组配置文件，每个Config Set有一个名字。必须包含solrconfig.xml和schema.xml，初次之外，依据这两个文件的配置内容，可能还需要包含其他文件。  
+Config Set存储在Zookeeper中，可以重新上传或者使用upconfig命令进行更新，可以用Solr的启动参数bootstrap_confdir进行初始化或者更新。
+
+Shard分片：Collection的逻辑分片。每个Shard被分成一个或者多个replicas，通过选举确定那个是Leader。
+
+Replica：Shard的一个拷贝。每个Replica存在于Solr的一个Core中。
+
+Leader：赢得选举的Shard replicas，每个Shard有多个replicas，这几个Replicas需要选举确定一个Leader。选举可以发生在任何时间。当进行索引操作时，SolrCloud将索引操作请求传到此Shard对应的leader，leader再分发它们到全部Shard的replicas。
+
+# 四、Solr 文档
+
+[Apache SolrCloud 参考指南](http://lucene.apache.org/solr/guide/6_6/solrcloud.html)  
+[Apache Solr文档](https://cwiki.apache.org/confluence/display/solr/)  
+[Solr 参数配置](https://cwiki.apache.org/confluence/display/solr/Format+of+solr.xml)  
+
+
 
 ## 环境
 
@@ -194,7 +240,7 @@ Solr process 2926 running on port 8983
     "ZooKeeper":"node1:2181,node2:2181,node3:2181",
     "liveNodes":"3",
     "collections":"1"}}
-
+```
 ## 6.停止集群
 
 在任意一台机器 ，停止 SolrCloud 集群 
@@ -284,11 +330,5 @@ INFO  - 2017-08-24 16:34:26.906; org.apache.solr.client.solrj.impl.ZkClientClust
           "memory":"51.9 MB (%10.6) of 490.7 MB"}]}]}
 
 ```
-
-# Solr 文档
-
-[Apache SolrCloud 参考指南](http://lucene.apache.org/solr/guide/6_6/solrcloud.html)  
-[Apache Solr文档](https://cwiki.apache.org/confluence/display/solr/)  
-[Solr 参数配置](https://cwiki.apache.org/confluence/display/solr/Format+of+solr.xml)  
 
 
