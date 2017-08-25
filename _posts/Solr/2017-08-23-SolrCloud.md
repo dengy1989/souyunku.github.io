@@ -67,7 +67,7 @@ Leader：赢得选举的Shard replicas，每个Shard有多个replicas，这几�
 [Apache SolrCloud 参考指南](http://lucene.apache.org/solr/guide/6_6/solrcloud.html)  
 [Apache Solr文档](https://cwiki.apache.org/confluence/display/solr/)  
 [Solr 参数配置](https://cwiki.apache.org/confluence/display/solr/Format+of+solr.xml)  
-
+[Solr控制脚本参考](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=50234737)
 
 
 ## 环境
@@ -241,14 +241,54 @@ Solr process 2926 running on port 8983
     "liveNodes":"3",
     "collections":"1"}}
 ```
-## 7.停止集群
+
+ /opt/solr-6.6.0/bin/solr create_collection -c www_ymq_io_collection -shards 2 -replicationFactor 3 -force
+
+## 7.删除集群库
+
+在任意一台机器 ，执行命令 `./solr delete -c  <collection>`
+
+将检查  
+ `/opt/solr-6.6.0/server/solr/test_collection_shard1_replica2`  
+ `/opt/solr-6.6.0/server/solr/test_collection_shard2_replica2`  
+
+配置目录是否被其他集合使用。如果没有，那么该目录将从SolrCloud 集群 中删除
+
+```sh
+$ /opt/solr-6.6.0/bin/solr  delete -c test_collection
+```
+
+```sh
+Connecting to ZooKeeper at node1:2181,node2:2181,node3:2181
+INFO  - 2017-08-24 17:56:53.679; org.apache.solr.client.solrj.impl.ZkClientClusterStateProvider; Cluster at node1:2181,node2:2181,node3:2181 ready
+
+Deleting collection 'test_collection' using command:
+http://node3:8983/solr/admin/collections?action=DELETE&name=test_collection
+
+{
+  "responseHeader":{
+    "status":0,
+    "QTime":924},
+  "success":{
+    "node1:8983_solr":{"responseHeader":{
+        "status":0,
+        "QTime":69}},
+    "node3:8983_solr":{"responseHeader":{
+        "status":0,
+        "QTime":86}},
+    "node2:8983_solr":{"responseHeader":{
+        "status":0,
+        "QTime":91}}}}
+```
+
+## 8.停止集群
 
 在任意一台机器 ，停止 SolrCloud 集群 
 
 在SolrCloud模式下停止Solr，可以使用 `-all`
 
 ```sh
-$ /opt/solr-6.6.0/bin/solr stop -all
+$ for a in {1..3} ; do ssh node$a "source  /etc/profile; /opt/solr-6.6.0/bin/solr stop -all " ; done
 ```
 
 或者
@@ -258,7 +298,7 @@ $ for a in {1..3} ; do ssh node$a "source /etc/profile; /opt/solr-6.6.0/bin/solr
 ```
 
 
-## 8.副本状态
+## 9.副本状态
 
 `healthcheck` 命收集有关集合中每个副本的基本信息，例如副本数量，当前运行状态，是否正常，以及每个副本运行多长时间，内存 和地址（副本在群集中的位置）
 
@@ -328,7 +368,41 @@ INFO  - 2017-08-24 16:34:26.906; org.apache.solr.client.solrj.impl.ZkClientClust
           "status":"active",
           "uptime":"0 days, 0 hours, 1 minutes, 58 seconds",
           "memory":"51.9 MB (%10.6) of 490.7 MB"}]}]}
-
 ```
 
+## 10.ZK管理配置
 
+**配置文件上传到ZooKeeper 集群** 
+
+可用参数（所有参数都是必需的）
+
+`-n <name>` 在ZooKeeper中设置的配置名称，可以通过管理界面，点击菜单，Cloud 选中 Tree / configs 下查看，配置列表  
+`-d <configset dir>`配置设置为上传的路径。路径需要有一个“conf”目录，依次包含solrconfig.xml等。最好可以提供绝对路径  
+`-z <zkHost>` Zookeeper IP 端口，多个zk用"," 分隔  
+
+SolrCloud是通过Zookeeper集群来保证配置文件的变更及时同步到各个节点上，所以，可以将配置文件上传到Zookeeper集群。
+
+```sh
+$ /opt/solr-6.6.0/bin/solr zk upconfig  -z node1:2181,node2:2181,node3:2181 -n mynewconfig  -d /opt/solr-6.6.0/server/solr/configsets/basic_configs/
+```
+
+响应
+```sh
+Connecting to ZooKeeper at node1:2181,node2:2181,node3:2181 ...
+Uploading /opt/solr-6.6.0/server/solr/configsets/basic_configs/conf for config mynewconfig to ZooKeeper at node1:2181,node2:2181,node3:2181
+```
+
+**删除上传到ZooKeeper 集群的solr 配置** 
+
+`rm` 删除
+`-r` 递归删除
+
+```sh
+$ /opt/solr-6.6.0/bin/solr zk rm -r  /configs/mynewconfig -z node1:2181,node2:2181,node3:2181
+```
+
+响应
+```sh
+Connecting to ZooKeeper at node1:2181,node2:2181,node3:2181 ...
+Removing Zookeeper node /configs/mynewconfig from ZooKeeper at node1:2181,node2:2181,node3:2181 recurse: true
+```
