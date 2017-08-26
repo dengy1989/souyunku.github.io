@@ -157,7 +157,7 @@ mysql>  CHANGE MASTER TO
 Query OK, 0 rows affected, 2 warnings (0.02 sec)
 ```
 
-### 启动从服务器
+### 启动从服务器复制线程
 ```sh
 mysql>  START SLAVE;
 Query OK, 0 rows affected (0.00 sec)
