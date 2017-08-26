@@ -79,19 +79,15 @@ server-id=1
 ```sh
 $ service mysql.server restart
 ```
+master端参数：
 
-登录MySQL 查看 Master 状态
+–binlog-do-db 二进制日志记录的数据库(多个数据库用,分割)  
+–binlog-ignore-db 二进制日志忽略的数据库(多个数据库用,分割)  
+
+进行更改后，重新启动服务器。
 
 ```sh
-$ /usr/local/mysql/bin/mysql -uroot -p
-
-mysql> SHOW MASTER STATUS;
-+------------------+----------+--------------+------------------+-------------------+
-| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set |
-+------------------+----------+--------------+------------------+-------------------+
-| mysql-bin.000001 |      154 |              |                  |                   |
-+------------------+----------+--------------+------------------+-------------------+
-1 row in set (0.00 sec)
+$ service mysql.server restart
 ```
 
 ### 创建用户进行复制
@@ -119,6 +115,15 @@ $ vi /etc/my.cnf
 [mysqld]
 server-id=2
 ```
+slave端参数：
+
+--replication-do-db 设定需要复制的数据库(多个数据库用,分割)  
+--replication-ignore-db 设定忽略复制的数据库(多个数据库用,分割)  
+--replocation-do-table 设定需要复制的表(多个表用,分割)  
+--replication-ignore-table 设定忽略复制的表(多个表用,分割)  
+--replication-wild-do-table和--replocation-do-table功能一样，但是可以加通配符。  
+--replication-wild-ignore-table和--replication-ignore-table功能一样，但是可以加通配符。  
+
 进行更改后，重新启动服务器。
 
 ```sh
@@ -242,6 +247,7 @@ Slave_IO_State：从站的当前状态
 
 Slave_IO_Running：读取主程序二进制日志的I/O线程是否正在运行 ,确保是 yes  
 Slave_SQL_Running：执行读取主服务器中二进制日志事件的SQL线程是否正在运行。与I/O线程一样，确保是 yes  
+Seconds_Behind_Master 是否为0，0就是已经同步了
 
 [检查复制状态](https://dev.mysql.com/doc/refman/5.7/en/replication-administration-status.html)
 
@@ -368,6 +374,94 @@ mysql> select * from sync_www_ymq_io.sync_test;
 1 row in set (0.00 sec)
 ```
 
+### 一些命令
+
+查看主服务器的运行状态
+```sql
+mysql>  show master status;
++------------------+----------+--------------+------------------+-------------------+
+| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set |
++------------------+----------+--------------+------------------+-------------------+
+| mysql-bin.000003 |     3697 |              |                  |                   |
++------------------+----------+--------------+------------------+-------------------+
+1 row in set (0.00 sec)
+```
+
+查看从服务器主机列表
+```sql
+mysql> show slave hosts;
++-----------+------+------+-----------+--------------------------------------+
+| Server_id | Host | Port | Master_id | Slave_UUID                           |
++-----------+------+------+-----------+--------------------------------------+
+|         2 |      | 3306 |         1 | 52866d11-8a23-11e7-a410-000c290cb505 |
++-----------+------+------+-----------+--------------------------------------+
+1 row in set (0.00 sec)
+```
+
+获取binlog文件列表
+
+```sql
+mysql> show binary logs;
++------------------+-----------+
+| Log_name         | File_size |
++------------------+-----------+
+| mysql-bin.000001 |      1101 |
+| mysql-bin.000002 |       177 |
+| mysql-bin.000003 |      4461 |
+| mysql-bin.000004 |       774 |
+| mysql-bin.000005 |       443 |
++------------------+-----------+
+5 rows in set (0.00 sec)
+```
+
+只查看第一个binlog文件的内容
+
+```sql
+mysql> mysql> show binlog events;
++------------------+------+----------------+-----------+-------------+------------------------------------------------------------------------------------------------------------------------------+
+| Log_name         | Pos  | Event_type     | Server_id | End_log_pos | Info                                                                                                                         |
++------------------+------+----------------+-----------+-------------+------------------------------------------------------------------------------------------------------------------------------+
+| mysql-bin.000001 |    4 | Format_desc    |         1 |         123 | Server ver: 5.7.19-log, Binlog ver: 4                                                                                        |
+| mysql-bin.000001 |  123 | Previous_gtids |         1 |         154 |                                                                                                                              |
+| mysql-bin.000001 |  617 | Anonymous_Gtid |         1 |         682 | SET @@SESSION.GTID_NEXT= 'ANONYMOUS'                                                                                         |
+| mysql-bin.000001 |  682 | Query          |         1 |         876 | CREATE USER 'repl'@'192.168.252.122' IDENTIFIED WITH 'mysql_native_password' AS '*809534247D21AC735802078139D8A854F45C31F3'  |
+| mysql-bin.000001 |  876 | Anonymous_Gtid |         1 |         941 | SET @@SESSION.GTID_NEXT= 'ANONYMOUS'                                                                                         |
+| mysql-bin.000001 |  941 | Query          |         1 |        1078 | GRANT REPLICATION SLAVE ON *.* TO 'repl'@'192.168.252.122'                                                                   |
+| mysql-bin.000001 | 1078 | Stop           |         1 |        1101 |                                                                                                                              |
++------------------+------+----------------+-----------+-------------+------------------------------------------------------------------------------------------------------------------------------+
+11 rows in set (0.00 sec)
+```
+
+查看指定binlog文件的内容
+```sql
+mysql> show binlog events in 'mysql-bin.000005';
++------------------+-----+----------------+-----------+-------------+-------------------------------------------+
+| Log_name         | Pos | Event_type     | Server_id | End_log_pos | Info                                      |
++------------------+-----+----------------+-----------+-------------+-------------------------------------------+
+| mysql-bin.000005 |   4 | Format_desc    |         1 |         123 | Server ver: 5.7.19-log, Binlog ver: 4     |
+| mysql-bin.000005 | 123 | Previous_gtids |         1 |         154 |                                           |
+| mysql-bin.000005 | 154 | Anonymous_Gtid |         1 |         219 | SET @@SESSION.GTID_NEXT= 'ANONYMOUS'      |
+| mysql-bin.000005 | 219 | Query          |         1 |         287 | BEGIN                                     |
+| mysql-bin.000005 | 287 | Table_map      |         1 |         353 | table_id: 118 (sync_www_ymq_io.sync_test) |
+| mysql-bin.000005 | 353 | Write_rows     |         1 |         412 | table_id: 118 flags: STMT_END_F           |
+| mysql-bin.000005 | 412 | Xid            |         1 |         443 | COMMIT /* xid=30 */                       |
++------------------+-----+----------------+-----------+-------------+-------------------------------------------+
+7 rows in set (0.00 sec)
+```
+
+启动从库复制线程
+
+```sql
+mysql> START SLAVE;
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+```
+
+停止从库复制线程
+```sql
+mysql> STOP SLAVE;
+Query OK, 0 rows affected (0.00 sec)
+```
+
 ## 7.复制实现细节分析
 
 MySQL主从复制功能使用**三个线程实现**，**一个在主服务器上**，**两个在从服务器上**
@@ -423,34 +517,6 @@ Command: Binlog Dump
    Time: 4435
   State: Master has sent all binlog to slave; waiting for more updates
    Info: NULL
-*************************** 2. row ***************************
-     Id: 30
-   User: root
-   Host: 192.168.252.1:54471
-     db: NULL
-Command: Sleep
-   Time: 966
-  State: 
-   Info: NULL
-*************************** 3. row ***************************
-     Id: 32
-   User: root
-   Host: 192.168.252.1:58767
-     db: sync_www_ymq_io
-Command: Sleep
-   Time: 860
-  State: 
-   Info: NULL
-*************************** 4. row ***************************
-     Id: 36
-   User: root
-   Host: localhost
-     db: sync_www_ymq_io
-Command: Query
-   Time: 0
-  State: starting
-   Info: SHOW FULL PROCESSLIST
-4 rows in set (0.00 sec)
 ```
 
 Id: 22是Binlog Dump服务连接的从站的复制线程  
@@ -460,7 +526,7 @@ State: 信息表示所有更新都已同步发送到从服务器，并且主服�
 
 ### 命令 SHOW PROCESSLIST\G
 
-**在 Slave 从服务器 执行的数据示例**
+**在 Slave 从服务器 ，查看两个线程的更新状态**
 
 ```sh
 mysql> SHOW PROCESSLIST\G
@@ -482,52 +548,6 @@ Command: Connect
    Time: 3069
   State: Slave has read all relay log; waiting for more updates
    Info: NULL
-*************************** 3. row ***************************
-     Id: 8
-   User: root
-   Host: 192.168.252.1:54005
-     db: www.ymq.io
-Command: Sleep
-   Time: 5828
-  State: 
-   Info: NULL
-*************************** 4. row ***************************
-     Id: 13
-   User: root
-   Host: 192.168.252.1:54472
-     db: NULL
-Command: Sleep
-   Time: 3336
-  State: 
-   Info: NULL
-*************************** 5. row ***************************
-     Id: 14
-   User: root
-   Host: localhost
-     db: sync_www_ymq_io
-Command: Query
-   Time: 0
-  State: starting
-   Info: SHOW PROCESSLIST
-*************************** 6. row ***************************
-     Id: 15
-   User: root
-   Host: 192.168.252.1:58785
-     db: sync_www_ymq_io
-Command: Sleep
-   Time: 3247
-  State: 
-   Info: NULL
-*************************** 7. row ***************************
-     Id: 17
-   User: root
-   Host: 192.168.252.1:58919
-     db: sync_www_ymq_io
-Command: Sleep
-   Time: 3226
-  State: 
-   Info: NULL
-7 rows in set (0.01 sec)
 
 ```
 
