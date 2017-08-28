@@ -5,9 +5,7 @@ categories: MySQL
 description: CentOs7.3 搭建 MySQL 5.7.19 主从复制，以及复制实现细节分析
 keywords: MySQL
 ---
-
 # CentOs7.3 搭建 MySQL 5.7.19 主从复制，以及复制实现细节分析
-
 
 ## 概念
 
@@ -101,7 +99,7 @@ mysql> CREATE USER 'replication'@'192.168.252.124' IDENTIFIED BY 'mima';
 mysql> GRANT REPLICATION SLAVE ON *.* TO 'replication'@'192.168.252.124';
 ```
 
-## 3.Slave-Server 从服务器配置
+## 3.Slave-Server 配置
 
 ### 修改 my.cnf
 
@@ -250,7 +248,7 @@ mysql> use `replication_wwww.ymq.io`;
 mysql> CREATE TABLE `sync_test` (`id` int(11) NOT NULL AUTO_INCREMENT, `name` varchar(255) NOT NULL, PRIMARY KEY (`id`) ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 ```
 
-在 .Slave-Server 查看是否同步过来
+在 Slave-Server 查看是否同步过来
 
 ```sql
 mysql> show databases;
