@@ -1,12 +1,12 @@
 ---
 layout: post
-title:   使用 阿里巴巴 Canal 增量订阅&消费 binlog 同步 MySQL 数据到 Redis
+title: 使用 阿里巴巴 Canal 增量订阅&消费组件 同步 MySQL 数据到 Redis
 categories: Canal Redis MySQL
-description:  使用 阿里巴巴 Canal 增量订阅&消费 binlog 同步 MySQL 数据到 Redis
+description: 使用 阿里巴巴 Canal 增量订阅&消费组件 同步 MySQL 数据到 Redis
 keywords: Canal
 ---
 
-# 使用 Alibaba Canal 增量订阅&消费组件,同步MySQL数据到 Redis
+# 使用 阿里巴巴 Canal 增量订阅&消费组件 同步 MySQL 数据到 Redis
 ## 背景
 
 [《阿里巴巴的增量订阅&消费组件》 https://github.com/alibaba/canal ](https://github.com/alibaba/canal)
