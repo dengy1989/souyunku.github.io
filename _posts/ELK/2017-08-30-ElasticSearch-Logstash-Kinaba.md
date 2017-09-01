@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ELK 集群 + Redis 集群 + Nginx ,日志分析平台搭建，和简单上手使用
+title: ELK 集群 + Redis 集群 + Nginx ,实时日志（数据）搜集和分析的监控系统，简单上手使用
 categories: ElasticSearch Logstash Kinaba 
 description: ELK集群搭建 ElasticSearch Logstash Kinaba 
 keywords: ElasticSearch Logstash Kinaba 
@@ -10,7 +10,7 @@ keywords: ElasticSearch Logstash Kinaba
 
 ## 简述
 
-ELK实际上是**三个工具**的集合，**ElasticSearch** + **Logstash** + **Kibana**，这三个工具组合形成了一套实用、易用的监控架构，很多公司利用它来搭建可视化的海量日志分析平台。  
+**ELK**实际上是**三个工具**的集合，**ElasticSearch** + **Logstash** + **Kibana**，这三个工具组合形成了一套实用、易用的监控架构，很多公司利用它来搭建可视化的海量日志分析平台。  
 
 [官网下载地址：https://www.elastic.co/downloads](https://www.elastic.co/downloads)
 
@@ -161,7 +161,7 @@ vi /opt/elasticsearch-5.5.2/config/jvm.options
 /opt/elasticsearch-5.5.2/bin/elasticsearch -d
 ```
 
-[ElasticSearch 安装报错整理](http://127.0.0.1/2017/08/30/ElasticSearch-install-error/)
+[ElasticSearch 安装报错整理](http://www.ymq.io/2017/08/30/ElasticSearch-install-error/)
 
 
 **查看日志**  
@@ -234,7 +234,7 @@ kill -9 2968
 
 依次安装nide2,node3,集群
 
-[《不推荐》如果你一台机器，已经安装好，可以参考我这个复制集群配置操作](http://127.0.0.1/2017/08/30/ElasticSearch-install-error/#elasticsearch-%E5%A4%8D%E5%88%B6%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE)
+[《不推荐》如果你一台机器，已经安装好，可以参考我这个复制集群配置操作](http://www.ymq.io/2017/08/30/ElasticSearch-install-error/)
 
 ### 编辑配置
 
