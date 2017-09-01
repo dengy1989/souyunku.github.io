@@ -241,13 +241,13 @@ node.name: ELK-node3
 
 配置集群时，必须设置集群中与其他的节点通信的列表，如果没有指定`端口`，该端口将默认为9300
 
-```
+```sh
 discovery.zen.ping.unicast.hosts: ["192.168.252.121","192.168.252.122","192.168.252.123"]
 ```
 
 [为了防止数据丢失](https://www.elastic.co/guide/en/elasticsearch/reference/5.5/important-settings.html#minimum_master_nodes)
 
-```
+```sh
 discovery.zen.minimum_master_nodes: 2
 ```
 
@@ -364,7 +364,7 @@ curl -XGET 'http://localhost:9200/_cluster/state?pretty'
 }
 ```
 
-### ES 插架
+## ES 插架
 
 **概要**
 
@@ -450,8 +450,8 @@ vi /opt/logstash-5.5.2/etc/logstash_agent_nginx.conf
 ```sh
 input {
     file {
-		type => "nginx access log"
-		path => "ccess.log"
+                type => "nginx access log"
+                path => "/usr/local/nginx/logs/access.log"
     }
 }
 output {
