@@ -54,6 +54,7 @@ useradd  ymq -g ymq -p ymq
 
 ```sh
 chown -R ymq:ymq /opt/elasticsearch-5.5.2
+chmod -R 777 /opt/elasticsearch-5.5.2
 ```
 
 ### 授权 root 权限
@@ -98,8 +99,10 @@ su ymq
 su root
 ```
 
+**错误**
+
 ```sh
-错误[1]: max file descriptors [4096] for elasticsearch process is too low, increase to at least [65536
+[1]: max file descriptors [4096] for elasticsearch process is too low, increase to at least [65536
 ```
 
 编辑 `limits.conf` 在第一行加上如下内容
@@ -113,8 +116,10 @@ cat /etc/security/limits.conf
 * hard nproc 4096
 ```
 
+**错误**
+
 ```sh
-错误[2]: max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
+[2]: max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
 ```
 
 编辑 `limits.conf` 在第一行加上如下内容
@@ -131,19 +136,36 @@ vm.max_map_count = 655360
 sysctl -p
 ```
 
-错误 `IllegalStateException`
+**删除data目录下的数据(如果是新解压的安装包就不必了)**
+
+**异常 `IllegalStateException`**
+
 ```sh
 Caused by: java.lang.IllegalStateException: failed to obtain node locks, tried [[/opt/elasticsearch-5.5.2/data/ymq]] with lock id [0]; maybe thes
 ```
 
 删除 安装目录下`/data`
+
 ```sh
 cd /opt/elasticsearch-5.5.2/data
 rm -rf nodes
 ```
 
+**异常 `RemoteTransportException`**
 
-错误 `ElasticsearchUncaughtExceptionHandler]`
+```
+[2017-09-01T11:40:42,115][INFO ][o.e.d.z.ZenDiscovery     ] [ELK-node2] failed to send join request to master [{ELK-node1}{DKCwxkubTFufsBaOSXj9Nw}{UIMSNeuIT6m8SFGGTi4wSg}{192.168.252.121}{192.168.252.121:9300}], reason [RemoteTransportException[[ELK-node1][192.168.252.121:9300][internal:discovery/zen/join]]; nested: NotMasterException[Node [{ELK-node1}{DKCwxkubTFufsBaOSXj9Nw}{UIMSNeuIT6m8SFGGTi4wSg}{192.168.252.121}{192.168.252.121:9300}] not master for join request]; ], tried [3] times
+```
+
+删除 个集群安装目录下`/data`
+
+```sh
+cd /opt/elasticsearch-5.5.2/data
+rm -rf nodes
+```
+
+**异常 `ElasticsearchUncaughtExceptionHandler`**
+
 上次启动失败，占用了端口
 ```sh
 [2017-08-30T22:02:14,463][WARN ][o.e.b.ElasticsearchUncaughtExceptionHandler] [ELK-node2] uncaught exception in thread [main]
