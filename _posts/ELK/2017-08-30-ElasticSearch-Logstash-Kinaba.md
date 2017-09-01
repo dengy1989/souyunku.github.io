@@ -1,12 +1,12 @@
 ---
 layout: post
-title: ELK 集群 + Redis + Nginx 日志分析平台(未完待续)
+title: ELK 集群 + Redis 集群 + Nginx ,日志分析平台搭建，和简单上手使用
 categories: ElasticSearch Logstash Kinaba 
 description: ELK集群搭建 ElasticSearch Logstash Kinaba 
 keywords: ElasticSearch Logstash Kinaba 
 ---
 
-# ELK集群搭建
+# ELK 分布式的实时日志（数据）搜集和分析的监控系统
 
 ## 简述
 
@@ -16,17 +16,33 @@ ELK实际上是**三个工具**的集合，**ElasticSearch** + **Logstash** + **
 
 **Elasticsearch**
 
-  是一个基于Apache Lucene(TM)的开源搜索引擎 ，它的特点有：分布式，零配置，自动发现，索引自动分片，索引副本机制，RESTful web风格接口，多数据源，自动搜索负载等。
+是一个基于Apache Lucene(TM)的开源搜索引擎 ，它的特点有：分布式，零配置，自动发现，索引自动分片，索引副本机制，RESTful web风格接口，多数据源，自动搜索负载等。
 
 **Logstash**
 
-  用于管理日志和事件的工具，你可以用它去收集日志、转换日志、解析日志并将他们作为数据提供给其它模块调用，例如搜索、存储等。  
+是一个用来搜集、分析、过滤日志的工具。它支持几乎任何类型的日志，包括系统日志、错误日志和自定义应用程序日志。它可以从许多来源接收日志，这些来源包括 syslog、消息传递（例如 RabbitMQ）和JMX，它能够以多种方式输出数据，包括电子邮件、websockets和 Elasticsearch。
 
 **Kibana**
 
-  是一个开源和免费的工具，它`Kibana`可以为 `Logstash` 和 `ElasticSearch` 提供的日志分析友好的 Web 界面，可以帮助您汇总、分析和搜索重要数据日志。
+是一个基于Web的图形界面，用于搜索、分析和可视化存储在 Elasticsearch指标中的日志数据。它利用Elasticsearch的REST接口来检索数据，不仅允许用户创建他们自己的数据的定制仪表板视图，还允许他们以特殊的方式查询和过滤数据。
+	   
+**Redis**
+
+**Redis优势性能极高** – `Redis`能读的速度是`110000次/s`,写的速度是`81000`次/s 。
+**丰富的数据类型** – `Redis`支持二进制案例的 `Strings, Lists, Hashes, Sets` 及 `Ordered Sets` 数据类型操作。
+**原子** – `Redis`的所有操作都是原子性的，同时Redis还支持对几个操作全并后的原子性执行。
+**丰富的特性** – `Redis`还支持 `publish/subscribe`, 通知, `key` 过期等等特性。
 
   
+**Nginx**
+
+是一个高性能的 Web 和反向代理服务器, 它具有有很多非常优越的特性:
+
+`作为 Web 服务器`：相比 Apache，Nginx 使用更少的资源，支持更多的并发连接，体现更高的效率，这点使 Nginx 尤其受到虚拟主机提供商的欢迎。能够支持高达 50,000 个并发连接数的响应，感谢 Nginx 为我们选择了 epoll and kqueue 作为开发模型.
+
+`作为负载均衡服务器`：Nginx 既可以在内部直接支持 Rails 和 PHP，也可以支持作为 HTTP代理服务器 对外进行服务。Nginx 用 C 编写, 不论是系统资源开销还是 CPU 使用效率都比 Perlbal 要好的多。
+
+
 ## 应用场景
 
 在传统的应用运行环境中，收集、分析日志往往是非常必要且常见的，一旦应用出现问题、或者需要分析应用行为时，管理员将通过一些传统工具对日志进行检查，如cat、tail、sed、awk、perl以及grep。这种做法有助于培养在常用工具方面的优秀技能，但它的适用范围仅限于少量的主机和日志文件类型。
@@ -40,7 +56,7 @@ ELK实际上是**三个工具**的集合，**ElasticSearch** + **Logstash** + **
 
  - 日志数量巨大，查询时间很长
  
-# 准备工作
+# 1.准备工作
 
 ## 环境
 
@@ -62,7 +78,12 @@ node4 --> nginx: 192.168.252.125
 node5 --> Kibana: 192.168.252.125
 
 node6 --> Redis: 192.168.252.126
+node7 --> Redis: 192.168.252.127
+node8 --> Redis: 192.168.252.128
 ```
+
+
+
 
 **修改主机名**
 
@@ -82,11 +103,7 @@ node6 --> Redis: 192.168.252.126
 
 [CentOs7.3 编译安装 Nginx 1.9.9](https://segmentfault.com/a/1190000010721915)
 
-**安装 Redis**
-
-任选一个搭建
-
-[CentOs7.3 搭建 Redis-4.0.1 单机服务](https://segmentfault.com/a/1190000010709337/edit)
+**安装 Redis集群**
 
 [CentOs7.3 搭建 Redis-4.0.1 Cluster 集群服务](https://segmentfault.com/a/1190000010682551)
 
@@ -98,7 +115,7 @@ node6 --> Redis: 192.168.252.126
 systemctl stop firewalld.service
 ```
 
-# Elasticsearch
+# 2.Elasticsearch
 
 ## ES单机安装
 
@@ -382,11 +399,13 @@ Chrome扩展程序包含优秀的`ElasticSearch Head`应用程序。
 
 **安装**
 
+需要翻墙安装  
+
 在Chrome扩展程序里，搜索ElasticSearch Head 点击安装
 
-![][5] 
+![][1] 
 
-# Logstash
+# 3.Logstash
 
 [Installing Logstash](https://www.elastic.co/guide/en/logstash/current/installing-logstash.html)
 
@@ -432,6 +451,8 @@ Hello World
 vi /usr/local/nginx/conf/nginx.conf
 ```
 
+在nginx.conf 中设置日志格式：logstash
+
 ```sh
     log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
                       '$status $body_bytes_sent "$http_referer" '
@@ -450,7 +471,7 @@ vi /opt/logstash-5.5.2/etc/logstash_agent_nginx.conf
 ```sh
 input {
     file {
-                type => "nginx access log"
+                type => "nginx_access_log"
                 path => "/usr/local/nginx/logs/access.log"
     }
 }
@@ -462,6 +483,12 @@ output {
                 key => "logstash:redis"
         }
 }
+```
+
+多日志文件例如
+
+```sh
+path => [ "/usr/local/nginx/logs/*.log", "/var/log/messages.log", "/var/log/syslog.log" ]
 ```
 
 **`input {}`解释**
@@ -522,13 +549,18 @@ output {
 
 ### 启动服务
 
-`启动 logstash agent` `logstash` 代理收集日志发送 `Redis`
+```
+cd /opt/logstash-5.5.2/logs/
+mkdir log1 log2
+```
+
+启动 `logstash agent` `logstash` 代理收集日志发送 `Redis`
 
 ```sh
 nohup /opt/logstash-5.5.2/bin/logstash -f /opt/logstash-5.5.2/etc/logstash_agent_nginx.conf  --path.data=/opt/logstash-5.5.2/logs/log1   > /dev/null 2>&1 &
 ```
 
-`启动 logstash indexer` `logstash`  读 `Redis`  日志发送到`Elasticsearch`
+启动 `logstash indexer` `logstash`  读 `Redis`  日志发送到`Elasticsearch`
 
 ```sh
 nohup /opt/logstash-5.5.2/bin/logstash -f /opt/logstash-5.5.2/etc/logstash_indexer.conf --path.data=/opt/logstash-5.5.2/logs/log2  > /dev/null 2>&1 &
@@ -540,7 +572,7 @@ nohup /opt/logstash-5.5.2/bin/logstash -f /opt/logstash-5.5.2/etc/logstash_index
 less /opt/logstash-5.5.2/logs/logstash-plain.log
 ```
 
-# Kibana
+# 4.Kibana
 
 [Installing Kibana](https://www.elastic.co/guide/en/kibana/current/targz.html)
 
@@ -554,7 +586,7 @@ tar -xzf kibana-5.5.2-linux-x86_64.tar.gz
 ## 编辑配置
 
 ```sh
-cd kibana-5.5.2-linux-x86_64 
+cd /opt/kibana-5.5.2-linux-x86_64
 vi config/kibana.yml
 ```
 
@@ -572,31 +604,167 @@ cd /opt/kibana-5.5.2-linux-x86_64/bin/
 ./kibana
 ```
 
-
 **访问 `Kibana`**
 
 
 访问 `Kibana` 地址 [http://192.168.252.125:5601/ ](http://192.168.252.125:5601/ )
 
-![][1] 
 
-[1]: /images/2017/ELK/kibana/kibana-0.png  
+# 5.测试日志分析平台
 
-# 查看收集日志
+**如果之前启动过就`kill`掉**
 
-## 刷新nginx
+## 启动以下服务
 
+**启动 `ES` 集群**
+
+切换到，新建用户 `ymq`，依次启动各个 elasticsearch 集群
+```sh
+su ymq
+/opt/elasticsearch-5.5.2/bin/elasticsearch -d
+```
+
+**启动 `kibana`**
+
+```sh
+/opt/kibana-5.5.2-linux-x86_64/bin/kibana
+```
+
+**启动 `Redis`**
+
+```sh
+/opt/redis-4.0.1/src/redis-server /opt/redis-4.0.1/redis-sentinel/redis.conf
+```
+
+**启动 `Nginx`**
+
+```sh
+/usr/local/nginx/sbin/nginx
+```
+
+## 测试步骤
+
+### 1.检查各服务
+
+检查各服务，**是否启动成功** ，**是否日志异常** 
+
+### 2.启动`logstash agent`
+
+启动 `logstash agent` `logstash` 代理收集日志发送 `Redis`
+
+```sh
+nohup /opt/logstash-5.5.2/bin/logstash -f /opt/logstash-5.5.2/etc/logstash_agent_nginx.conf  --path.data=/opt/logstash-5.5.2/logs/log1   > /dev/null 2>&1 &
+```
+### 3.生成测试数据
+
+在浏览器 `Nginx` 页面 **刷新 2 次**，生成测试数据
 ![][2] 
 
+### 4.查看测试数据
 
+打开`RedisDesktopManager` 页面看看Nginx 刷新页面的访问成功日志，看到 **写进 Redis 2 条数据** 
+
+**ps 这只是个可视化Redis界面而已，你也可以使用命令行查看**
 
 ![][3] 
 
-[3]: /images/2017/ELK/kibana/kibana-1.png  
-[2]: /images/2017/ELK/kibana/kibana.png  
+如果没有 `RedisDesktopManager`,就在安装Redis 服务器上 通过命令行查看  
 
-[5]: /images/2017/ELK/ElasticSearch/ElasticSearch-Head.png
+```sh
+[root@node6 opt]# /opt/redis-4.0.1/src/redis-cli -h 192.168.252.126 -c -p 6379
+192.168.252.126:6379> LRANGE logstash:redis 0 9
+```
+
+[Redis 相关](https://segmentfault.com/a/1190000010721915)
+
+### 5.使用`kibana`
+
+在浏览器打开`kibana Dev Tools` [http://192.168.252.125:5601](http://192.168.252.125:5601)
+
+可以看到`ElasticSearch` 是没有 `Nginx` 刷新页面的访问成功日志数据的，是因为，我没有启动 `logstash indexer` 读取`Redis`数据写入`ElasticSearch` 的服务
+
+![][4] 
+
+### 6.启动`logstash indexer`
+
+启动 `logstash indexer` `logstash`  读 `Redis`  日志发送到`Elasticsearch`
+
+```sh
+nohup /opt/logstash-5.5.2/bin/logstash -f /opt/logstash-5.5.2/etc/logstash_indexer.conf --path.data=/opt/logstash-5.5.2/logs/log2  > /dev/null 2>&1 &
+```
+
+先看`Redis`，已经是空的了
+
+```sh
+192.168.252.126:6379> LRANGE logstash:redis 0 9
+(empty list or set)
+```
+是不是已经写到 `ElasticSearch` 呢? 往下看
+
+
+### 7.使用`kibana DevTools`
+
+我们看看，`DevTools `，开发工具数据查询，相比上次已经看到多了 2 条，就是我们访问 Nginx` 刷新页面的访问成功日志数据
+
+![][5] 
+
+### 8.使用`ElasticSearchHead`
+
+**通过 ElasticSearchHead 插件 查看数据**
+
+![][6] 
+
+### 9.使用`kibana Discover`
+
+首先使用`kibana Discover`配置索引 `logstash-*` 
+
+ps ( 索引名称是按照 `elasticsearch` 写入时创建的索引  `index => "logstash-%{type}-%{+YYYY.MM.dd}"` 这个配置在上面**开启 logstash indexer**  有提到
+
+![][7] 
+
+
+### 10.使用`kibana Search`
+
+点击`Available Fields` 下选择咱们日志中的字段 `key`  `add` 可添加更多显示字段，我为了博客显示效果，没有让显示全部，默认显示全部字段，也可由删除显示字段
+
+![][8] 
+
+### 11.使用`kibana Search 条件查询`
+
+点击`Discover 工具栏`   
+下选择 指定时间 `2017-09-01 23:45:00.000 ----2017-09-01 23:50:00.000`的日志，  
+搜索关键词`AppleWebKit`  
+图形表示 Hourly 每小时  
+
+![][9] 
+
+### 12.使用`kibana Timelion`
+
+**最后6分钟的时间轴**
+ 
+ ![][10] 
+ 
+
+[1]: /images/2017/ELK/Elasticsearch-head.png/.png
+[2]: /images/2017/ELK/nginx.png
+[3]: /images/2017/ELK/redis.png
+[4]: /images/2017/ELK/kibana-tool.png
+[5]: /images/2017/ELK/kibana-tool-run.png
+[6]: /images/2017/ELK/Elasticsearch-head-data.png
+[7]: /images/2017/ELK/kibaba-creata_index.png
+[8]: /images/2017/ELK/kibana-search.png
+[9]: /images/2017/ELK/kibana-date-to-date.png
+[10]: /images/2017/ELK/kibana-last6m.png
+
+
+ - **作者：Peng Lei** 
+ - **出处：[Segment Fault PengLei `Blog  专栏](https://segmentfault.com/a/1190000010867488)**      
+ - **版权归作者所有，转载请注明出处** 
 
 
 
-http://192.168.252.121:9200/_search?pretty
+
+
+
+
+
