@@ -54,7 +54,7 @@ bin/logstash-plugin install x-pack
 
 如果您下载慢，或者机器不能联网，以下**提供两种离线安装方式**
 
-上传在上传了所有本文章所有的安装包在 [ 百度云盘-点击下载]()---[官方下载地址](https://artifacts.elastic.co/downloads/packs/x-pack/x-pack-5.5.2.zip)  
+上传在上传了所有本文章所有的安装包在 [ 百度云盘-点击下载链接：密码：3l8v](http://pan.baidu.com/s/1bpm2Dwb )---[官方下载地址](https://artifacts.elastic.co/downloads/packs/x-pack/x-pack-5.5.2.zip)  
 
 **请勿将文件放在`Elasticsearch plugins`目录中**
 
