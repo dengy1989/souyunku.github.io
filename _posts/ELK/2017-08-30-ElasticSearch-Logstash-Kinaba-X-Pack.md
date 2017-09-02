@@ -38,11 +38,9 @@ X-Pack是一个Elastic Stack的扩展，将安全，警报，监视，报告和�
 
 `X-Pack` 安装方式有两种 
 
-
 ### `logstash` 安装 `x-pack`
 
 [Installing X-Pack in Logstash](https://www.elastic.co/guide/en/logstash/5.5/installing-xpack-log.html)
-
 
 #### 安装方式 一
 
@@ -59,7 +57,6 @@ bin/logstash-plugin install x-pack
 上传在上传了所有本文章所有的安装包在 [ 百度云盘-点击下载]()---[官方下载地址](https://artifacts.elastic.co/downloads/packs/x-pack/x-pack-5.5.2.zip)  
 
 **请勿将文件放在`Elasticsearch plugins`目录中**
-
 
 **1.指定目录安装**
 
