@@ -1,12 +1,12 @@
 ---
 layout: post
-title: ELK 集群 + Redis 集群 + Nginx ,实时日志（数据）搜集和分析的监控系统，简单上手使用
+title: ELK 集群 + X-Pack + Redis 集群 + Nginx ,实时日志（数据）搜集和分析的监控系统，简单上手使用
 categories: ElasticSearch Logstash Kinaba 
 description: ELK集群搭建 ElasticSearch Logstash Kinaba 
 keywords: ElasticSearch Logstash Kinaba 
 ---
 
-# ELK 分布式的实时日志（数据）搜集和分析的监控系统
+# ELK 集群 + X-Pack + Redis 集群 + Nginx ,实时日志（数据）搜集和分析的监控系统，简单上手使用
 
 ## 简述
 
@@ -16,21 +16,26 @@ keywords: ElasticSearch Logstash Kinaba
 
 **Elasticsearch**
 
-是一个基于Apache Lucene(TM)的开源搜索引擎 ，它的特点有：分布式，零配置，自动发现，索引自动分片，索引副本机制，RESTful web风格接口，多数据源，自动搜索负载等。
+是一个基于Apache Lucene(TM)的开源搜索引擎 ，它的特点有：分布式，零配置，自动发现，索引自动分片，索引副本机制，`RESTful` `web`风格接口，多数据源，自动搜索负载等。
 
 **Logstash**
 
-是一个用来搜集、分析、过滤日志的工具。它支持几乎任何类型的日志，包括系统日志、错误日志和自定义应用程序日志。它可以从许多来源接收日志，这些来源包括 syslog、消息传递（例如 RabbitMQ）和JMX，它能够以多种方式输出数据，包括电子邮件、websockets和 Elasticsearch。
+是一个用来搜集、分析、过滤日志的工具。它支持几乎任何类型的日志，包括系统日志、错误日志和自定义应用程序日志。它可以从许多来源接收日志，这些来源包括 `syslog`、消息传递（例如 RabbitMQ）和JMX，它能够以多种方式输出数据，包括电子邮件、`websockets`和 `Elasticsearch`。
 
 **Kibana**
 
-是一个基于Web的图形界面，用于搜索、分析和可视化存储在 Elasticsearch指标中的日志数据。它利用Elasticsearch的REST接口来检索数据，不仅允许用户创建他们自己的数据的定制仪表板视图，还允许他们以特殊的方式查询和过滤数据。
-	   
+是一个基于`Web`的图形界面，用于搜索、分析和可视化存储在 `Elasticsearch`指标中的日志数据。它利用`Elasticsearch`的`REST`接口来检索数据，不仅允许用户创建他们自己的数据的定制仪表板视图，还允许他们以特殊的方式查询和过滤数据。
+	
+
+**X-Pack**
+	
+`X-Pack`是一个`Elastic Stack`的扩展，将安全，警报，监视，报告和图形功能包含在一个易于安装的软件包中
+
 **Redis**
 
 **Redis优势性能极高** – `Redis`能读的速度是`110000次/s`,写的速度是`81000`次/s 。
 **丰富的数据类型** – `Redis`支持二进制案例的 `Strings, Lists, Hashes, Sets` 及 `Ordered Sets` 数据类型操作。
-**原子** – `Redis`的所有操作都是原子性的，同时Redis还支持对几个操作全并后的原子性执行。
+**原子** – `Redis`的所有操作都是原子性的，同时`Redis`还支持对几个操作全并后的原子性执行。
 **丰富的特性** – `Redis`还支持 `publish/subscribe`, 通知, `key` 过期等等特性。
 
   
@@ -499,8 +504,6 @@ path => [ "/usr/local/nginx/logs/*.log", "/var/log/messages.log", "/var/log/sysl
 
 发送,Logstash 收集的 Nginx 访问日志信息传送到 redis 服务器上
 
-
-
 ### 开启 logstash indexer
 
 ```sh
@@ -599,16 +602,13 @@ elasticsearch.url: "http://192.168.252.121:9200"
 ## 启动服务
 
 ```sh
-cd /opt/kibana-5.5.2-linux-x86_64/bin/
-
-./kibana
+/opt/kibana-5.5.2-linux-x86_64/bin/kibana
 ```
 
 **访问 `Kibana`**
 
 
 访问 `Kibana` 地址 [http://192.168.252.125:5601/ ](http://192.168.252.125:5601/ )
-
 
 # 5.测试日志分析平台
 
@@ -743,9 +743,8 @@ ps ( 索引名称是按照 `elasticsearch` 写入时创建的索引  `index => "
 **最后6分钟的时间轴**
  
  ![][10] 
- 
 
-[1]: /images/2017/ELK/Elasticsearch-head.png/.png
+[1]: /images/2017/ELK/Elasticsearch-head.png
 [2]: /images/2017/ELK/nginx.png
 [3]: /images/2017/ELK/redis.png
 [4]: /images/2017/ELK/kibana-tool.png
