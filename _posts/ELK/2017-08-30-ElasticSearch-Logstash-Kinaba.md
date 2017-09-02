@@ -73,8 +73,8 @@ node2 --> ElasticSearch: 192.168.252.122:9200
 node3 --> ElasticSearch: 192.168.252.123:9200  
   
 node4 --> Logstash: 192.168.252.124
-node4 --> nginx: 192.168.252.125
-  
+node4 --> nginx: 192.168.252.124
+  
 node5 --> Kibana: 192.168.252.125
 
 node6 --> Redis: 192.168.252.126
