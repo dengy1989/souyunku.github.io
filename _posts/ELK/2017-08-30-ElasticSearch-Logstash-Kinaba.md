@@ -477,7 +477,7 @@ input {
 }
 output {
         redis {
-                host => "192.168.252.125"
+                host => "192.168.252.126"
                 data_type => "list"
                 port => "6379"
                 key => "logstash:redis"
@@ -512,7 +512,7 @@ vi /opt/logstash-5.5.2/etc/logstash_indexer.conf
 ```sh
 input {
         redis {
-                host => "192.168.252.125"
+                host => "192.168.252.126"
                 data_type => "list"
                 port => "6379"
                 key => "logstash:redis"
