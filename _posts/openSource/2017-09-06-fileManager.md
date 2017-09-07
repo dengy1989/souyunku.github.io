@@ -5,7 +5,6 @@ categories: java
 description: 简单的java开源图床
 keywords: java
 ---
-
 # Simple open source image uploads
 
 出于自用的目的，又找不到Java写的开源的程序，然后使用开源上传组件[ bootstrap-fileinput ](https://github.com/kartik-v/bootstrap-fileinput/)用 Spring Boot 写一个简单的后台小程序。
@@ -16,13 +15,41 @@ keywords: java
 > 
 > 演示地址： [http://yun.penglei.net](#)
 > 
-> GitHub： [https://github.com/souyunku/fileManager](#)
+> GitHub： [https://github.com/souyunku/fileManager](https://github.com/souyunku/fileManager)
+
 
 ### Configuration
 
 > #### 使用的时候需要按照`application.properties` 里面的注释配置即可
 
+
+![](https://raw.githubusercontent.com/souyunku/fileManager/master/fileManager/doc/index1.png)
+
+![](https://raw.githubusercontent.com/souyunku/fileManager/master/fileManager/doc/index2.png)
+
+![](https://raw.githubusercontent.com/souyunku/fileManager/master/fileManager/doc/index3.png)
+
+![](https://raw.githubusercontent.com/souyunku/fileManager/master/fileManager/doc/index4.png)
+
+
 ### Contact
+
+
+![](https://raw.githubusercontent.com/souyunku/fileManager/master/fileManager/doc/index1.png)
+
+![](https://raw.githubusercontent.com/souyunku/fileManager/master/fileManager/doc/index2.png)
+
+![](https://raw.githubusercontent.com/souyunku/fileManager/master/fileManager/doc/index3.png)
+
+![](https://raw.githubusercontent.com/souyunku/fileManager/master/fileManager/doc/index4.png)
+
+![](https://raw.githubusercontent.com/souyunku/fileManager/master/fileManager/doc/index5.png)
+
+![](https://raw.githubusercontent.com/souyunku/fileManager/master/fileManager/doc/index6.png)
+
+![](https://raw.githubusercontent.com/souyunku/fileManager/master/fileManager/doc/index7.png)
+
+![](https://raw.githubusercontent.com/souyunku/fileManager/master/fileManager/doc/index8.png)
 
 > Email：admin@souyunku.com
 > 
@@ -38,13 +65,5 @@ keywords: java
 
 ![Wechat：关注公众号](http://www.ymq.io/images/pengleikeji.jpg "鹏磊科技")
 
-
-![](https://raw.githubusercontent.com/souyunku/fileManager/master/fileManager/doc/index1.png)
-
-![](https://raw.githubusercontent.com/souyunku/fileManager/master/fileManager/doc/index2.png)
-
-![](https://raw.githubusercontent.com/souyunku/fileManager/master/fileManager/doc/index3.png)
-
-![](https://raw.githubusercontent.com/souyunku/fileManager/master/fileManager/doc/index4.png)
 
 
