@@ -209,7 +209,9 @@ API网关方式的核心要点是，所有的客户端和消费端都通过统�
 
   
 原文作者：Kasun Indrasiri，软件架构师，WSO2
+
 原文链接：[https://dzone.com/articles/mi...](https://dzone.com/articles/microservices-in-practice-1)
+
 原文链接：[翻译系_力谱宿云LeapCloud团队_云服务研发成员：Frank Qin](https://segmentfault.com/a/1190000004634172#articleHeader0)
 
 
