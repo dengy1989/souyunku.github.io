@@ -1,6 +1,6 @@
 ---
 layout: post
-title: CentOs7.3 Hadoop ssh 免密登录
+title: CentOs7.3 Hadoop 用户 ssh 免密登录
 categories: Linux
 description: CentOs7.3 Hadoop ssh 免密登录
 keywords: Linux
@@ -24,7 +24,7 @@ keywords: Linux
 hostnamectl set-hostname <hostname>
 ```
 ```sh
-hostnamectl set-hostname node1
+sudo hostnamectl set-hostname node1
 ```
 剩下的虚拟机依次修改`hostnamectl set-hostname[1-3]`
 
@@ -39,7 +39,8 @@ $ reboot
 1.在 node1 的 `/etc/hosts` 文件下添加如下内容
 
 ```sh
-$ vi /etc/hosts
+su hadoop
+vi /etc/hosts
 ```
 
 2.查看修改后的`/etc/hosts` 文件内容
@@ -57,13 +58,13 @@ $ cat /etc/hosts
 2.将集群node1 上的文件`hosts`文件 通过 `scp` 命令复制发送到集群的每一个节点
 
 ```sh
-for a in {1..3} ; do scp /etc/hosts hadoop@node$a:/etc/hosts ; done
+for a in {1..3} ; do sudo scp /etc/hosts hadoop@node$a:/etc/hosts ; done
 ```
 
 3.检查是否集群每一个节点的 `hosts` 文件都已经修改过来了
 
 ```sh
-for a in {1..3} ; do ssh hadoop@node$a cat /etc/hosts ; done
+for a in {1..3} ; do sudo ssh hadoop@node$a cat /etc/hosts ; done
 ```
 
 
@@ -72,7 +73,7 @@ for a in {1..3} ; do ssh hadoop@node$a cat /etc/hosts ; done
 1.在集群node1的 `/etc/ssh/sshd_config ` 文件去掉以下选项的注释
 
 ```sh
-vi /etc/ssh/sshd_config 
+sudo vi /etc/ssh/sshd_config 
 ```
 
 ```sh
@@ -122,7 +123,7 @@ The key's randomart image is:
 将集群每一个节点的公钥`id_rsa.pub`放入到自己的认证文件中`authorized_keys`;
 
 ```sh
-for a in {1..3}; do sudo  ssh hadoop@node$a cat /home/hadoop/.ssh/id_rsa.pub >> /home/hadoop/.ssh/authorized_keys; done
+for a in {1..3}; do sudo ssh hadoop@node$a cat /home/hadoop/.ssh/id_rsa.pub >> /home/hadoop/.ssh/authorized_keys; done
 ```
 
 3.在集群的node1 节点输入命令
@@ -133,7 +134,14 @@ for a in {1..3}; do sudo  ssh hadoop@node$a cat /home/hadoop/.ssh/id_rsa.pub >> 
 for a in {1..3}; do sudo scp /home/hadoop/.ssh/authorized_keys hadoop@node$a:/home/hadoop/.ssh/authorized_keys ; done
 ```
 
-4.在集群的每一个节点节点输入命令
+4.非ROOT 用户需赋权限
+```sh
+chmod 700 /home/hadoop/.ssh/
+chmod 700 /home/hadoop/
+chmod 600 /home/hadoop/.ssh/authorized_keys 
+```
+
+5.在集群的每一个节点节点输入命令
 
 接重启ssh服务
 
@@ -141,14 +149,14 @@ for a in {1..3}; do sudo scp /home/hadoop/.ssh/authorized_keys hadoop@node$a:/ho
 sudo systemctl restart sshd.service
 ```
 
-## 5.验证 ssh 无密登录
+## 6.验证 ssh 无密登录
 
-5.开一个其他窗口测试下能否免密登陆
+开一个其他窗口测试下能否免密登陆
 
 例如：在node3
 
 ```sh
-ssh hadoop@node1
+ssh hadoop@node2
 ```
 
 `exit` 退出
@@ -159,12 +167,5 @@ Connection to node1 closed.
 ```
 
 注意：开新的其他窗口测试下能否免密登陆，把当前窗口都关了
-
-
-
-
-
-
-
 
 

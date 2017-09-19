@@ -73,6 +73,8 @@ ymq     ALL=(ALL)       NOPASSWD:ALL
 ```
 
 ```sh
+pkexec chmod 0440 /etc/sudoers
+
 su ymq
 /opt/elasticsearch-5.5.2/bin/elasticsearch
 ```
