@@ -6,10 +6,7 @@ description: CentOs7.3 搭建 ZooKeeper-3.4.9 单机服务
 keywords: ZooKeeper
 ---
 
-#  CentOs7.3 搭建 ZooKeeper-3.4.9 单机服务
-
-
-# Zookeeper 概述
+# 概述
 
 zookeeper实际上是yahoo开发的，用于分布式中**一致性处理的框架**。最初其作为研发Hadoop时的副产品。由于分布式系统中一致性处理较为困难，其他的分布式系统没有必要 费劲重复造轮子，故随后的分布式系统中大量应用了zookeeper，以至于zookeeper成为了各种分布式系统的基础组件，其地位之重要，可想而知。著名的**hadoop，kafka，dubbo 都是基于zookeeper而构建**。
 
@@ -32,7 +29,7 @@ zookeeper实际上是yahoo开发的，用于分布式中**一致性处理的框�
 
 [《分布式 ZooKeeper 系列》](http://www.cnblogs.com/leesf456/tag/%E5%88%86%E5%B8%83%E5%BC%8F/)
 
-## 环境
+# 环境
 
 VMware版本号：12.0.0
 
@@ -42,11 +39,11 @@ ZooKeeper版本：ZooKeeper-3.4.9.tar.gz
 
 JDK环境：jdk-8u144-linux-x64.tar.gz 
 
-# JDK 1.8 安装
+**JDK 1.8 安装**
 
 具体参考[《CentOs7.3 安装 JDK1.8》](https://segmentfault.com/a/1190000010716919)
 
-# ZooKeeper 安装
+# ZooKeeper安装
 
 ## 1.下载ZooKeeper
 
@@ -57,8 +54,8 @@ JDK环境：jdk-8u144-linux-x64.tar.gz
 阿里镜像:[https://mirrors.aliyun.com/apache/zookeeper/](https://mirrors.aliyun.com/apache/zookeeper/)
 
 ```sh
-$ cd /opt/
-$ wget https://mirrors.tuna.tsinghua.edu.cn/apache/zookeeper/zookeeper-3.4.9/zookeeper-3.4.9.tar.gz
+cd /opt/
+wget https://mirrors.tuna.tsinghua.edu.cn/apache/zookeeper/zookeeper-3.4.9/zookeeper-3.4.9.tar.gz
 ```
 
 或者在浏览器下载上传至opt 目录
@@ -66,20 +63,20 @@ $ wget https://mirrors.tuna.tsinghua.edu.cn/apache/zookeeper/zookeeper-3.4.9/zoo
 ## 2.提取tar文件
 
 ```sh
-$ cd /opt/
-$ tar -zxf  zookeeper-3.4.9.tar.gz
-$ cd zookeeper-3.4.9
+cd /opt/
+tar -zxf  zookeeper-3.4.9.tar.gz
+cd zookeeper-3.4.9
 ```
 
 创建`data`文件夹 用于存储数据文件
 
 ```sh
-$ mkdir data  logs
+mkdir data  logs
 ```
 
 创建`logs`文件夹 用于存储日志
 ```sh
-$ mkdir logs  
+mkdir logs  
 ```
 
 ## 3.创建配置文件
@@ -87,7 +84,7 @@ $ mkdir logs
 使用命令 `vi conf/zoo.cfg` 创建配置文件并打开，ps (其实目录`conf` 下有默认的配置文件，但是注释太多，英文一大堆，太乱)
 
 ```sh
-$ vi  /opt/zookeeper-3.4.9/conf/zoo.cfg
+vi  /opt/zookeeper-3.4.9/conf/zoo.cfg
 ```
 
 编辑内容如下
@@ -103,8 +100,7 @@ syncLimit = 2
 ```
 
 
-
-### 配置文件描述
+> 配置文件描述
 
 
 **tickTime** 
@@ -133,7 +129,7 @@ syncLimit = 2
 ## 启动服务
 
 ```sh
-$ /opt/zookeeper-3.4.9/bin/zkServer.sh start
+/opt/zookeeper-3.4.9/bin/zkServer.sh start
 ```
 
 响应
@@ -149,7 +145,7 @@ Starting zookeeper ... STARTED
 连接到ZooKeeper服务
 
 ```sh
-$ /opt/zookeeper-3.4.9/bin/zkCli.sh
+/opt/zookeeper-3.4.9/bin/zkCli.sh
 ```
 
 响应
@@ -189,7 +185,7 @@ WatchedEvent state:SyncConnected type:None path:null
 ## 服务状态
 
 ```sh
-$ /opt/zookeeper-3.4.9/bin/zkServer.sh status
+/opt/zookeeper-3.4.9/bin/zkServer.sh status
 ```
 
 响应
@@ -203,7 +199,7 @@ Mode: standalone
 ## 停止服务
 
 ```sh
-$ /opt/zookeeper-3.4.9/bin/zkServer.sh stop
+/opt/zookeeper-3.4.9/bin/zkServer.sh stop
 ```
 
 响应
