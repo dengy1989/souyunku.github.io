@@ -39,7 +39,7 @@ $ reboot
 1.在 node1 的 `/etc/hosts` 文件下添加如下内容
 
 ```sh
-su hadoop
+su root
 vi /etc/hosts
 ```
 
@@ -58,13 +58,13 @@ $ cat /etc/hosts
 2.将集群node1 上的文件`hosts`文件 通过 `scp` 命令复制发送到集群的每一个节点
 
 ```sh
-for a in {1..3} ; do sudo scp /etc/hosts hadoop@node$a:/etc/hosts ; done
+for a in {1..3} ; do scp /etc/hosts node$a:/etc/hosts ; done
 ```
 
 3.检查是否集群每一个节点的 `hosts` 文件都已经修改过来了
 
 ```sh
-for a in {1..3} ; do sudo ssh hadoop@node$a cat /etc/hosts ; done
+for a in {1..3} ; do ssh node$a cat /etc/hosts ; done
 ```
 
 
@@ -73,7 +73,7 @@ for a in {1..3} ; do sudo ssh hadoop@node$a cat /etc/hosts ; done
 1.在集群node1的 `/etc/ssh/sshd_config ` 文件去掉以下选项的注释
 
 ```sh
-sudo vi /etc/ssh/sshd_config 
+vi /etc/ssh/sshd_config 
 ```
 
 ```sh
@@ -84,7 +84,7 @@ PubkeyAuthentication yes   #开启公钥验证
 2.将集群node1 修改后的 `/etc/ssh/sshd_config ` 通过 `scp` 命令复制发送到集群的每一个节点
 
 ```sh
-for a in {1..3} ; do  sudo scp /etc/ssh/sshd_config hadoop@node$a:/etc/ssh/sshd_config ; done
+for a in {1..3} ; do scp /etc/ssh/sshd_config node$a:/etc/ssh/sshd_config ; done
 ```
 
 ## 4.生成公钥、私钥
@@ -92,6 +92,7 @@ for a in {1..3} ; do  sudo scp /etc/ssh/sshd_config hadoop@node$a:/etc/ssh/sshd_
 1.在集群的每一个节点节点输入命令 `ssh-keygen -t rsa -P ''`，生成 key，一律回车
 
 ```sh
+su hadoop
 ssh-keygen -t rsa -P ''
 ```
 
