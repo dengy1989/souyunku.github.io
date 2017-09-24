@@ -129,7 +129,7 @@ for a in {1..3}; do sudo ssh hadoop@node$a cat /home/hadoop/.ssh/id_rsa.pub >> /
 
 3.在集群的node1 节点输入命令
 
-将自己的认证文件 `authorized_keys` ` 通过 `scp` 命令复制发送到每一个节点上去: `/root/.ssh/authorized_keys`
+将自己的认证文件 `authorized_keys` ` 通过 `scp` 命令复制发送到每一个节点上去: `/home/hadoop/.ssh/authorized_keys`
 
 ```sh
 for a in {1..3}; do sudo scp /home/hadoop/.ssh/authorized_keys hadoop@node$a:/home/hadoop/.ssh/authorized_keys ; done
