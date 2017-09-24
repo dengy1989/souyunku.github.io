@@ -6,7 +6,13 @@ description: 离线安装 Cloudera Manager 5和 CDH5.12.1 及使用 CDH 部署�
 keywords: CDH
 ---
 
-# Cloudera Manager 简介
+# Cloudera Manager
+
+Cloudera Manager 分为两个部分：CDH和CM。
+
+CDH是Cloudera Distribution Hadoop的简称，顾名思义，就是cloudera公司发布的Hadoop版本，封装了Apache Hadoop，提供Hadoop所有的服务，包括HDFS,YARN,MapReduce以及各种相关的components:HBase, Hive, ZooKeeper,Kafka等。
+
+CM是cloudera manager的简称，是CDH的管理平台，主要包括CM server, CM agent。通过CM可以对CDH进行配置，监测，报警，log查看，动态添加删除各种服务等。 
 
 
 # 一、准备工作
