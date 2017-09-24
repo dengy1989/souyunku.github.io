@@ -1,9 +1,9 @@
 ---
 layout: post
-title: 离线安装 Cloudera Manager 5和CDH5.12.1 完全教程
-categories: hive
-description: Cloudera Manager 离线部署
-keywords: hive
+title: 离线安装 Cloudera Manager 5和 CDH5.12.1 及使用 CDH 部署集群服务
+categories: CDH
+description: 离线安装 Cloudera Manager 5和 CDH5.12.1 及使用 CDH 部署集群服务
+keywords: CDH
 ---
 
 # Cloudera Manager 简介
@@ -556,6 +556,9 @@ chown cloudera-scm:cloudera-scm /opt/cloudera/parcels
 
 ## 6、启动 CM Manager&Agent 服务
 
+**注意，mysql 服务启动，防火墙关闭**
+
+
 在 node1 (master) 执行：
 
 Server
@@ -563,6 +566,8 @@ Server
 ```sh
 /opt/cloudera-manager/cm-5.12.1/etc/init.d/cloudera-scm-server start
 ```
+
+在 node2-7 (Agents) 执行：
 
 Agents
 
@@ -576,6 +581,8 @@ Manager 启动成功需要等待一段时间，过程中会在数据库中创建
 
 
 # 四、CDH5 安装
+
+![][1]
 
 ![][2]
 
@@ -591,16 +598,45 @@ Manager 启动成功需要等待一段时间，过程中会在数据库中创建
 
 ![][8]
 
-![][9]
-
-
-![][10]
-
 
 点击，继续，如果配置本地Parcel包无误，那么下图中的已下载，应该是瞬间就完成了，然后就是耐心等待分配过程就行了，大约10多分钟吧，取决于内网网速。
 
-![][7]
 
+![][9]
+
+![][10]
+
+## 遇到问题
+
+接下来是服务器检查，可能会遇到以下问题：
+
+Cloudera 建议将 /proc/sys/vm/swappiness 设置为最大值 10。当前设置为 30。使用 sysctl 命令在运行时更改该设置并编辑 /etc/sysctl.conf，以在重启后保存该设置。您可以继续进行安装，但 Cloudera Manager 可能会报告您的主机由于交换而运行状况不良。以下主机将受到影响：node[2-7]
+
+
+已启用透明大页面压缩，可能会导致重大性能问题。请运行“echo never > /sys/kernel/mm/transparent_hugepage/defrag”和“echo never > /sys/kernel/mm/transparent_hugepage/enabled”以禁用此设置，然后将同一命令添加到 /etc/rc.local 等初始化脚本中，以便在系统重启时予以设置。以下主机将受到影响: node[2-7]
+
+
+```sh
+echo 0 > /proc/sys/vm/swappiness
+cloudera-scm-server]# echo never > /sys/kernel/mm/transparent_hugepage/defrag
+cloudera-scm-server]# echo never > /sys/kernel/mm/transparent_hugepage/enabled
+```
+
+![][11]
+
+![][12]
+
+![][13]
+
+![][14]
+
+![][15]
+
+![][16]
+
+![][17]
+
+![][18]
 
 # 五、脚本
 
@@ -629,7 +665,7 @@ create database oozie DEFAULT CHARACTER SET utf8;
 grant all on oozie.* TO 'oozie'@'%' IDENTIFIED BY 'oozie';
 ```
 
-
+[1]: /images/2017/CDH/1.png
 [2]: /images/2017/CDH/2.png
 [3]: /images/2017/CDH/3.png
 [4]: /images/2017/CDH/4.png
@@ -639,6 +675,11 @@ grant all on oozie.* TO 'oozie'@'%' IDENTIFIED BY 'oozie';
 [8]: /images/2017/CDH/8.png
 [9]: /images/2017/CDH/9.png
 [10]: /images/2017/CDH/10.png
-
-
-
+[11]: /images/2017/CDH/11.png
+[12]: /images/2017/CDH/12.png
+[13]: /images/2017/CDH/13.png
+[14]: /images/2017/CDH/14.png
+[15]: /images/2017/CDH/15.png
+[16]: /images/2017/CDH/16.png
+[17]: /images/2017/CDH/17.png
+[18]: /images/2017/CDH/18.png
