@@ -1,8 +1,8 @@
 ---
 layout: post
-title: 离线部署 Cloudera Manager 5和 CDH 5.12.1 及使用 CDH 部署 Hadoop 集群服务
+title: 离线部署 Cloudera Manager 5 和 CDH 5.12.1 及使用 CDH 部署 Hadoop 集群服务
 categories: CDH
-description: 离线部署 Cloudera Manager 5和 CDH 5.12.1 及使用 CDH 部署 Hadoop 集群服务
+description: 离线部署 Cloudera Manager 5 和 CDH 5.12.1 及使用 CDH 部署 Hadoop 集群服务
 keywords: CDH
 ---
 
