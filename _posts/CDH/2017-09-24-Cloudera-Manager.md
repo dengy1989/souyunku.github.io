@@ -1,8 +1,8 @@
 ---
 layout: post
-title: 离线安装 Cloudera Manager 5和 CDH5.12.1 及使用 CDH 部署集群服务
+title: 离线部署 Cloudera Manager 5和 CDH 5.12.1 及使用 CDH 部署 Hadoop 集群服务
 categories: CDH
-description: 离线安装 Cloudera Manager 5和 CDH5.12.1 及使用 CDH 部署集群服务
+description: 离线部署 Cloudera Manager 5和 CDH 5.12.1 及使用 CDH 部署 Hadoop 集群服务
 keywords: CDH
 ---
 
@@ -56,13 +56,13 @@ CHD5 相关的 Parcel 包放到主节点的`/opt/cloudera/parcel-repo/`目录中
 
 | 主机名 | ip地址 | 安装服务 |
 | --- | --- | --- |
-| node1 (master) | 192.168.252.121 | jdk、cloudera-manager、MySql |
-| node2 (slave1) | 192.168.252.122 | jdk、cloudera-manager |
-| node3 (slave2) | 192.168.252.123 | jdk、cloudera-manager |
-| node4 (slave3) | 192.168.252.124 | jdk、cloudera-manager |
-| node5 (slave4) | 192.168.252.125 | jdk、cloudera-manager |
-| node6 (slave5) | 192.168.252.126 | jdk、cloudera-manager |
-| node7 (slave6) | 192.168.252.127 | jdk、cloudera-manager |
+| node1 (Master) | 192.168.252.121 | jdk、cloudera-manager、MySql |
+| node2 (Agents) | 192.168.252.122 | jdk、cloudera-manager |
+| node3 (Agents) | 192.168.252.123 | jdk、cloudera-manager |
+| node4 (Agents) | 192.168.252.124 | jdk、cloudera-manager |
+| node5 (Agents) | 192.168.252.125 | jdk、cloudera-manager |
+| node6 (Agents) | 192.168.252.126 | jdk、cloudera-manager |
+| node7 (Agents) | 192.168.252.127 | jdk、cloudera-manager |
 
 # 二、系统环境搭建
 
@@ -581,7 +581,7 @@ Agents
 /opt/cloudera-manager/cm-5.12.1/etc/init.d/cloudera-scm-agent start
 ```
 
-访问 [http://node1:7180](http://node1:7180) 若可以访问（用户名、密码：admin），则安装成功。
+访问 [http://Master:7180](http://node1:7180) 若可以访问（用户名、密码：admin），则安装成功。
 
 Manager 启动成功需要等待一段时间，过程中会在数据库中创建对应的表需要耗费一些时间。
 
@@ -616,10 +616,16 @@ Manager 启动成功需要等待一段时间，过程中会在数据库中创建
 
 接下来是服务器检查，可能会遇到以下问题：
 
-Cloudera 建议将 /proc/sys/vm/swappiness 设置为最大值 10。当前设置为 30。使用 sysctl 命令在运行时更改该设置并编辑 /etc/sysctl.conf，以在重启后保存该设置。您可以继续进行安装，但 Cloudera Manager 可能会报告您的主机由于交换而运行状况不良。以下主机将受到影响：node[2-7]
+Cloudera 建议将 `/proc/sys/vm/swappiness` 设置为最大值 10。当前设置为 30。 
+ 
+使用 `sysctl` 命令在运行时更改该设置并编辑 `/etc/sysctl.conf`，以在重启后保存该设置。  
+
+您可以继续进行安装，但 Cloudera Manager 可能会报告您的主机由于交换而运行状况不良。以下主机将受到影响：node[2-7]  
 
 
-已启用透明大页面压缩，可能会导致重大性能问题。请运行“echo never > /sys/kernel/mm/transparent_hugepage/defrag”和“echo never > /sys/kernel/mm/transparent_hugepage/enabled”以禁用此设置，然后将同一命令添加到 /etc/rc.local 等初始化脚本中，以便在系统重启时予以设置。以下主机将受到影响: node[2-7]
+已启用透明大页面压缩，可能会导致重大性能问题。
+请运行`echo never > /sys/kernel/mm/transparent_hugepage/defrag”和“echo never > /sys/kernel/mm/transparent_hugepage/enabled`
+以禁用此设置，然后将同一命令添加到 /etc/rc.local 等初始化脚本中，以便在系统重启时予以设置。以下主机将受到影响: node[2-7]
 
 
 ```sh
