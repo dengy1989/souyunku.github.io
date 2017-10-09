@@ -1,14 +1,14 @@
 # ---------------- #
 #   Main Configs   #
 # ---------------- #
-title: Peng Lei
-author: Peng Lei
+title: 鹏磊
+author: 鹏磊
 subtitle: "Talk is cheap. Show me the code."
-description: "鹏磊的个人博客"
+description: "鹏磊"
 baseurl:
 url: http://www.ymq.io
 date_format: "ordinal"
-keywords: souyunku, penglei
+keywords: 鹏磊, penglei,www.ymq.io
 favicon: /favicon.ico
 #timezone: Asia/Shanghai
 encoding: "utf-8"
