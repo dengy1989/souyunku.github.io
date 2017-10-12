@@ -212,10 +212,10 @@ INSERT INTO `test` VALUES ('1', '同步MySQL数据到 Redis');
 
 ### 2.导入源码
 
-克隆，同步MySQL数据到 Redis项目[https://github.com/souyunku/YmqExample](https://github.com/souyunku/YmqExample)
+克隆，同步MySQL数据到 Redis项目[https://github.com/souyunku/ymq-example.git)
 
 ```sh
-$ git clone https://github.com/souyunku/YmqExample.git
+$ git clone https://github.com/souyunku/ymq-example.git
 ```
 
 ### 3.运行测试类
