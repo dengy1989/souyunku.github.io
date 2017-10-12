@@ -306,3 +306,9 @@ public class ThreadPoolTask implements Runnable, Serializable {
 所有线程执行完毕
 耗时：1015
 ```
+
+# 测试代码
+
+github [https://github.com/souyunku/ymq-example/tree/master/ymq-thread](https://github.com/souyunku/ymq-example/tree/master/ymq-thread)
+
+
