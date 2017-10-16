@@ -44,9 +44,7 @@ Redis运行在内存中但是可以持久化到磁盘，所以在对不同数据
 
 # Github 代码
 
-代码我已放到 Github ，导入 ymq-redis 项目 
-
-github [https://github.com/souyunku/ymq-example/tree/master/ymq-redis](https://github.com/souyunku/ymq-example/tree/master/ymq-redis)
+代码我已放到 Github ，CacheUtils.java [点击预览 CacheUtils.java ](https://github.com/souyunku/ymq-example/blob/master/ymq-redis/src/main/java/io/ymq/redis/jedis/utils/CacheUtils.java)
 
 ## 添加依赖
 
