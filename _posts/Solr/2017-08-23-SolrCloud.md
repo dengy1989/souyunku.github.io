@@ -10,7 +10,7 @@ keywords: Solr
 
 # 一、概述
 
-Lucene是一个Java语言编写的利用倒排原理实现的文本检索类库；
+Lucene是一个Java语言编写的利用倒排原理实现的文本检索类库
 
 Solr是以Lucene为基础实现的文本检索应用服务。Solr部署方式有单机方式、多机Master-Slaver方式、Cloud方式。
 
