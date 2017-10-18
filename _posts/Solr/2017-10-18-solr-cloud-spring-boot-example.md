@@ -28,8 +28,6 @@ github [https://github.com/souyunku/ymq-example/tree/master/ymq-solr-cloud-sprin
 
 ## 添加依赖
 
-在项目中添加 `kafka-clients` 依赖
-
 ```xml
 <dependency>
 	<groupId>org.springframework.boot</groupId>
