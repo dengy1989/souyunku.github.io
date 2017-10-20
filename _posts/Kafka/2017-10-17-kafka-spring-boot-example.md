@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Spring Boot 中使用 kafka
-categories: kafka
+categories: [kafka,SpringBoot]
 description: Spring Boot 中使用 kafka
 keywords: kafka 
 ---

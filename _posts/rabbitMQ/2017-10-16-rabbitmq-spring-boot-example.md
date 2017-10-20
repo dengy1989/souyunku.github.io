@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Spring Boot 中使用 RabbitMQ
-categories: RabbitMQ
+categories: [RabbitMQ,SpringBoot]
 description: Spring Boot 中使用 RabbitMQ
 keywords: RabbitMQ 
 ---

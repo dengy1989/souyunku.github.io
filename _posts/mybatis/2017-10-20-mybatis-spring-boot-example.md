@@ -1,10 +1,11 @@
 ---
 layout: post
 title: Spring Boot 中使用 MyBatis 整合 Druid 多数据源
-categories: MyBatis
+categories: [MyBatis,SpringBoot]
 description: Spring Boot 中使用 MyBatis 整合 Druid 多数据源
-keywords: MyBatis 
+keywords: MyBatis
 ---
+
 本文将讲述 spring boot + mybatis + druid 多数据源配置方案。
 
 # 准备

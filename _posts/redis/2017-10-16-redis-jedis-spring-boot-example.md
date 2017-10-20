@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Spring Boot 中使用 Redis
-categories: Redis
+categories: [Redis,SpringBoot]
 description: Spring Boot 中使用 Redis
 keywords: Redis 
 ---
