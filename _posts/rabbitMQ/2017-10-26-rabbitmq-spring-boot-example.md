@@ -574,9 +574,9 @@ public class RabbitTopicTest {
 github [https://github.com/souyunku/ymq-example/tree/master/ymq-rabbitmq-spring-boot](https://github.com/souyunku/ymq-example/tree/master/ymq-rabbitmq-spring-boot)
 
 
-[0]: /images/2017/rabbit/example/0.png
 [1]: /images/2017/rabbit/example/1.png
 [2]: /images/2017/rabbit/example/2.png
 [3]: /images/2017/rabbit/example/3.png
+[4]: /images/2017/rabbit/example/4.png
 
 
