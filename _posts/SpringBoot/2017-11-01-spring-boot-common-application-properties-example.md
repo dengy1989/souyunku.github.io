@@ -51,11 +51,11 @@ spring.aop.auto =真＃添加@EnableAspectJAutoProxy。
 spring.aop.proxy-target-class = ＃是否要创建基于子类（CGLIB）的代理（true），而不是基于标准的基于Java接口的代理（false）。使用Spring事务管理时默认为“true”，否则为“false”。
 
 ＃IDENTITY （ContextIdApplicationContextInitializer）
- spring.application.index = ＃应用程序索引。
+spring.application.index = ＃应用程序索引。
 spring.application.name = ＃应用程序名称。
 
 ＃ADMIN （SpringApplicationAdminJmxAutoConfiguration）
- spring.application.admin.enabled = false ＃为应用程序启用管理功能。
+spring.application.admin.enabled = false ＃为应用程序启用管理功能。
 spring.application.admin.jmx-name = org.springframework.boot：type = Admin，name = SpringApplication ＃应用程序的JMX名称M​​Bean。
 
 ＃AUTO-CONFIGURATION 
@@ -65,7 +65,7 @@ spring.autoconfigure.exclude = ＃自动配置类要排除。
 ＃SPRING CORE spring.beaninfo.ignore = true ＃跳过BeanInfo类的搜索。
 
 ＃SPRING CACHE（CacheProperties）
- spring.cache.cache-names = ＃如果底层缓存管理器支持，
+spring.cache.cache-names = ＃如果底层缓存管理器支持，
 则要创建缓存名称的逗号分隔列表。spring.cache.caffeine.spec = ＃用于创建缓存的规范。检查CaffeineSpec有关规格格式的更多细节。
 spring.cache.couchbase.expiration = 0 ＃条目到期以毫秒为单位。默认情况下，条目永远不会过期。
 spring.cache.ehcache.config = ＃用于初始化EhCache的配置文件的位置。
@@ -80,7 +80,7 @@ spring.cache.type = ＃缓存类型，默认情况下根据环境自动检测。
 spring.config.name = application ＃配置文件名。
 
 ＃HAZELCAST（HazelcastProperties）
- spring.hazelcast.config = ＃用于初始化Hazelcast的配置文件的位置。
+spring.hazelcast.config = ＃用于初始化Hazelcast的配置文件的位置。
 
 ＃项目信息（ProjectInfoProperties）
  spring.info.build.location = classpath：META-INF / build-info.properties ＃生成的build-info.properties文件的位置。
