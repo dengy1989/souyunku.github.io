@@ -8,7 +8,7 @@ keywords: Elasticsearch
 
 ElasticSearch 是一个高可用开源全文检索和分析组件。提供存储服务，搜索服务，大数据准实时分析等。一般用于提供一些提供复杂搜索的应用。
 
-ElasticSearch 提供了一套基于restful风格的全文检索服务组件。前身是compass，直到2010被一家公司接管进行维护，开始商业化，并提供了ElasticSearch 一些相关的产品，包括大家比较熟悉的 kibana、logstash 以及 ElasticSearch 的一些组件，比如 安全组件shield 。当前最新的EElasticSearch 版本为 5.1.1 ，比较应用广泛的为2.X，直到 2016-12 推出了5.x 版本 ，将版本号调为 5.X 。这是为了和 kibana 和 logstash 等产品版本号进行统一 ElasticSearch 。
+ElasticSearch 提供了一套基于restful风格的全文检索服务组件。前身是compass，直到2010被一家公司接管进行维护，开始商业化，并提供了ElasticSearch 一些相关的产品，包括大家比较熟悉的 kibana、logstash 以及 ElasticSearch 的一些组件，比如 安全组件shield 。当前最新的Elasticsearch Reference: 版本为 5.6 ，比较应用广泛的为2.X，直到 2016-12 推出了5.x 版本 ，将版本号调为 5.X 。这是为了和 kibana 和 logstash 等产品版本号进行统一 ElasticSearch 。
 
 
 准实时：ElasticSearch 是一个准实时的搜索工具，在一般情况下延时少于一秒。
