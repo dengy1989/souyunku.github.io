@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  SpringCloud 服务的注册与发现（Eureka）- 未完待续
+title:  SpringCloud 服务的注册与发现（Eureka）
 categories: SpringCloud
-description: SpringCloud 服务的注册与发现（Eureka）- 未完待续
+description: SpringCloud 服务的注册与发现（Eureka）
 keywords: SpringCloud 
 ---
 
@@ -66,9 +66,11 @@ Spring Cloud Eureka来实现服务治理。
 
 Spring Cloud Eureka是Spring Cloud Netflix项目下的服务治理模块。而Spring Cloud Netflix项目是Spring Cloud的子项目之一，主要内容是对Netflix公司一系列开源产品的包装，它为Spring Boot应用提供了自配置的Netflix OSS整合。通过一些简单的注解，开发者就可以快速的在应用中配置一下常用模块并构建庞大的分布式系统。它主要提供的模块包括：服务发现（Eureka），断路器（Hystrix），智能路由（Zuul），客户端负载均衡（Ribbon）等。
 
-## 创建“服务注册中心”
+## Eureka Server  (eureka server)
 
-## 添加依赖
+提供服务注册和发现
+
+### 添加依赖
 
 在项目 `spring-cloud-eureka` `pom.xml`中引入需要的依赖内容：
 
@@ -98,9 +100,9 @@ Spring Cloud Eureka是Spring Cloud Netflix项目下的服务治理模块。而Sp
 </dependencies>
 ```
 
-## 开启服务注册
+### 开启服务注册
 
-通过 `@EnableEurekaServer` 注解启动一个服务注册中心提供给其他应用进行对话
+通过 `@EnableEurekaServer` 注解启动一个服务注册中心提供给其他应用进行对话,这个注解需要在springboot工程的启动application类上加
 
 ```java
 package io.ymq.example.eureka;
@@ -119,7 +121,7 @@ public class EurekaApplication {
 }
 ```
 
-## 配置 Eureka 服务
+### 配置 Eureka 服务
 
 在默认设置下，该服务注册中心也会将自己作为客户端来尝试注册它自己，所以我们需要禁用它的客户端注册行为，只需要在`application.yml`配置文件中增加如下信息：
 
@@ -144,15 +146,120 @@ eureka:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
 ```
 
-## 访问服务
+### 访问服务
 
 
-启动工程后，访问：http://localhost:8761/
+启动工程后，访问：[http://localhost:8761/](http://localhost:8761/)
 
 可以看到下面的页面，其中还没有发现任何服务。
 
-![ 未来可能的一种架构 ][1]
+![ System Status ][1]
+
+## Service Provider (eureka client)
+
+- 服务提供方
+
+- 将自身服务注册到 Eureka，从而使服务消费方能够找到
+
+
+### 添加依赖
+
+在项目 `spring-cloud-eureka-client` `pom.xml`中引入需要的依赖内容：
+
+```xml
+<parent>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-parent</artifactId>
+	<version>1.5.8.RELEASE</version>
+	<relativePath/> <!-- lookup parent from repository -->
+</parent>
+
+<dependencies>
+	
+	<!-- spring boot eureka server -->
+	<dependency>
+		<groupId>org.springframework.cloud</groupId>
+		<artifactId>spring-cloud-starter-eureka-server</artifactId>
+	</dependency>
+
+	<!-- spring boot web-->
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-web</artifactId>
+	</dependency>
+
+	<!-- spring boot test-->
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-test</artifactId>
+		<scope>test</scope>
+	</dependency>
+
+</dependencies>
+```
+
+### 开启服务注册
+
+在应用主类中通过加上 @EnableEurekaClient，但只有Eureka可用，你也可以使用@EnableDiscoveryClient。需要配置才能找到Eureka服务器
+
+```java
+package io.ymq.example.eureka.client;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@SpringBootApplication
+@EnableEurekaClient
+@RestController
+public class EurekaClientApplication {
+
+    @RequestMapping("/")
+    public String home() {
+        return "Hello world";
+    }
+
+	public static void main(String[] args) {
+		SpringApplication.run(EurekaClientApplication.class, args);
+	}
+}
+
+```
+
+### 配置 Eureka 服务
+
+需要配置才能找到Eureka服务器。例：
+
+完整配置
+
+```sh
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+spring:
+  application:
+    name: Eureka-Service
+```
+
+其中`defaultZone`是一个魔术字符串后备值，为任何不表示首选项的客户端提供服务URL（即它是有用的默认值）。
+通过`spring.application.name`属性，我们可以指定微服务的名称后续在调用的时候只需要使用该名称就可以进行服务的访问
+
+### 使用 EurekaClient
+
+启动该工程后，再次访问启动工程后：[http://localhost:8761/](http://localhost:8761/)
+
+可以如下图内容，我们定义的服务被成功注册了。
+
+
+![ DS Replicas][2]
 
 [1]: /images/2017/SpringCloud/1.jpg
+[2]: /images/2017/SpringCloud/2.jpg
 
-# 未完待续
+
