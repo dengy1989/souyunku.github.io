@@ -21,16 +21,6 @@ permalink: /about/
  - 爱好：摄影 撸代码  
  - 个人定位：知识工人
 
-### 学习计划
-
-- docker kvm openstack 
-- storm
-- spark
-
-**项目如何使用以下技术**
-
-- **HDFS，mapreduce，hbase，hive，solr，elasticsearch，docker，kafka，storm，spark**
-
 ### Contact
  - Email：admin@souyunku.com
  - GitHub： [https://github.com/souyunku](https://github.com/souyunku)
