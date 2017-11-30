@@ -325,7 +325,7 @@ $ /opt/redis-4.0.1/src/redis-cli -h 192.168.252.101 -c -p 6379
  - 出处：[http://www.ymq.io](http://www.ymq.io)  
  - Email：[admin@souyunku.com](admin@souyunku.com)  
  - GitHub：[https://github.com/souyunku](https://github.com/souyunku)  
- - Segment Fault：[https://sf.gg/blog/souyunku](https://sf.gg/blog/souyunku)  
+ - Segment Fault：[http://sf.gg/blog/souyunku](http://sf.gg/blog/souyunku)  
  - 版权归作者所有，转载请注明出处
  - Wechat：关注公众号，搜云库，分享技术，分享生活
  
