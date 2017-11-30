@@ -33,12 +33,12 @@ RabbitMQ是一个开源的AMQP实现，服务器端用Erlang语言编写，支�
 
 # Github 代码
 
-代码我已放到 Github ，导入`ymq-rabbitmq-spring-boot` 项目 
+代码我已放到 Github ，导入`spring-boot-rabbitmq` 项目 
 
-github [https://github.com/souyunku/ymq-example/tree/master/ymq-rabbitmq-spring-boot](https://github.com/souyunku/ymq-example/tree/master/ymq-rabbitmq-spring-boot)
+github [https://github.com/souyunku/spring-boot-examples/tree/master/spring-boot-rabbitmq](https://github.com/souyunku/spring-boot-examples/tree/master/spring-boot-rabbitmq)
 
 
-![ 项目结构 ][0]
+![ 项目结构 ][1]
 
 ## 添加依赖
 
@@ -71,7 +71,7 @@ spring.rabbitmq.password=admin
 
 ## Direct Exchange
 
-![ Direct Exchange 图解][1]
+![ Direct Exchange 图解][2]
 
 `Direct Exchange` 是`RabbitMQ`默认的交换机模式，也是最简单的模式，根据`key`全文匹配去寻找队列。
 
@@ -211,7 +211,7 @@ public class RabbitDirectTest {
 
 ## Fanout Exchange 
 
-![ Fanout Exchange 图解][2]
+![ Fanout Exchange 图解][3]
 
 **任何发送到`Fanout Exchange` 的消息都会被转发到与该`Exchange`绑定`(Binding)`的所有`Queue上`。**
   
@@ -363,7 +363,7 @@ public class RabbitFanoutTest {
 
 ## Topic Exchange
 
-![ Topic Exchange 图解][3]
+![ Topic Exchange 图解][4]
 
 **任何发送到`Topic Exchange`的消息都会被转发到所有关心`RouteKey`中指定话题的`Queue`上**
 
@@ -569,14 +569,28 @@ public class RabbitTopicTest {
 ```
 
 
-代码我已放到 Github ，导入 `ymq-rabbitmq-spring-boot` 项目 
-
-github [https://github.com/souyunku/ymq-example/tree/master/ymq-rabbitmq-spring-boot](https://github.com/souyunku/ymq-example/tree/master/ymq-rabbitmq-spring-boot)
-
-
 [1]: /images/2017/rabbit/example/1.png
 [2]: /images/2017/rabbit/example/2.png
 [3]: /images/2017/rabbit/example/3.png
 [4]: /images/2017/rabbit/example/4.png
+
+
+
+代码我已放到 Github ，导入`spring-boot-rabbitmq` 项目 
+
+github [https://github.com/souyunku/spring-boot-examples/tree/master/spring-boot-rabbitmq](https://github.com/souyunku/spring-boot-examples/tree/master/spring-boot-rabbitmq)
+
+
+# Contact
+
+ - 作者：鹏磊  
+ - 出处：[http://www.ymq.io](http://www.ymq.io)  
+ - Email：[admin@souyunku.com](admin@souyunku.com)  
+ - GitHub：[https://github.com/souyunku](https://github.com/souyunku)  
+ - Segment Fault：[https://sf.gg/blog/souyunku](https://sf.gg/blog/souyunku)  
+ - 版权归作者所有，转载请注明出处
+ - Wechat：关注公众号，搜云库，分享技术，分享生活
+ 
+![关注公众号-搜云库](http://www.ymq.io/images/souyunku.png "搜云库")
 
 

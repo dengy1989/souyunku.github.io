@@ -18,9 +18,9 @@ Kafka 是一种高吞吐的分布式发布订阅消息系统，能够替代传�
 
 # Github 代码
 
-代码我已放到 Github ，导入`ymq-rabbitmq-spring-boot` 项目 
+代码我已放到 Github ，导入`spring-boot-kafka` 项目 
 
-github [https://github.com/souyunku/ymq-example/tree/master/ymq-kafka-spring-boot](https://github.com/souyunku/ymq-example/tree/master/ymq-kafka-spring-boot)
+github [https://github.com/souyunku/spring-boot-examples/tree/master/spring-boot-kafka](https://github.com/souyunku/spring-boot-examples/tree/master/spring-boot-kafka)
 
 ## 添加依赖
 
@@ -183,9 +183,10 @@ public class BaseTest {
 消息被消费topic--------2
 ```
 
-代码我已放到 Github ，导入 `ymq-kafka-spring-boot` 项目 
+代码我已放到 Github ，导入`spring-boot-kafka` 项目 
 
-github [https://github.com/souyunku/ymq-example/tree/master/ymq-kafka-spring-boot](https://github.com/souyunku/ymq-example/tree/master/ymq-kafka-spring-boot)
+github [https://github.com/souyunku/spring-boot-examples/tree/master/spring-boot-kafka](https://github.com/souyunku/spring-boot-examples/tree/master/spring-boot-kafka)
+
 
 ## 遇到一些坑
 
@@ -200,3 +201,17 @@ C:\Windows\System32\drivers\etc\hosts
 10.32.32.149 YZ-PTEST-APP-HADOOP-02
 10.32.32.154 YZ-PTEST-APP-HADOOP-04
 ```
+
+# Contact
+
+ - 作者：鹏磊  
+ - 出处：[http://www.ymq.io](http://www.ymq.io)  
+ - Email：[admin@souyunku.com](admin@souyunku.com)  
+ - GitHub：[https://github.com/souyunku](https://github.com/souyunku)  
+ - Segment Fault：[https://sf.gg/blog/souyunku](https://sf.gg/blog/souyunku)  
+ - 版权归作者所有，转载请注明出处
+ - Wechat：关注公众号，搜云库，分享技术，分享生活
+ 
+![关注公众号-搜云库](http://www.ymq.io/images/souyunku.png "搜云库")
+
+ 

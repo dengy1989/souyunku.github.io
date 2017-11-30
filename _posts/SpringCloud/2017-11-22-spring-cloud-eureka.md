@@ -264,6 +264,17 @@ spring:
 - [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka)
 - [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-client](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-client)
 
-- **作者：鹏磊** 
-- **出处：[http://www.ymq.io](http://www.ymq.io/)**      
-- **版权归作者所有，转载请注明出处** 
+
+# Contact
+
+ - 作者：鹏磊  
+ - 出处：[http://www.ymq.io](http://www.ymq.io)  
+ - Email：[admin@souyunku.com](admin@souyunku.com)  
+ - GitHub：[https://github.com/souyunku](https://github.com/souyunku)  
+ - Segment Fault：[https://sf.gg/blog/souyunku](https://sf.gg/blog/souyunku)  
+ - 版权归作者所有，转载请注明出处
+ - Wechat：关注公众号，搜云库，分享技术，分享生活
+ 
+![关注公众号-搜云库](http://www.ymq.io/images/souyunku.png "搜云库")
+
+ 

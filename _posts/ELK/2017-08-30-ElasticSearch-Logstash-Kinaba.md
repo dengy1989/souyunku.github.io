@@ -756,10 +756,19 @@ ps ( 索引名称是按照 `elasticsearch` 写入时创建的索引  `index => "
 [10]: /images/2017/ELK/kibana-last6m.png
 
 
- - **作者：Peng Lei** 
- - **出处：[Segment Fault PengLei `Blog  专栏](https://segmentfault.com/a/1190000010867488)**      
- - **版权归作者所有，转载请注明出处** 
 
+
+# Contact
+
+ - 作者：鹏磊  
+ - 出处：[http://www.ymq.io](http://www.ymq.io)  
+ - Email：[admin@souyunku.com](admin@souyunku.com)  
+ - GitHub：[https://github.com/souyunku](https://github.com/souyunku)  
+ - Segment Fault：[https://sf.gg/blog/souyunku](https://sf.gg/blog/souyunku)  
+ - 版权归作者所有，转载请注明出处
+ - Wechat：关注公众号，搜云库，分享技术，分享生活
+ 
+![关注公众号-搜云库](http://www.ymq.io/images/souyunku.png "搜云库")
 
 
 

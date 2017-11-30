@@ -1201,3 +1201,18 @@ spring.devtools.remote.restart.enabled = true ＃启用远程重启。
 spring.devtools.remote.secret = ＃建立连接所需的共享密钥（启用远程支持所需）。
 spring.devtools.remote.secret-header-name = X-AUTH-TOKEN ＃用于传输共享密钥的HTTP头。
 ```
+
+
+
+# Contact
+
+ - 作者：鹏磊  
+ - 出处：[http://www.ymq.io](http://www.ymq.io)  
+ - Email：[admin@souyunku.com](admin@souyunku.com)  
+ - GitHub：[https://github.com/souyunku](https://github.com/souyunku)  
+ - Segment Fault：[https://sf.gg/blog/souyunku](https://sf.gg/blog/souyunku)  
+ - 版权归作者所有，转载请注明出处
+ - Wechat：关注公众号，搜云库，分享技术，分享生活
+ 
+![关注公众号-搜云库](http://www.ymq.io/images/souyunku.png "搜云库")
+

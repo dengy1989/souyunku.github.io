@@ -112,10 +112,10 @@ Dubbo 采用全 Spring 配置方式，透明化接入应用，对应用没有任
 
 # Github 代码
 
-代码我已放到 Github ，导入`ymq-dubbo-spring-boot` 项目 
 
-github [https://github.com/souyunku/ymq-example/tree/master/ymq-dubbo-spring-boot](https://github.com/souyunku/ymq-example/tree/master/ymq-dubbo-spring-boot)
+代码我已放到 Github ，导入`spring-boot-dubbo` 项目 
 
+github [https://github.com/souyunku/spring-boot-examples/tree/master/spring-boot-dubbo](https://github.com/souyunku/spring-boot-examples/tree/master/spring-boot-dubbo)
 
 ## Maven依赖
 
@@ -131,7 +131,7 @@ github [https://github.com/souyunku/ymq-example/tree/master/ymq-dubbo-spring-boo
 
 ## 定义服务接口
 
-**项目：`ymq-dubbo-api`** 
+**项目：`dubbo-api`** 
 
 ```java
 public interface DemoService {
@@ -141,7 +141,7 @@ public interface DemoService {
 
 ## 服务提供方
 
-**项目：`ymq-dubbo-provider`，在服务提供方实现接口**
+**项目：`dubbo-provider`，在服务提供方实现接口**
 
 ```java
 @Service("demoService")
@@ -176,7 +176,7 @@ public class PropertiesConfig {
 
 ## 服务消费方
 
-**项目：`ymq-dubbo-consumer` ，消费消费远程方法**
+**项目：`dubbo-consumer` ，消费消费远程方法**
 
 ```java
 @Service("consumerDemoService")
@@ -214,7 +214,7 @@ public class PropertiesConfig {
 
 ## 远程服务 Dubbo 配置
 
-**项目：`ymq-dubbo-provider`** ,**`ymq-dubbo-consumer`** 一样配置
+**项目：`dubbo-provider`** ,**`dubbo-consumer`** 一样配置
 
 **`dubbo.xml`**
 
@@ -269,7 +269,7 @@ dubbo.protocol.threads=500
 #配置重试次数，最好只用于读的重试，写操作可能会引起多次写入  默认retries="0"
 dubbo.provider.retries=0
 # dubbo缓存文件
-dubbo.cache=/data/dubbo/cache/ymq-dubbo-provider
+dubbo.cache=/data/dubbo/cache/dubbo-provider
 #########################################################
 # zookeeper config
 zookeeper.connect=127.0.0.1:2181
@@ -354,13 +354,24 @@ public class ConsumerTest {
 ```
 
 
-代码我已放到 Github ，导入`ymq-dubbo-spring-boot` 项目 
+代码我已放到 Github ，导入`spring-boot-dubbo` 项目 
 
-github [https://github.com/souyunku/ymq-example/tree/master/ymq-dubbo-spring-boot](https://github.com/souyunku/ymq-example/tree/master/ymq-dubbo-spring-boot)
-
-
+github [https://github.com/souyunku/spring-boot-examples/tree/master/spring-boot-dubbo](https://github.com/souyunku/spring-boot-examples/tree/master/spring-boot-dubbo)
 
 [1]: /images/2017/dubbo/dubbo-architecture.png
 [2]: /images/2017/dubbo/dubbo-architecture-future.jpg
+
+
+# Contact
+
+ - 作者：鹏磊  
+ - 出处：[http://www.ymq.io](http://www.ymq.io)  
+ - Email：[admin@souyunku.com](admin@souyunku.com)  
+ - GitHub：[https://github.com/souyunku](https://github.com/souyunku)  
+ - Segment Fault：[https://sf.gg/blog/souyunku](https://sf.gg/blog/souyunku)  
+ - 版权归作者所有，转载请注明出处
+ - Wechat：关注公众号，搜云库，分享技术，分享生活
+ 
+![关注公众号-搜云库](http://www.ymq.io/images/souyunku.png "搜云库")
 
 

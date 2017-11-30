@@ -8,18 +8,15 @@ keywords: MyBatis
 
 本文将讲述 spring boot + mybatis + druid 多数据源配置方案。
 
-# 准备
-
-## 环境
+# 环境
 
 [CentOs7.3 安装 MySQL 5.7.19 二进制版本](https://segmentfault.com/a/1190000010864818)
 
-
 # Github 代码
 
-代码我已放到 Github ，导入`ymq-mybatis-spring-boot` 项目 
+代码我已放到 Github ，导入`spring-boot-mybatis` 项目 
 
-github [https://github.com/souyunku/ymq-example/tree/master/ymq-mybatis-spring-boot](https://github.com/souyunku/ymq-example/tree/master/ymq-mybatis-spring-boot)
+github [https://github.com/souyunku/spring-boot-examples/tree/master/spring-boot-mybatis](https://github.com/souyunku/spring-boot-examples/tree/master/spring-boot-mybatis)
 
 ![ 项目结构 ][1] 
 
@@ -468,10 +465,24 @@ public class Startup {
 
 ![ druid 监控 ][2] 
 
-代码我已放到 Github ，导入`ymq-mybatis-spring-boot` 项目 
+代码我已放到 Github ，导入`spring-boot-mybatis` 项目 
 
-github [https://github.com/souyunku/ymq-example/tree/master/ymq-mybatis-spring-boot](https://github.com/souyunku/ymq-example/tree/master/ymq-mybatis-spring-boot)
-
+github [https://github.com/souyunku/spring-boot-examples/tree/master/spring-boot-mybatis](https://github.com/souyunku/spring-boot-examples/tree/master/spring-boot-mybatis)
 
 [1]: /images/2017/mybatis/1.png
 [2]: /images/2017/mybatis/2.png
+
+
+# Contact
+
+ - 作者：鹏磊  
+ - 出处：[http://www.ymq.io](http://www.ymq.io)  
+ - Email：[admin@souyunku.com](admin@souyunku.com)  
+ - GitHub：[https://github.com/souyunku](https://github.com/souyunku)  
+ - Segment Fault：[https://sf.gg/blog/souyunku](https://sf.gg/blog/souyunku)  
+ - 版权归作者所有，转载请注明出处
+ - Wechat：关注公众号，搜云库，分享技术，分享生活
+ 
+![关注公众号-搜云库](http://www.ymq.io/images/souyunku.png "搜云库")
+
+

@@ -121,7 +121,14 @@ jekyll serve
 ##  jekyll 文档
 [jekyll 基本用法 官方中文文档](http://jekyll.com.cn/docs/usage/)
 
+# Contact
 
- - **作者：Peng Lei** 
- - **出处：[http://www.ymq.io](http://www.ymq.io/)**      
- - **版权归作者所有，转载请注明出处** 
+ - 作者：鹏磊  
+ - 出处：[http://www.ymq.io](http://www.ymq.io)  
+ - Email：[admin@souyunku.com](admin@souyunku.com)  
+ - GitHub：[https://github.com/souyunku](https://github.com/souyunku)  
+ - Segment Fault：[https://sf.gg/blog/souyunku](https://sf.gg/blog/souyunku)  
+ - 版权归作者所有，转载请注明出处
+ - Wechat：关注公众号，搜云库，分享技术，分享生活
+ 
+![关注公众号-搜云库](http://www.ymq.io/images/souyunku.png "搜云库")

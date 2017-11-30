@@ -22,9 +22,9 @@ Spring Boot中除了对常用的关系型数据库提供了优秀的自动化支
 
 # Github 代码
 
-代码我已放到 Github ，导入 ymq-redis-spring-boot 项目 
+代码我已放到 Github ，导入 spring-boot-examples 项目 
 
-github [https://github.com/souyunku/ymq-example/tree/master/ymq-redis-spring-boot](https://github.com/souyunku/ymq-example/tree/master/ymq-redis-spring-boot)
+github [https://github.com/souyunku/spring-boot-examples/tree/master/spring-boot-redis](https://github.com/souyunku/spring-boot-examples/tree/master/spring-boot-redis)
 
 ## 添加依赖
 
@@ -85,12 +85,6 @@ spring.redis.pool.min-idle=0
 spring.redis.timeout=0
 ```
 ## 操作 Redis 工具类
-
-**请查看源码**
-
-代码我已放到 Github CacheUtils.java  
-
- [点击预览 CacheUtils.java ](https://github.com/souyunku/ymq-example/blob/master/ymq-redis-spring-boot/src/main/java/io/ymq/redis/utils/CacheUtils.java)
 
 ```java
 public class CacheUtils {
@@ -177,9 +171,23 @@ public class BaseTest {
 }
 ```
 
-代码我已放到 Github ，导入 ymq-redis-spring-boot 项目 
 
-github [https://github.com/souyunku/ymq-example/tree/master/ymq-redis-spring-boot](https://github.com/souyunku/ymq-example/tree/master/ymq-redis-spring-boot)
+代码我已放到 Github ，导入 spring-boot-examples 项目 
 
+github [https://github.com/souyunku/spring-boot-examples/tree/master/spring-boot-redis](https://github.com/souyunku/spring-boot-examples/tree/master/spring-boot-redis)
 
+# Contact
 
+ - 作者：鹏磊  
+ - 出处：[http://www.ymq.io](http://www.ymq.io)  
+ - Email：[admin@souyunku.com](admin@souyunku.com)  
+ - GitHub：[https://github.com/souyunku](https://github.com/souyunku)  
+ - Segment Fault：[https://sf.gg/blog/souyunku](https://sf.gg/blog/souyunku)  
+ - 版权归作者所有，转载请注明出处
+ - Wechat：关注公众号，搜云库，分享技术，分享生活
+ 
+![关注公众号-搜云库](http://www.ymq.io/images/souyunku.png "搜云库")
+
+  
+  
+  

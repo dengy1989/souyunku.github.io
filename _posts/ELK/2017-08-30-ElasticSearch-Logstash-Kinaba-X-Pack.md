@@ -216,12 +216,8 @@ JVM堆，索引内存（KB），CPU利用率（％），系统负载，延迟（
  
  ![][9]
  
-  ![][10]
+ ![][10]
   
- - **作者：Peng Lei** 
- - **出处：[Segment Fault PengLei `Blog  专栏](https://segmentfault.com/a/1190000010867488)**      
- - **版权归作者所有，转载请注明出处** 
-
 [1]: /images/2017/ELK/Elasticsearch-head-pwd.png
 
 [2]: /images/2017/ELK/Elasticsearch-head-pwd-succ.png
@@ -242,5 +238,14 @@ JVM堆，索引内存（KB），CPU利用率（％），系统负载，延迟（
 
 [10]: /images/2017/ELK/elasticsearch-indices.png
 
+# Contact
 
-
+ - 作者：鹏磊  
+ - 出处：[http://www.ymq.io](http://www.ymq.io)  
+ - Email：[admin@souyunku.com](admin@souyunku.com)  
+ - GitHub：[https://github.com/souyunku](https://github.com/souyunku)  
+ - Segment Fault：[https://sf.gg/blog/souyunku](https://sf.gg/blog/souyunku)  
+ - 版权归作者所有，转载请注明出处
+ - Wechat：关注公众号，搜云库，分享技术，分享生活
+ 
+![关注公众号-搜云库](http://www.ymq.io/images/souyunku.png "搜云库")

@@ -406,3 +406,18 @@ $ /opt/solr-6.6.0/bin/solr zk rm -r  /configs/mynewconfig -z node1:2181,node2:21
 Connecting to ZooKeeper at node1:2181,node2:2181,node3:2181 ...
 Removing Zookeeper node /configs/mynewconfig from ZooKeeper at node1:2181,node2:2181,node3:2181 recurse: true
 ```
+
+
+# Contact
+
+ - 作者：鹏磊  
+ - 出处：[http://www.ymq.io](http://www.ymq.io)  
+ - Email：[admin@souyunku.com](admin@souyunku.com)  
+ - GitHub：[https://github.com/souyunku](https://github.com/souyunku)  
+ - Segment Fault：[https://sf.gg/blog/souyunku](https://sf.gg/blog/souyunku)  
+ - 版权归作者所有，转载请注明出处
+ - Wechat：关注公众号，搜云库，分享技术，分享生活
+ 
+![关注公众号-搜云库](http://www.ymq.io/images/souyunku.png "搜云库")
+
+

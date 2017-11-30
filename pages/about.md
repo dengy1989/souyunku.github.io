@@ -8,32 +8,24 @@ menu: 关于
 permalink: /about/
 ---
 
-### About me
+# About me
 
-> 我是鹏磊，认识自己的无知是认识世界的最可靠的方法。
+ - 我是鹏磊，认识自己的无知是认识世界的最可靠的方法。
+ - 仰慕「优雅编码的艺术」。
+ - 世界上没有优秀的理念，只有脚踏实地的结果。
 
-> 仰慕「优雅编码的艺术」。
+# Contact
 
-> 世界上没有优秀的理念，只有脚踏实地的结果。
-
- - 类别：猿类 
- - 职业：全干工程师 
- - 爱好：摄影 撸代码  
- - 个人定位：知识工人
-
-### Contact
- - Email：admin@souyunku.com
- - GitHub： [https://github.com/souyunku](https://github.com/souyunku)
- - Cnblogs： [http://www.ymq.io](http://www.ymq.io)
- - Segment Fault：[https://segmentfault.com/u/www_penglei_net](https://segmentfault.com/u/www_penglei_net)
- - QQ：35200100 75997533
- - Wechat：关注公众号，鹏磊科技
+ - 作者：鹏磊  
+ - 出处：[http://www.ymq.io](http://www.ymq.io)  
+ - Email：[admin@souyunku.com](admin@souyunku.com)  
+ - GitHub：[https://github.com/souyunku](https://github.com/souyunku)  
+ - Segment Fault：[https://sf.gg/blog/souyunku](https://sf.gg/blog/souyunku)  
+ - 版权归作者所有，转载请注明出处
+ - Wechat：关注公众号，搜云库，分享技术，分享生活
  
- 博客主题使用:[码志/ mzlogin](https://github.com/mzlogin/mzlogin.github.io)
- 
-![Wechat：关注公众号][1]
+![关注公众号-搜云库](http://www.ymq.io/images/souyunku.png "搜云库")
 
-  [1]: http://www.ymq.io/images/pengleikeji.jpg "鹏磊科技"
   
   
 <audio  autoplay="autoplay" title="文静 - 一人饮酒醉">
