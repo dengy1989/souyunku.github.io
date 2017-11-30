@@ -19,34 +19,34 @@ keywords: java
 
 > #### 使用的时候需要按照`application.properties` 里面的注释配置即可
 
-![](https://raw.githubusercontent.com/souyunku/file-manager/master/file-manager/doc/index-0.png)
+![](https://raw.githubusercontent.com/souyunku/file-manager/master/doc/index-0.png)
 
 
-![](https://raw.githubusercontent.com/souyunku/file-manager/master/file-manager/doc/index-1.png)
+![](https://raw.githubusercontent.com/souyunku/file-manager/master/doc/index-1.png)
 
 
-![](https://raw.githubusercontent.com/souyunku/file-manager/master/file-manager/doc/index-2.png)
+![](https://raw.githubusercontent.com/souyunku/file-manager/master/doc/index-2.png)
 
 
-![](https://raw.githubusercontent.com/souyunku/file-manager/master/file-manager/doc/index-3.png)
+![](https://raw.githubusercontent.com/souyunku/file-manager/master/doc/index-3.png)
 
 
-![](https://raw.githubusercontent.com/souyunku/file-manager/master/file-manager/doc/index-4.png)
+![](https://raw.githubusercontent.com/souyunku/file-manager/master/doc/index-4.png)
 
 
-![](https://raw.githubusercontent.com/souyunku/file-manager/master/file-manager/doc/index-5.png)
+![](https://raw.githubusercontent.com/souyunku/file-manager/master/doc/index-5.png)
 
 
-![](https://raw.githubusercontent.com/souyunku/file-manager/master/file-manager/doc/index-6.png)
+![](https://raw.githubusercontent.com/souyunku/file-manager/master/doc/index-6.png)
 
 
-![](https://raw.githubusercontent.com/souyunku/file-manager/master/file-manager/doc/index-7.png)
+![](https://raw.githubusercontent.com/souyunku/file-manager/master/doc/index-7.png)
 
 
-![](https://raw.githubusercontent.com/souyunku/file-manager/master/file-manager/doc/index-8.png)
+![](https://raw.githubusercontent.com/souyunku/file-manager/master/doc/index-8.png)
 
 
-![](https://raw.githubusercontent.com/souyunku/file-manager/master/file-manager/doc/index-9.png)
+![](https://raw.githubusercontent.com/souyunku/file-manager/master/doc/index-9.png)
 
 # Contact
 
@@ -59,5 +59,12 @@ keywords: java
  - Wechat：关注公众号，搜云库，分享技术，分享生活
  
 ![关注公众号-搜云库](http://www.ymq.io/images/souyunku.png "搜云库")
+
+
+
+
+
+
+
 
 
