@@ -10,13 +10,15 @@
 
 博客主题使用:[码志/ mzlogin](https://github.com/mzlogin/mzlogin.github.io)
 
-### 联系方式
- - Email：admin@souyunku.com
- - GitHub： [https://github.com/souyunku](https://github.com/souyunku)
- - Cnblogs： [www.ymq.io](http://www.ymq.io)
- - QQ：35200100 75997533
- - Wechat：关注公众号，鹏磊科技
- 
-![Wechat：关注公众号][1]
+# 联系方式
 
+ - 作者：鹏磊  
+ - 出处：[http://www.ymq.io](http://www.ymq.io)  
+ - Email：[admin@souyunku.com](admin@souyunku.com)  
+ - GitHub：[https://github.com/souyunku](https://github.com/souyunku)  
+ - Segment Fault：[http://sf.gg/blog/souyunku](http://sf.gg/blog/souyunku)  
+ - 版权归作者所有，转载请注明出处
+ - Wechat：关注公众号，搜云库，分享技术，分享生活
+ 
   [1]: http://www.ymq.io/images/pengleikeji.jpg "鹏磊科技"
+  
