@@ -71,29 +71,10 @@ Spring Cloud Eureka是Spring Cloud Netflix项目下的服务治理模块。而Sp
 在项目 `spring-cloud-eureka` `pom.xml`中引入需要的依赖内容：
 
 ```xml
-<parent>
-	<groupId>org.springframework.boot</groupId>
-	<artifactId>spring-boot-starter-parent</artifactId>
-	<version>1.5.8.RELEASE</version>
-	<relativePath/> <!-- lookup parent from repository -->
-</parent>
-
-<dependencies>
-	<!--eureka server -->
-
-	<dependency>
-		<groupId>org.springframework.cloud</groupId>
-		<artifactId>spring-cloud-starter-eureka-server</artifactId>
-	</dependency>
-
-	<!-- spring boot test-->
-
-	<dependency>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-test</artifactId>
-		<scope>test</scope>
-	</dependency>
-</dependencies>
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-eureka-server</artifactId>
+</dependency>
 ```
 
 ### 开启服务注册
@@ -163,35 +144,11 @@ eureka:
 在项目 `spring-cloud-eureka-client` `pom.xml`中引入需要的依赖内容：
 
 ```xml
-<parent>
-	<groupId>org.springframework.boot</groupId>
-	<artifactId>spring-boot-starter-parent</artifactId>
-	<version>1.5.8.RELEASE</version>
-	<relativePath/> <!-- lookup parent from repository -->
-</parent>
-
-<dependencies>
-	
-	<!-- spring boot eureka server -->
-	<dependency>
-		<groupId>org.springframework.cloud</groupId>
-		<artifactId>spring-cloud-starter-eureka-server</artifactId>
-	</dependency>
-
-	<!-- spring boot web-->
-	<dependency>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-web</artifactId>
-	</dependency>
-
-	<!-- spring boot test-->
-	<dependency>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-test</artifactId>
-		<scope>test</scope>
-	</dependency>
-
-</dependencies>
+<!-- spring boot eureka server -->
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-eureka-server</artifactId>
+</dependency>
 ```
 
 ### 开启服务注册
