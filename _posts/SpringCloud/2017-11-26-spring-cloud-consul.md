@@ -373,11 +373,11 @@ discovery:
 github [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-consul-client](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-consul-client)
 
 
-[1]: /images/2017/SpringCloud/consul/1.png
-[2]: /images/2017/SpringCloud/consul/2.png
-[3]: /images/2017/SpringCloud/consul/3.png
-[4]: /images/2017/SpringCloud/consul/4.png
-[5]: /images/2017/SpringCloud/consul/5.png
+[1]: http://www.ymq.io/images/2017/SpringCloud/consul/1.png
+[2]: http://www.ymq.io/images/2017/SpringCloud/consul/2.png
+[3]: http://www.ymq.io/images/2017/SpringCloud/consul/3.png
+[4]: http://www.ymq.io/images/2017/SpringCloud/consul/4.png
+[5]: http://www.ymq.io/images/2017/SpringCloud/consul/5.png
 
 # Contact
 

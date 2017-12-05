@@ -11,8 +11,7 @@ permalink: /about/
 # About me
 
  - 我是鹏磊，认识自己的无知是认识世界的最可靠的方法。
- - 仰慕「优雅编码的艺术」。
- - 世界上没有优秀的理念，只有脚踏实地的结果。
+ - 本博客内容涵盖Java后端技术、Spring Boot、Spring Cloud、微服务架构、大数据，云计算，运维开发、系统监控等相关的研究与知识分享。
 
 # Contact
 
@@ -26,7 +25,6 @@ permalink: /about/
  
 ![关注公众号-搜云库](http://www.ymq.io/images/souyunku.png "搜云库")
 
-  
   
 <audio  autoplay="autoplay" title="文静 - 一人饮酒醉">
   <source src="/music/yirenyinjiuzui.mp3" type="audio/mpeg" />
