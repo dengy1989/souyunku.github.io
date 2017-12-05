@@ -68,7 +68,7 @@ Spring Cloud Eureka是Spring Cloud Netflix项目下的服务治理模块。而Sp
 
 ### 添加依赖
 
-在项目 `spring-cloud-eureka` `pom.xml`中引入需要的依赖内容：
+在项目 `spring-cloud-eureka-service` `pom.xml`中引入需要的依赖内容：
 
 ```xml
 <dependency>
@@ -218,7 +218,7 @@ spring:
 
 ## 源码下载
 
-- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka)
+- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-service](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-service)
 - [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-client](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-client)
 
 
