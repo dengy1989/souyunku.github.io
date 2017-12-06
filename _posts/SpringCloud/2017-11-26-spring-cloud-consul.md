@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Spring Cloud Consul 服务治理实现
+title: Spring Cloud（二） Consul 服务治理实现
 categories: SpringCloud
 description: pring Cloud Consul 服务治理实现
 keywords: SpringCloud 

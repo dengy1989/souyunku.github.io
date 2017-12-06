@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Spring Cloud 服务提供者 Eureka + 服务消费者（rest + Ribbon）
+title:  Spring Cloud（三） 服务提供者 Eureka + 服务消费者（rest + Ribbon）
 categories: SpringCloud
 description: Spring Cloud 服务提供者 Eureka + 服务消费者（rest + Ribbon）
 keywords: SpringCloud 
@@ -377,14 +377,14 @@ server:
 ![测试提供者，负载均衡响应][8]
 
 
-[1]: /images/2017/SpringCloud/ribbon/1.png
-[2]: /images/2017/SpringCloud/ribbon/2.png
-[3]: /images/2017/SpringCloud/ribbon/3.png
-[4]: /images/2017/SpringCloud/ribbon/4.png
-[5]: /images/2017/SpringCloud/ribbon/5.png
-[6]: /images/2017/SpringCloud/ribbon/6.png
-[7]: /images/2017/SpringCloud/ribbon/7.png
-[8]: /images/2017/SpringCloud/ribbon/8.png
+[1]: http://www.ymq.io/images/2017/SpringCloud/ribbon/1.png
+[2]: http://www.ymq.io/images/2017/SpringCloud/ribbon/2.png
+[3]: http://www.ymq.io/images/2017/SpringCloud/ribbon/3.png
+[4]: http://www.ymq.io/images/2017/SpringCloud/ribbon/4.png
+[5]: http://www.ymq.io/images/2017/SpringCloud/ribbon/5.png
+[6]: http://www.ymq.io/images/2017/SpringCloud/ribbon/6.png
+[7]: http://www.ymq.io/images/2017/SpringCloud/ribbon/7.png
+[8]: http://www.ymq.io/images/2017/SpringCloud/ribbon/8.png
 
 
 **注意：spring-cloud-eureka-provider** 项目，改成不同端口发布两次
