@@ -400,11 +400,9 @@ public class ConsumerController {
 
 ## 源码下载
 
-- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-service](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-service)
-- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-provider](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-provider)
-- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-ribbon-consumer](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-ribbon-consumer)
-
-
+- [spring-cloud-ribbon-consumer-hystrix](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-hystrix/spring-cloud-ribbon-consumer-hystrix)
+- [spring-cloud-feign-consumer-hystrix](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-hystrix/spring-cloud-feign-consumer-hystrix)
+- [spring-cloud-ribbon-consumer-hystrix-dashboard](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-hystrix/spring-cloud-ribbon-consumer-hystrix-dashboard)
 
 # Contact
 
