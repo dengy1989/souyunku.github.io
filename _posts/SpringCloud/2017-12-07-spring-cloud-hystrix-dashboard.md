@@ -378,31 +378,31 @@ public class ConsumerController {
 
 **Dashboard 监控**
 
-- 可以访问 [http://127.0.0.1:9090/hystrix.stream](http://127.0.0.1:9090/hystrix.stream) ,获取dashboard信息，默认最大打开5个终端获取监控信息，可以增加delay参数指定获取监控数据间隔时间
+- 可以访问 [http://127.0.0.1:9090/hystrix.stream](http://127.0.0.1:9090/hystrix) ,获取dashboard信息，默认最大打开5个终端获取监控信息，可以增加delay参数指定获取监控数据间隔时间
 
 ![ hystrix stream][6]
 
-在界面依次输入：`http://127.0.0.1:9090/hystrix.stream` 、`2000` 、`hello` 点确定。可以访问以下，图形化监控页面
+在界面依次输入：`http://127.0.0.1:9090/hystrix` 、`2000` 、`hello` 点确定。可以访问以下，图形化监控页面
 
 ![ hystrix 图形化监控页面][7]
 
 
-[1]: /images/2017/SpringCloud/hystrix/1.png
-[2]: /images/2017/SpringCloud/hystrix/2.png
-[3]: /images/2017/SpringCloud/hystrix/3.png
-[4]: /images/2017/SpringCloud/hystrix/4.png
-[5]: /images/2017/SpringCloud/hystrix/5.png
-[6]: /images/2017/SpringCloud/hystrix/6.png
-[7]: /images/2017/SpringCloud/hystrix/7.png
-[8]: /images/2017/SpringCloud/hystrix/8.png
-[9]: /images/2017/SpringCloud/hystrix/9.png
+[1]: http://www.ymq.io/images/2017/SpringCloud/hystrix/1.png
+[2]: http://www.ymq.io/images/2017/SpringCloud/hystrix/2.png
+[3]: http://www.ymq.io/images/2017/SpringCloud/hystrix/3.png
+[4]: http://www.ymq.io/images/2017/SpringCloud/hystrix/4.png
+[5]: http://www.ymq.io/images/2017/SpringCloud/hystrix/5.png
+[6]: http://www.ymq.io/images/2017/SpringCloud/hystrix/6.png
+[7]: http://www.ymq.io/images/2017/SpringCloud/hystrix/7.png
+[8]: http://www.ymq.io/images/2017/SpringCloud/hystrix/8.png
+[9]: http://www.ymq.io/images/2017/SpringCloud/hystrix/9.png
 
 
 ## 源码下载
 
-- [spring-cloud-ribbon-consumer-hystrix](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-hystrix/spring-cloud-ribbon-consumer-hystrix)
-- [spring-cloud-feign-consumer-hystrix](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-hystrix/spring-cloud-feign-consumer-hystrix)
-- [spring-cloud-ribbon-consumer-hystrix-dashboard](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-hystrix/spring-cloud-ribbon-consumer-hystrix-dashboard)
+- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-hystrix/spring-cloud-ribbon-consumer-hystrix](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-hystrix/spring-cloud-ribbon-consumer-hystrix)
+- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-hystrix/spring-cloud-feign-consumer-hystrix](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-hystrix/spring-cloud-feign-consumer-hystrix)
+- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-hystrix/spring-cloud-ribbon-consumer-hystrix-dashboard](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-hystrix/spring-cloud-ribbon-consumer-hystrix-dashboard)
 
 # Contact
 

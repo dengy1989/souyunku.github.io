@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  Spring Cloud（四） 服务提供者 Eureka + 服务消费者 Feign
+title:  Spring Cloud（四）服务提供者 Eureka + 服务消费者 Feign
 categories: SpringCloud
-description: Spring Cloud（四） 服务提供者 Eureka + 服务消费者 Feign
+description: Spring Cloud（四）服务提供者 Eureka + 服务消费者 Feign
 keywords: SpringCloud 
 ---
 

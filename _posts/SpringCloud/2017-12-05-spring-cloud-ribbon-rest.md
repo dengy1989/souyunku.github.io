@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Spring Cloud（三） 服务提供者 Eureka + 服务消费者（rest + Ribbon）
+title:  Spring Cloud（三）服务提供者 Eureka + 服务消费者（rest + Ribbon）
 categories: SpringCloud
 description: Spring Cloud 服务提供者 Eureka + 服务消费者（rest + Ribbon）
 keywords: SpringCloud 
