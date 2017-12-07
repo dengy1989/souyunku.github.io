@@ -5,7 +5,7 @@ categories: SpringCloud
 description: Spring Cloud（五）断路器监控(Hystrix Dashboard)
 keywords: SpringCloud 
 ---
-
+![输入图片说明](https://static.oschina.net/uploads/img/201712/08011210_0zSw.png "在这里输入图片标题")
 在上两篇文章中讲了，服务提供者 Eureka + 服务消费者 Feign，服务提供者 Eureka + 服务消费者（rest + Ribbon），本篇文章结合，上两篇文章中代码进行修改加入 断路器监控(Hystrix Dashboard)
 
 在微服务架构中，根据业务来拆分成一个个的服务，服务与服务之间可以相互调用（RPC），在Spring Cloud可以用RestTemplate+Ribbon和Feign来调用。为了保证其高可用，单个服务通常会集群部署。由于网络原因或者自身的原因，服务并不能保证100%可用，如果单个服务出现问题，调用这个服务就会出现线程阻塞，此时若有大量的请求涌入，Servlet容器的线程资源会被消耗完毕，导致服务瘫痪。服务与服务之间的依赖性，故障会传播，会对整个微服务系统造成灾难性的严重后果，这就是服务故障的“雪崩”效应。
@@ -154,12 +154,10 @@ public class ConsumerController {
 
 ### 测试断路器
 
-启动工程后，访问：[http://127.0.0.1:9000/](http://127.0.0.1:9000/)
-
-- 访问：[http://127.0.0.1:9000/](http://127.0.0.1:9000/) ,发现一切正常
+启动工程后
+- 访问：[http://127.0.0.1:9000/hello](http://127.0.0.1:9000/hello) ,发现一切正常
 
 ![eureka-provider 提供者服务响应][1]
-
 
 **停止 eureka-provider  服务**
 
@@ -236,28 +234,25 @@ public class HystrixClientFallbackFactory implements FallbackFactory<HomeClient>
 
 ```
 
-
 ### 测试断路器
 
-启动工程后，访问：[http://127.0.0.1:9000/](http://127.0.0.1:9000/)
+启动工程后
 
-- 访问：[http://127.0.0.1:9000/](http://127.0.0.1:9000/) ,发现一切正常
+- 访问：[http://127.0.0.1:9000/hello](http://127.0.0.1:9000/hello) ,发现一切正常
 
 ![eureka-provider 提供者服务响应][3]
 
 **停止 eureka-provider  服务**
 
-- 再次访问[http://127.0.0.1:9000/](http://127.0.0.1:9000/) ,断路器已经生效
+- 再次访问[http://127.0.0.1:9000/hello](http://127.0.0.1:9000/hello) ,断路器已经生效
 
 ![feign + hystrix ,提供者服务挂了][4]
-
 
 ## Hystrix Dashboard
 
 ### Hystrix Dashboard简介
 
 在微服务架构中为例保证程序的可用性，防止程序出错导致网络阻塞，出现了断路器模型。断路器的状况反应了一个程序的可用性和健壮性，它是一个重要指标。Hystrix Dashboard是作为断路器状态的一个组件，提供了数据监控和友好的图形化界面。
-
 
 ### 改造项目
  
@@ -372,7 +367,7 @@ public class ConsumerController {
 
 **停止 eureka-provider 服务**
 
-- 访问[http://127.0.0.1:9000/](http://127.0.0.1:9000/) ,断路器已经生效
+- 访问[http://127.0.0.1:9000/hello](http://127.0.0.1:9000/hello) ,断路器已经生效
 
 ![feign + hystrix Dashboard ,提供者服务挂了][5]
 
@@ -415,5 +410,3 @@ public class ConsumerController {
  - Wechat：关注公众号，搜云库，分享技术，分享生活
  
 ![关注公众号-搜云库](http://www.ymq.io/images/souyunku.png "搜云库")
-
- 
