@@ -12,25 +12,16 @@ keywords: SpringCloud
 
 **Netflix使用Zuul进行以下操作：**
 
- - 认证
-
- - 洞察
-
- - 压力测试
-
- - 金丝雀测试
-
- - 动态路由
-
- - 服务迁移
-
- - 负载脱落
-
- - 安全
-
- - 静态响应处理
-
- - 主动/主动流量管理
+ - 认证  
+ - 洞察  
+ - 压力测试   
+ - 金丝雀测试  
+ - 动态路由  
+ - 服务迁移  
+ - 负载脱落  
+ - 安全  
+ - 静态响应处理    
+ - 主动/主动流量管理  
 
 Zuul的规则引擎允许基本上写任何JVM语言编写规则和过滤器，内置Java和Groovy。
 
@@ -303,9 +294,10 @@ spring cloud zuul 默认情况下，`Zuul`会代理所有注册到`Eureka Server
 
 ## 源码下载
 
-- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-hystrix/spring-cloud-ribbon-consumer-hystrix](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-hystrix/spring-cloud-ribbon-consumer-hystrix)
-- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-hystrix/spring-cloud-feign-consumer-hystrix](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-hystrix/spring-cloud-feign-consumer-hystrix)
-- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-hystrix/spring-cloud-ribbon-consumer-hystrix-dashboard](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-hystrix/spring-cloud-ribbon-consumer-hystrix-dashboard)
+- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-service](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-service)
+- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-provider](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-provider)
+- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-provider-2](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-provider-2)
+- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-zuul-service](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-zuul-service)
 
 # Contact
 
