@@ -261,7 +261,6 @@ spring cloud zuul 默认情况下，`Zuul`会代理所有注册到`Eureka Server
 
 我们注释 `spring-cloud-zuul-service`项目中关于路由的配置：
 
-```
 ```sh
 #zuul:
 #  routes:
@@ -281,15 +280,15 @@ spring cloud zuul 默认情况下，`Zuul`会代理所有注册到`Eureka Server
 
 在下一章，会深入介绍 Zuul 高级功能使用，`ZuulFilter` ,支持下鹏磊，关注下屏幕下方的微信公众号
                                                
-[1]: /images/2017/SpringCloud/zuul/1.png
-[2]: /images/2017/SpringCloud/zuul/2.png
-[3]: /images/2017/SpringCloud/zuul/3.png
-[4]: /images/2017/SpringCloud/zuul/4.png
-[5]: /images/2017/SpringCloud/zuul/5.png
-[6]: /images/2017/SpringCloud/zuul/6.png
-[7]: /images/2017/SpringCloud/zuul/7.png
-[8]: /images/2017/SpringCloud/zuul/8.png
-[9]: /images/2017/SpringCloud/zuul/9.png
+[1]: http://www.ymq.io/images/2017/SpringCloud/zuul/1.png
+[2]: http://www.ymq.io/images/2017/SpringCloud/zuul/2.png
+[3]: http://www.ymq.io/images/2017/SpringCloud/zuul/3.png
+[4]: http://www.ymq.io/images/2017/SpringCloud/zuul/4.png
+[5]: http://www.ymq.io/images/2017/SpringCloud/zuul/5.png
+[6]: http://www.ymq.io/images/2017/SpringCloud/zuul/6.png
+[7]: http://www.ymq.io/images/2017/SpringCloud/zuul/7.png
+[8]: http://www.ymq.io/images/2017/SpringCloud/zuul/8.png
+[9]: http://www.ymq.io/images/2017/SpringCloud/zuul/9.png
 
 
 ## 源码下载
