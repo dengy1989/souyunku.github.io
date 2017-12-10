@@ -41,7 +41,6 @@ open的链路阻断了瀑布式错误， 可以让被淹没或者错误的服务
 [Spring Cloud（四） 服务提供者 Eureka + 服务消费者 Feign](http://www.ymq.io/2017/12/06/spring-cloud-feign/)  
 [Spring Cloud（三） 服务提供者 Eureka + 服务消费者（rest + Ribbon）](http://www.ymq.io/2017/12/05/spring-cloud-ribbon-rest/)  
 
-
 - [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-service](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-service)
 - [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-provider](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-provider)
 
@@ -49,8 +48,6 @@ open的链路阻断了瀑布式错误， 可以让被淹没或者错误的服务
 
 - [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-feign-consumer](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-feign-consumer)
 - [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-ribbon-consumer](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-ribbon-consumer)
-
-
 
 
 ## Ribbon Hystrix
