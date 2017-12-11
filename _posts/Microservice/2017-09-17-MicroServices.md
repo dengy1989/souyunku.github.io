@@ -199,21 +199,13 @@ API网关方式的核心要点是，所有的客户端和消费端都通过统�
 
 - 微服务架构引入策略 – 对传统企业而言，开始时可以考虑引入部分合适的微服务架构原则对已有系统进行改造或新建微服务应用，逐步探索及积累微服务架构经验，而非全盘实施微服务架构。
 
-  [1]: /images/2017/Microservice/Monolithic-Architecture.png
-  [2]: /images/2017/Microservice/Microservices-Architecture.png
-  [3]: /images/2017/Microservice/point-to-point.png
-  [4]: /images/2017/Microservice/gateway.png
-  [5]: /images/2017/Microservice/MQ.png
-  [6]: /images/2017/Microservice/database.png
-  [7]: /images/2017/Microservice/multi-database.png
-
-  
-原文作者：Kasun Indrasiri，软件架构师，WSO2
-
-原文链接：[https://dzone.com/articles/mi...](https://dzone.com/articles/microservices-in-practice-1)
-
-原文链接：[翻译系_力谱宿云LeapCloud团队_云服务研发成员：Frank Qin](https://segmentfault.com/a/1190000004634172#articleHeader0)
-
+  [1]: http://www.ymq.io/images/2017/Microservice/Monolithic-Architecture.png
+  [2]: http://www.ymq.io/images/2017/Microservice/Microservices-Architecture.png
+  [3]: http://www.ymq.io/images/2017/Microservice/point-to-point.png
+  [4]: http://www.ymq.io/images/2017/Microservice/gateway.png
+  [5]: http://www.ymq.io/images/2017/Microservice/MQ.png
+  [6]: http://www.ymq.io/images/2017/Microservice/database.png
+  [7]: http://www.ymq.io/images/2017/Microservice/multi-database.png
 
 # Contact
 
