@@ -158,37 +158,33 @@ public class ConfigClientApplication {
 
 ```sh
 spring.application.name=config-client
-server.port=8080
+server.port=8088
 
 spring.cloud.config.label=master
 spring.cloud.config.profile=dev
 spring.cloud.config.uri=http://localhost:8888/
 ```
-
  - spring.cloud.config.label 指明远程仓库的分支
  - spring.cloud.config.profile
-
-	- dev开发环境配置文件
-	- test测试环境
-	- pro正式环境
-	
+ - dev开发环境配置文件
+ - test测试环境
+ - pro正式环境
  - spring.cloud.config.uri= http://localhost:8888/ 指明配置服务中心的网址。
-
 
 ## 测试服务
 
 启动程序 `ConfigClientApplication` 类
 
-访问服务：[http://localhost:8080/](http://localhost:8080/)
+访问服务：[http://localhost:8088/](http://localhost:8088/)
 
 ![访问服务][4]
 
 **下一篇，继续Spring Cloud Config 整合 eureka, 等更多特性**	
  
-[1]: /images/2017/SpringCloud/config/1.png
-[2]: /images/2017/SpringCloud/config/2.png
-[3]: /images/2017/SpringCloud/config/3.png
-[4]: /images/2017/SpringCloud/config/4.png
+[1]: http://www.ymq.io/images/2017/SpringCloud/config/1.png
+[2]: http://www.ymq.io/images/2017/SpringCloud/config/2.png
+[3]: http://www.ymq.io/images/2017/SpringCloud/config/3.png
+[4]: http://www.ymq.io/images/2017/SpringCloud/config/4.png
 
 # 源码下载
 
