@@ -195,11 +195,11 @@ spring.cloud.config.discovery.serviceId=config-server
 
 ![访问服务][4]
 
-[1]: /images/2017/SpringCloud/config/1.png
-[2]: /images/2017/SpringCloud/config/2.png
-[3]: /images/2017/SpringCloud/config/3.png
-[4]: /images/2017/SpringCloud/config/4.png
-[5]: /images/2017/SpringCloud/config/5.png
+[1]: http://www.ymq.io/images/2017/SpringCloud/config/1.png
+[2]: http://www.ymq.io/images/2017/SpringCloud/config/2.png
+[3]: http://www.ymq.io/images/2017/SpringCloud/config/3.png
+[4]: http://www.ymq.io/images/2017/SpringCloud/config/4.png
+[5]: http://www.ymq.io/images/2017/SpringCloud/config/5.png
 
 
 # 源码下载
