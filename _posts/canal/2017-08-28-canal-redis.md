@@ -43,7 +43,6 @@ keywords: Canal
 
 ![master-slave][2] 
 
-[2]: http://www.ymq.io/images/2017/canal/master-slave.jpg
 
 从上层来看，复制分成三步：
 
@@ -58,8 +57,6 @@ slave重做中继日志中的事件，将改变反映它自己的数据。
 #### canal的工作原理
 
 ![canal][1] 
-
-[1]: http://www.ymq.io/images/2017/canal/canal.jpg
 
 
 原理相对比较简单：
@@ -319,12 +316,16 @@ $ /opt/redis-4.0.1/src/redis-cli -h 192.168.252.101 -c -p 6379
 }
 ```
 
+
+[1]: http://www.ymq.io/images/2017/canal/canal.jpg
+[2]: http://www.ymq.io/images/2017/canal/master-slave.jpg
+
 # Contact
 
  - 作者：鹏磊  
  - 出处：[http://www.ymq.io](http://www.ymq.io)  
  - Email：[admin@souyunku.com](admin@souyunku.com)
  - 版权归作者所有，转载请注明出处
- - Wechat：关注公众号，搜云库，分享技术，分享生活
+ - Wechat：关注公众号，搜云库，专注于开发技术的研究与知识分享
  
 ![关注公众号-搜云库](http://www.ymq.io/images/souyunku.png "搜云库")

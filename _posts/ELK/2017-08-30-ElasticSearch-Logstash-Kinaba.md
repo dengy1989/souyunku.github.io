@@ -755,22 +755,12 @@ ps ( 索引名称是按照 `elasticsearch` 写入时创建的索引  `index => "
 [9]: http://www.ymq.io/images/2017/ELK/kibana-date-to-date.png
 [10]: http://www.ymq.io/images/2017/ELK/kibana-last6m.png
 
-
-
-
 # Contact
 
  - 作者：鹏磊  
  - 出处：[http://www.ymq.io](http://www.ymq.io)  
  - Email：[admin@souyunku.com](admin@souyunku.com)
  - 版权归作者所有，转载请注明出处
- - Wechat：关注公众号，搜云库，分享技术，分享生活
+ - Wechat：关注公众号，搜云库，专注于开发技术的研究与知识分享
  
 ![关注公众号-搜云库](http://www.ymq.io/images/souyunku.png "搜云库")
-
-
-
-
-
-
-
