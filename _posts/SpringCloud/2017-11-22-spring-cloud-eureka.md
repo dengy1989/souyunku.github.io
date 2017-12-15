@@ -2,7 +2,7 @@
 layout: post
 title:  Spring Cloud（一）服务的注册与发现（Eureka）
 categories: SpringCloud
-description: SpringCloud 服务的注册与发现（Eureka）
+description: Spring Cloud（一）服务的注册与发现（Eureka）
 keywords: SpringCloud 
 ---
 
