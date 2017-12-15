@@ -1,9 +1,9 @@
 ---
 layout: post
 title: Spring Boot 中使用  Java API 调用 Elasticsearch
-categories: [Elasticsearch,SpringBoot]
+categories: [ElasticSearch,SpringBoot]
 description: Spring Boot 中使用  Java API 调用 Elasticsearch
-keywords: Elasticsearch  
+keywords: ElasticSearch  
 ---
 
 ElasticSearch 是一个高可用开源全文检索和分析组件。提供存储服务，搜索服务，大数据准实时分析等。一般用于提供一些提供复杂搜索的应用。
