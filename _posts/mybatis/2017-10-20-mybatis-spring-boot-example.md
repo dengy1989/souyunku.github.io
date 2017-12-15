@@ -469,17 +469,15 @@ public class Startup {
 
 github [https://github.com/souyunku/spring-boot-examples/tree/master/spring-boot-mybatis](https://github.com/souyunku/spring-boot-examples/tree/master/spring-boot-mybatis)
 
-[1]: /images/2017/mybatis/1.png
-[2]: /images/2017/mybatis/2.png
+[1]: http://www.ymq.io/images/2017/mybatis/1.png
+[2]: http://www.ymq.io/images/2017/mybatis/2.png
 
 
 # Contact
 
  - 作者：鹏磊  
  - 出处：[http://www.ymq.io](http://www.ymq.io)  
- - Email：[admin@souyunku.com](admin@souyunku.com)  
-   
-   
+ - Email：[admin@souyunku.com](admin@souyunku.com)
  - 版权归作者所有，转载请注明出处
  - Wechat：关注公众号，搜云库，分享技术，分享生活
  

@@ -208,13 +208,13 @@ http://192.168.252.121:8983/solr/admin/collections?action=CREATE&name=test_colle
 
 ![SolrCloud状态 图表][1] 
 
-[1]: /images/2017/Solr/solrCloud/solrCloud-Graph.png
+[1]: http://www.ymq.io/images/2017/Solr/solrCloud/solrCloud-Graph.png
 
 **可以看到 solr 2个分片,个3个副本**
 
 ![可以看到 solr 2个分片,个3个副本][2]
 
- [2]: /images/2017/Solr/solrCloud/solrCloudShard.png
+ [2]: http://www.ymq.io/images/2017/Solr/solrCloud/solrCloudShard.png
  
  
 ## 6.服务状态
@@ -412,9 +412,7 @@ Removing Zookeeper node /configs/mynewconfig from ZooKeeper at node1:2181,node2:
 
  - 作者：鹏磊  
  - 出处：[http://www.ymq.io](http://www.ymq.io)  
- - Email：[admin@souyunku.com](admin@souyunku.com)  
-   
-   
+ - Email：[admin@souyunku.com](admin@souyunku.com)
  - 版权归作者所有，转载请注明出处
  - Wechat：关注公众号，搜云库，分享技术，分享生活
  

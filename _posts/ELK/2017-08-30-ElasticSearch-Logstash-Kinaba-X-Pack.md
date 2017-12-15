@@ -218,33 +218,31 @@ JVM堆，索引内存（KB），CPU利用率（％），系统负载，延迟（
  
  ![][10]
   
-[1]: /images/2017/ELK/Elasticsearch-head-pwd.png
+[1]: http://www.ymq.io/images/2017/ELK/Elasticsearch-head-pwd.png
 
-[2]: /images/2017/ELK/Elasticsearch-head-pwd-succ.png
+[2]: http://www.ymq.io/images/2017/ELK/Elasticsearch-head-pwd-succ.png
 
-[3]: /images/2017/ELK/kibana-login.png
+[3]: http://www.ymq.io/images/2017/ELK/kibana-login.png
 
-[4]: /images/2017/ELK/kibana-login-succ.png
+[4]: http://www.ymq.io/images/2017/ELK/kibana-login-succ.png
 
-[5]: /images/2017/ELK/kibana-tree.png
+[5]: http://www.ymq.io/images/2017/ELK/kibana-tree.png
 
-[6]: /images/2017/ELK/monitoring.png
+[6]: http://www.ymq.io/images/2017/ELK/monitoring.png
 
-[7]: /images/2017/ELK/monitoring2.png
+[7]: http://www.ymq.io/images/2017/ELK/monitoring2.png
 
-[8]: /images/2017/ELK/monitoring3.png
+[8]: http://www.ymq.io/images/2017/ELK/monitoring3.png
 
-[9]: /images/2017/ELK/elasticsearch-nodes.png
+[9]: http://www.ymq.io/images/2017/ELK/elasticsearch-nodes.png
 
-[10]: /images/2017/ELK/elasticsearch-indices.png
+[10]: http://www.ymq.io/images/2017/ELK/elasticsearch-indices.png
 
 # Contact
 
  - 作者：鹏磊  
  - 出处：[http://www.ymq.io](http://www.ymq.io)  
- - Email：[admin@souyunku.com](admin@souyunku.com)  
-   
-   
+ - Email：[admin@souyunku.com](admin@souyunku.com)
  - 版权归作者所有，转载请注明出处
  - Wechat：关注公众号，搜云库，分享技术，分享生活
  

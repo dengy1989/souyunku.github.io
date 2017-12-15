@@ -744,16 +744,16 @@ ps ( 索引名称是按照 `elasticsearch` 写入时创建的索引  `index => "
  
  ![][10] 
 
-[1]: /images/2017/ELK/Elasticsearch-head.png
-[2]: /images/2017/ELK/nginx.png
-[3]: /images/2017/ELK/redis.png
-[4]: /images/2017/ELK/kibana-tool.png
-[5]: /images/2017/ELK/kibana-tool-run.png
-[6]: /images/2017/ELK/Elasticsearch-head-data.png
-[7]: /images/2017/ELK/kibaba-creata_index.png
-[8]: /images/2017/ELK/kibana-search.png
-[9]: /images/2017/ELK/kibana-date-to-date.png
-[10]: /images/2017/ELK/kibana-last6m.png
+[1]: http://www.ymq.io/images/2017/ELK/Elasticsearch-head.png
+[2]: http://www.ymq.io/images/2017/ELK/nginx.png
+[3]: http://www.ymq.io/images/2017/ELK/redis.png
+[4]: http://www.ymq.io/images/2017/ELK/kibana-tool.png
+[5]: http://www.ymq.io/images/2017/ELK/kibana-tool-run.png
+[6]: http://www.ymq.io/images/2017/ELK/Elasticsearch-head-data.png
+[7]: http://www.ymq.io/images/2017/ELK/kibaba-creata_index.png
+[8]: http://www.ymq.io/images/2017/ELK/kibana-search.png
+[9]: http://www.ymq.io/images/2017/ELK/kibana-date-to-date.png
+[10]: http://www.ymq.io/images/2017/ELK/kibana-last6m.png
 
 
 
@@ -762,9 +762,7 @@ ps ( 索引名称是按照 `elasticsearch` 写入时创建的索引  `index => "
 
  - 作者：鹏磊  
  - 出处：[http://www.ymq.io](http://www.ymq.io)  
- - Email：[admin@souyunku.com](admin@souyunku.com)  
-   
-   
+ - Email：[admin@souyunku.com](admin@souyunku.com)
  - 版权归作者所有，转载请注明出处
  - Wechat：关注公众号，搜云库，分享技术，分享生活
  

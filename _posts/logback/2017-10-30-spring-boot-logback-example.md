@@ -455,8 +455,8 @@ public class IndexController {
 
 github [spring-boot-logback](https://github.com/souyunku/spring-boot-examples/tree/master/spring-boot-logback)
 
-[1]: /images/2017/logback/1.png
-[2]: /images/2017/logback/2.png
+[1]: http://www.ymq.io/images/2017/logback/1.png
+[2]: http://www.ymq.io/images/2017/logback/2.png
 
 
 [slf4j-logback 日志以json格式导入ELK](http://www.cnblogs.com/spec-dog/p/6281377.html)
@@ -466,9 +466,7 @@ github [spring-boot-logback](https://github.com/souyunku/spring-boot-examples/tr
 
  - 作者：鹏磊  
  - 出处：[http://www.ymq.io](http://www.ymq.io)  
- - Email：[admin@souyunku.com](admin@souyunku.com)  
-   
-   
+ - Email：[admin@souyunku.com](admin@souyunku.com)
  - 版权归作者所有，转载请注明出处
  - Wechat：关注公众号，搜云库，分享技术，分享生活
  

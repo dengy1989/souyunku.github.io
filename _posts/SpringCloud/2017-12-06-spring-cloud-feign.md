@@ -350,14 +350,14 @@ server:
 
 ![测试提供者，负载均衡响应][8]
 
-[1]: /images/2017/SpringCloud/feign/1.png
-[2]: /images/2017/SpringCloud/feign/2.png
-[3]: /images/2017/SpringCloud/feign/3.png
-[4]: /images/2017/SpringCloud/feign/4.png
-[5]: /images/2017/SpringCloud/feign/5.png
-[6]: /images/2017/SpringCloud/feign/6.png
-[7]: /images/2017/SpringCloud/feign/7.png
-[8]: /images/2017/SpringCloud/feign/8.png
+[1]: http://www.ymq.io/images/2017/SpringCloud/feign/1.png
+[2]: http://www.ymq.io/images/2017/SpringCloud/feign/2.png
+[3]: http://www.ymq.io/images/2017/SpringCloud/feign/3.png
+[4]: http://www.ymq.io/images/2017/SpringCloud/feign/4.png
+[5]: http://www.ymq.io/images/2017/SpringCloud/feign/5.png
+[6]: http://www.ymq.io/images/2017/SpringCloud/feign/6.png
+[7]: http://www.ymq.io/images/2017/SpringCloud/feign/7.png
+[8]: http://www.ymq.io/images/2017/SpringCloud/feign/8.png
 
 
 **注意：spring-cloud-eureka-provider** 项目，改成不同端口发布两次
@@ -372,9 +372,7 @@ server:
 
  - 作者：鹏磊  
  - 出处：[http://www.ymq.io](http://www.ymq.io)  
- - Email：[admin@souyunku.com](admin@souyunku.com)  
-   
-   
+ - Email：[admin@souyunku.com](admin@souyunku.com)
  - 版权归作者所有，转载请注明出处
  - Wechat：关注公众号，搜云库，分享技术，分享生活
  
