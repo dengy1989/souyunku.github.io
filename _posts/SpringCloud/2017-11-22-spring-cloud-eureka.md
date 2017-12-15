@@ -212,8 +212,8 @@ spring:
 
 ![ DS Replicas][2]
 
-[1]: /images/2017/SpringCloud/1.jpg
-[2]: /images/2017/SpringCloud/2.jpg
+[1]: http://www.ymq.io/images/2017/SpringCloud/1.jpg
+[2]: http://www.ymq.io/images/2017/SpringCloud/2.jpg
 
 
 ## 源码下载

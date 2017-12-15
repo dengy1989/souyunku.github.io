@@ -689,24 +689,24 @@ create database oozie DEFAULT CHARACTER SET utf8;
 grant all on oozie.* TO 'oozie'@'%' IDENTIFIED BY 'oozie';
 ```
 
-[1]: /images/2017/CDH/1.png
-[2]: /images/2017/CDH/2.png
-[3]: /images/2017/CDH/3.png
-[4]: /images/2017/CDH/4.png
-[5]: /images/2017/CDH/5.png
-[6]: /images/2017/CDH/6.png
-[7]: /images/2017/CDH/7.png
-[8]: /images/2017/CDH/8.png
-[9]: /images/2017/CDH/9.png
-[10]: /images/2017/CDH/10.png
-[11]: /images/2017/CDH/11.png
-[12]: /images/2017/CDH/12.png
-[13]: /images/2017/CDH/13.png
-[14]: /images/2017/CDH/14.png
-[15]: /images/2017/CDH/15.png
-[16]: /images/2017/CDH/16.png
-[17]: /images/2017/CDH/17.png
-[18]: /images/2017/CDH/18.png
+[1]: http://www.ymq.io/images/2017/CDH/1.png
+[2]: http://www.ymq.io/images/2017/CDH/2.png
+[3]: http://www.ymq.io/images/2017/CDH/3.png
+[4]: http://www.ymq.io/images/2017/CDH/4.png
+[5]: http://www.ymq.io/images/2017/CDH/5.png
+[6]: http://www.ymq.io/images/2017/CDH/6.png
+[7]: http://www.ymq.io/images/2017/CDH/7.png
+[8]: http://www.ymq.io/images/2017/CDH/8.png
+[9]: http://www.ymq.io/images/2017/CDH/9.png
+[10]: http://www.ymq.io/images/2017/CDH/10.png
+[11]: http://www.ymq.io/images/2017/CDH/11.png
+[12]: http://www.ymq.io/images/2017/CDH/12.png
+[13]: http://www.ymq.io/images/2017/CDH/13.png
+[14]: http://www.ymq.io/images/2017/CDH/14.png
+[15]: http://www.ymq.io/images/2017/CDH/15.png
+[16]: http://www.ymq.io/images/2017/CDH/16.png
+[17]: http://www.ymq.io/images/2017/CDH/17.png
+[18]: http://www.ymq.io/images/2017/CDH/18.png
 
 # Contact
 
