@@ -46,7 +46,7 @@ password:manager
  - 作者：鹏磊  
  - 出处：[http://www.ymq.io](http://www.ymq.io)  
  - Email：[admin@souyunku.com](admin@souyunku.com)  
- - GitHub：[https://github.com/souyunku](https://github.com/souyunku)  
+   
    
  - 版权归作者所有，转载请注明出处
  - Wechat：关注公众号，搜云库，分享技术，分享生活
