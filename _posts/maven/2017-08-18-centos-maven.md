@@ -73,7 +73,6 @@ OS name: "linux", version: "3.10.0-514.26.2.el7.x86_64", arch: "amd64", family: 
 
  - 作者：鹏磊  
  - 出处：[http://www.ymq.io](http://www.ymq.io)  
- - Email：[admin@souyunku.com](admin@souyunku.com)
  - 版权归作者所有，转载请注明出处
  - Wechat：关注公众号，搜云库，专注于开发技术的研究与知识分享
  
