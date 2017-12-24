@@ -72,7 +72,7 @@ systemctl restart iptables.service
 systemctl enable iptables.service 
 ```
  
-[CentOS7.3 安装 iptables 与详细使用](https://segmentfault.com/a/1190000010713423)
+[CentOS7.3 安装 iptables 与详细使用 https://segmentfault.com/a/1190000010713423 ](https://segmentfault.com/a/1190000010713423)
  
 # 安装
 
@@ -230,7 +230,7 @@ $ service rabbitmq-server restart
 
 **如果不能访问，请检查防火墙**
 
-<img src="/images/2017/rabbit/rabbit-login.png" />
+<img src="http://www.ymq.io/images/2017/rabbit/rabbit-login.png" />
 
 # 授权操作
 
@@ -367,26 +367,35 @@ Clearing permissions for user "ymq" in vhost "/"
 
 可以看到 ymq 和 guest 的权限 一样
 
-<img src="/images/2017/rabbit/ymq-login.png" />
+<img src="http://www.ymq.io/images/2017/rabbit/ymq-login.png" />
 
 
 ## 添加用户
 
 鼠标点击，划红线的角色，选择一种
 
-<img src="/images/2017/rabbit/add-user.png" />
+<img src="http://www.ymq.io/images/2017/rabbit/add-user.png" />
 
 ## 设置权限
 
 该用户无权访问任何虚拟主机
 
-<img src="/images/2017/rabbit/update-user.png" />
+<img src="http://www.ymq.io/images/2017/rabbit/update-user.png" />
 
 点击 Set permission
 
  - 设置可以访问虚拟主机 中所有资源的配置、写、读权限以便管理其中的资源
 
-<img src="/images/2017/rabbit/setPermission.png" />
+<img src="http://www.ymq.io/images/2017/rabbit/setPermission.png" />
 
 
+# Contact
+
+ - 作者：鹏磊  
+ - 出处：[http://www.ymq.io](http://www.ymq.io)  
+ - Email：[admin@souyunku.com](admin@souyunku.com)  
+ - 版权归作者所有，转载请注明出处
+ - Wechat：关注公众号，搜云库，专注于开发技术的研究与知识分享
+ 
+![关注公众号-搜云库](http://www.ymq.io/images/souyunku.png "搜云库")
 

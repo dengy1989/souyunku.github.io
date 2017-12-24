@@ -6,7 +6,7 @@ description: 在 Linux 上搭建Jekyll静态博客
 keywords: Jekyll
 ---
 
-在`CentOS，Ubuntu` 按照同样步骤安装,`Ruby Gems` 往往都无法搭建成，每次都是依赖不对，各种奇葩原因，解决办法就是使用 `RVM` 安装，解决 `Ruby` 的环境依赖管理，而且每次安装`Jekyll`基本不会出错，
+在`CentOS，Ubuntu` 按照同样步骤安装,`Ruby Gems` 往往都无法搭建成，每次都是依赖不对，各种奇葩原因，解决办法就是使用 `RVM` 安装，解决 `Ruby` 的环境依赖管理，而且每次安装`Jekyll`基本不会出错
 
 本文主要介绍如何用一条靠谱的路子快速安装 `Ruby` 环境 搭建`Jekyll`博客。
 
