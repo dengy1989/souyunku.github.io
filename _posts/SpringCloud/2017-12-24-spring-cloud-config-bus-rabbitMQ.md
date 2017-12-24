@@ -228,7 +228,7 @@ Dec 24 18:57:24 node8 rabbitmq-server[4589]: completed with 6 plugins.
 
 ![访问：http://localhost:8888/bus/refresh][7]
 
-**三个Config Client 客户端控制台，分别会打印以下内容**意思就是，收到远程更新请求，config.client，KEYY 刷新, key 是 content
+**三个Config Client 客户端控制台，分别会打印以下内容**意思就是，收到远程更新请求，config.client，KEYS 刷新, key 是 content
 
 ```sh
 2017-12-24 22:47:48.860  INFO 14760 --- [Ue1zXwvXly_3A-1] o.s.cloud.bus.event.RefreshListener      : Received remote refresh request. Keys refreshed [config.client.version, content]
