@@ -234,6 +234,4 @@ apt-get install libcurl3
 ![关注公众号-搜云库](http://www.ymq.io/images/souyunku.png "搜云库")
 
 
-
-
-[1]: /images/2017/jekyll/1.png
+[1]: http://www.ymq.io/images/2017/jekyll/1.png
