@@ -211,8 +211,8 @@ spring:
 
 ![ DS Replicas][2]
 
-[1]: /images/2017/SpringCloud/eureka/1.png
-[2]: /images/2017/SpringCloud/eureka/2.png
+[1]: http://www.ymq.io/images/2017/SpringCloud/eureka/1.png
+[2]: http://www.ymq.io/images/2017/SpringCloud/eureka/2.png
 
 
 ## 源码下载
