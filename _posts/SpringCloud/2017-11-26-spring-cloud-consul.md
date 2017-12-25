@@ -67,7 +67,7 @@ Centos 7.3
 | 主机名称| IP | 作用 | 是否允许远程访问
 | --------	| -------- 	| -------- |-------- |
 | node1     | 192.168.252.121| consul server  | 是 |
-| node2  	| 192.168.252.122| consul client  | 否 |
+| node2  	| 192.168.252.122| consul client  | 是 |
 | node3     | 192.168.252.123| consul client  | 是 |
 
 **关闭防火墙**
@@ -231,7 +231,7 @@ Consul Cluster集群架构图如下：
 | 主机名称| IP | 作用 | 是否允许远程访问
 | --------	| -------- 	| -------- |-------- |
 | node1     | 192.168.252.121| consul server  | 是 |
-| node2  	| 192.168.252.122| consul client  | 否 |
+| node2  	| 192.168.252.122| consul client  | 是 |
 | node3     | 192.168.252.123| consul client  | 是 |
 
 ## 搭建步骤
@@ -276,18 +276,15 @@ consul leave -rpc-addr=192.168.252.123:8400
 
 ![Consul Cluster集群 nodes][3]
 
-# GitHub:代码
-  
-代码我已放到 Github ，导入`spring-cloud-consul-client` 项目 
+# 项目示例
 
-github [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-consul-client](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-consul-client)
+新建项目：`spring-cloud-consul-client`
 
 ## 添加依赖
 
-在项目 `spring-cloud-consul` `pom.xml`中引入需要的依赖内容：
+在项目 `spring-cloud-consul-client` `pom.xml`中引入需要的依赖内容：
 
 ```xml
-<!-- spring cloud starter consul discovery -->
 <dependency>
 	<groupId>org.springframework.cloud</groupId>
 	<artifactId>spring-cloud-starter-consul-discovery</artifactId>
@@ -303,7 +300,6 @@ package io.ymq.example.consul;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -322,7 +318,6 @@ public class ConsulApplication {
 		SpringApplication.run(ConsulApplication.class, args);
 	}
 }
-
 ```
 
 ## 配置文件
@@ -350,7 +345,7 @@ host: 192.168.252.121
 port: 8500
 ```
 
-**HTTP健康检查路径**
+**HTTP健康检查路径** INSTALL
 
 “10s”和“1m”分别表示10秒和1分
 
@@ -366,6 +361,9 @@ discovery:
 
 ![Consul Cluster集群 服务注册情况][5]
 
+![Consul Cluster集群 服务注册情况][6]
+
+
 ## 源码下载
 
 代码我已放到 Github ，导入`spring-cloud-consul-client` 项目 
@@ -378,6 +376,7 @@ github [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-clo
 [3]: http://www.ymq.io/images/2017/SpringCloud/consul/3.png
 [4]: http://www.ymq.io/images/2017/SpringCloud/consul/4.png
 [5]: http://www.ymq.io/images/2017/SpringCloud/consul/5.png
+[6]: http://www.ymq.io/images/2017/SpringCloud/consul/6.png
 
 # Contact
 
