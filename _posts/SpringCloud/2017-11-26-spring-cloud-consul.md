@@ -217,7 +217,6 @@ Protocol 2 spoken by default, understands 2 to 3 (agent will automatically use p
 consul agent -dev -client 192.168.252.121
 ```
 
-
 ![Consul Cluster][1]
 
 ## Consul 的高可用
@@ -355,7 +354,25 @@ discovery:
 	healthCheckInterval: 15s
 ```
 
+## 启动服务
+
+到`spring-cloud-consul-client` 项目根目录下，执行`mvn clean package`，把`target` 目录下 生成的 jar `spring-cloud-consul-client-0.0.1-SNAPSHOT.jar` 上传服务器，发布项目
+
+打包命令
+
+```sh
+mvn clean package
+```
+
+发布命令
+
+```sh
+nohup java -jar spring-cloud-consul-client-0.0.1-SNAPSHOT.jar  > /dev/null 2>&1 &
+```
+
 ## 访问服务
+
+[http://192.168.252.121:8500/ui/#/dc1/nodes/192.168.252.121](http://192.168.252.121:8500/ui/#/dc1/nodes/192.168.252.121)
 
 ![Consul Cluster 集群 服务注册情况][4]
 
@@ -363,13 +380,11 @@ discovery:
 
 ![Consul Cluster集群 服务注册情况][6]
 
+**通过上图HTTP健康检查，可以看到服务检测正常**
 
 ## 源码下载
 
-代码我已放到 Github ，导入`spring-cloud-consul-client` 项目 
-
-github [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-consul-client](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-consul-client)
-
+Github [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-consul-client](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-consul-client)
 
 [1]: http://www.ymq.io/images/2017/SpringCloud/consul/1.png
 [2]: http://www.ymq.io/images/2017/SpringCloud/consul/2.png
