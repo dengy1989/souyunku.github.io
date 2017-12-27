@@ -188,15 +188,16 @@ public class EurekaProviderApplication {
 
 ```sh
 eureka:
-  instance:
-    hostname: localhost
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
 
 spring:
   application:
-    name: Eureka-Provider
+    name: eureka-provider
+
+server:
+  port: 8081
 ```
 
 其中`defaultZone`是一个魔术字符串后备值，为任何不表示首选项的客户端提供服务URL（即它是有用的默认值）。
