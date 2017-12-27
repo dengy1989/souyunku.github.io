@@ -384,7 +384,7 @@ nohup java -jar spring-cloud-consul-client-0.0.1-SNAPSHOT.jar  > /dev/null 2>&1 
 
 ## 源码下载
 
-**GitHub：**[https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-consul-client](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-consul-client)  
+**GitHub：**[https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-consul](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-consul)  
 
 **码云：**[https://gitee.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-consul](https://gitee.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-consul)  
 
