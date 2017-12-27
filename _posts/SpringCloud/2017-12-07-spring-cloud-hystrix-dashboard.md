@@ -57,9 +57,15 @@ open的链路阻断了瀑布式错误， 可以让被淹没或者错误的服务
 
 # Ribbon Hystrix
 
+**在 Ribbon中使用断路器**
+
+## 修改项目
+
+复制 `spring-cloud-ribbon-consumer` 项目,修改名称为`spring-cloud-ribbon-consumer-hystrix` 
+
 ## 添加依赖
 
-复制 `spring-cloud-ribbon-consumer` 项目,修改名称为`spring-cloud-ribbon-consumer-hystrix` 在项目 `pom.xml`中引入需要的依赖内容：
+在项目`pom` 加上`hystrix`的依赖
 
 ```xml
 <!-- hystrix 断路器 -->
@@ -177,20 +183,19 @@ public class ConsumerController {
 
 **再次访问命令窗口`curl http://localhost:9000/hello` ，断路器已经生效，提示：Ribbon + hystrix ,提供者服务挂了**
 
-![feign + hystrix ,提供者服务挂了][33]
+![Ribbon + hystrix ,提供者服务挂了][33]
 
+# Feign Hystrix
 
-## Feign Hystrix
+**在 Feign中使用断路器**
 
-在 Feign中使用断路器
+## 修改项目
 
-**首先启动，`spring-cloud-eureka-service`,`spring-cloud-eureka-provider` 项目**
+复制`spring-cloud-feign-consumer` 项目,修改名称为`spring-cloud-feign-consumer-hystrix`
 
-### 修改配置
+## 添加依赖
 
-复制`spring-cloud-feign-consumer` 项目,修改名称为`spring-cloud-feign-consumer-hystrix` 修改配置文件，
-
-Feign是自带断路器的，在D版本的Spring Cloud中，它没有默认打开。需要在配置文件中配置打开它
+Feign是自带断路器的，如果在`Dalston`版本的`Spring Cloud`中，它没有默认打开。需要需要在配置文件中配置打开它,本项目我们是不需要打开的
 
 ```sh
 feign:
@@ -198,9 +203,9 @@ feign:
     enabled: true
 ```
 
-### 开启服务注册
+## 服务注册
 
-修改 HomeClient 类 ，`@FeignClient` 注解，加上fallback的指定类就行了
+修改 `HomeClient`类 ，`@FeignClient` 注解，加上`fallbackFactory`指定新建的`HystrixClientFallbackFactory` 工厂类 
 
 在程序的启动类 `RibbonConsumerApplication` 通过 `@EnableHystrix` 开启 Hystrix
 
@@ -224,7 +229,7 @@ public interface  HomeClient {
 }
 ```
 
-**新加的类 `HystrixClientFallbackFactory`**
+**新加的类 `HystrixClientFallbackFactory.java`**
 
 ```java
 package io.ymq.example.feign.consumer.hystrix;
@@ -246,34 +251,47 @@ public class HystrixClientFallbackFactory implements FallbackFactory<HomeClient>
         return () -> "feign + hystrix ,提供者服务挂了";
     }
 }
-
 ```
+## 测试断路器
 
-### 测试断路器
+依次启动项目：
 
-启动工程后
+`spring-cloud-eureka-service`  
+`spring-cloud-eureka-provider-1`  
+`spring-cloud-eureka-provider-2`  
+`spring-cloud-eureka-provider-3`  
+`spring-cloud-feign-consumer-hystrix`
 
-- 访问：[http://127.0.0.1:9000/hello](http://127.0.0.1:9000/hello) ,发现一切正常
+启动该工程后，访问服务注册中心，查看服务是否都已注册成功：[http://localhost:8761/](http://localhost:8761/) 
 
-![eureka-provider 提供者服务响应][3]
+![查看各个服务注册状态][44]
 
-**停止 eureka-provider  服务**
+**在命令窗口`curl http://localhost:9000/hello`，发现一切正常**
 
-- 再次访问[http://127.0.0.1:9000/hello](http://127.0.0.1:9000/hello) ,断路器已经生效
+或者浏览器`get` 请求`http://localhost:9000/hello` F5 刷新
 
-![feign + hystrix ,提供者服务挂了][4]
+![eureka-provider [1-3] 提供者服务响应][55]
 
-## Hystrix Dashboard
+**停止 spring-cloud-eureka-provider-1 提供者，端口为：8081服务**
 
-### Hystrix Dashboard简介
+**再次访问命令窗口`curl http://localhost:9000/hello` ，断路器已经生效，提示：Feign + hystrix ,提供者服务挂了**
 
-在微服务架构中为例保证程序的可用性，防止程序出错导致网络阻塞，出现了断路器模型。断路器的状况反应了一个程序的可用性和健壮性，它是一个重要指标。Hystrix Dashboard是作为断路器状态的一个组件，提供了数据监控和友好的图形化界面。
+![Feign + hystrix ,提供者服务挂了][66]
 
-### 改造项目
+# Hystrix Dashboard
+
+## HD 简介
+
+`Hystrix Dashboard`在微服务架构中为例保证程序的可用性，防止程序出错导致网络阻塞，出现了断路器模型。断路器的状况反应了一个程序的可用性和健壮性，它是一个重要指标。`Hystrix Dashboard`是作为断路器状态的一个组件，提供了数据监控和友好的图形化界面。
+
+## 改造项目
  
-修改 `spring-cloud-ribbon-consumer-hystrix`  在它的基础上进行改造。 Feign的改造和这一样。
+复制项目 `spring-cloud-ribbon-consumer-hystrix`，修改名称 `spring-cloud-ribbon-consumer-hystrix-dashboard`  在它的基础上进行改造。`Feign`的改造和这一样。
 
-在pom的工程文件引入相应的依赖：
+在`pom`的工程文件引入相应的依赖：
+
+
+## 添加依赖
 
 ```xml
 <dependency>
@@ -293,9 +311,11 @@ public class HystrixClientFallbackFactory implements FallbackFactory<HomeClient>
 ```
 
 
-修改 `RibbonConsumerApplication` 类
+## 开启 HD
 
-在程序的入口`RibbonConsumerApplication`类，加上@EnableHystrix注解开启断路器，这个是必须的，并且需要在程序中声明断路点@HystrixCommand；加上@EnableHystrixDashboard注解，开启HystrixDashboard
+修改 `RibbonConsumerApplication.java` 类
+
+在程序的入口`RibbonConsumerApplication`类，加上`@EnableHystrix`注解开启断路器，这个是必须的，并且需要在程序中声明断路点`@HystrixCommand；`加上`@EnableHystrixDashboard`注解，开启`HystrixDashboard`
 
 ```java
 package io.ymq.example.ribbon.consumer.hystrix;
@@ -327,6 +347,8 @@ public class RibbonConsumerApplication {
 }
 
 ```
+
+## 声明断路点
 
 声明断路点 `@HystrixCommand(fallbackMethod = "defaultStores")`  
 
@@ -366,54 +388,61 @@ public class ConsumerController {
 
 ```
 
-@HystrixCommand 表明该方法为hystrix包裹，可以对依赖服务进行隔离、降级、快速失败、快速重试等等hystrix相关功能 
+`@HystrixCommand` 表明该方法为`hystrix`包裹，可以对依赖服务进行隔离、降级、快速失败、快速重试等等`hystrix`相关功能 
 该注解属性较多，下面讲解其中几个
 
- - fallbackMethod 降级方法
- - commandProperties 普通配置属性，可以配置HystrixCommand对应属性，例如采用线程池还是信号量隔离、熔断器熔断规则等等
- - ignoreExceptions 忽略的异常，默认HystrixBadRequestException不计入失败
- - groupKey() 组名称，默认使用类名称
- - commandKey 命令名称，默认使用方法名
+ - `fallbackMethod` 降级方法
+ - `commandProperties` 普通配置属性，可以配置`HystrixCommand`对应属性，例如采用线程池还是信号量隔离、熔断器熔断规则等等
+ - `ignoreExceptions` 忽略的异常，默认`HystrixBadRequestException`不计入失败
+ - `groupKey()` 组名称，默认使用类名称
+ - `commandKey` 命令名称，默认使用方法名
 
 
-### 测试 Hystrix Dashboard
+## 测试服务
 
-运行工程
 
-**停止 eureka-provider 服务**
+依次启动项目：
 
-- 访问[http://127.0.0.1:9000/hello](http://127.0.0.1:9000/hello) ,断路器已经生效
+`spring-cloud-eureka-service`  
+`spring-cloud-eureka-provider-1`  
+`spring-cloud-eureka-provider-2`  
+`spring-cloud-eureka-provider-3`  
+`spring-cloud-ribbon-consumer-hystrix-dashboard`
 
-![feign + hystrix Dashboard ,提供者服务挂了][5]
+启动该工程后，访问服务注册中心，查看服务是否都已注册成功：[http://localhost:8761/](http://localhost:8761/) 
 
-**Dashboard 监控**
+![查看各个服务注册状态][77]
 
-- 可以访问 [http://127.0.0.1:9090/hystrix.stream](http://127.0.0.1:9090/hystrix) ,获取dashboard信息，默认最大打开5个终端获取监控信息，可以增加delay参数指定获取监控数据间隔时间
+**Hystrix Dashboard 监控**
 
-![ hystrix stream][6]
+可以访问 [http://127.0.0.1:9090/hystrix](http://127.0.0.1:9090/hystrix) ,获取`Hystrix Dashboard`信息，默认最大打开5个终端获取监控信息，可以增加`delay`参数指定获取监控数据间隔时间
 
-在界面依次输入：`http://127.0.0.1:9090/hystrix` 、`2000` 、`hello` 点确定。可以访问以下，图形化监控页面
 
-![ hystrix 图形化监控页面][7]
+在界面依次输入：`http://127.0.0.1:9000/hystrix.stream` 、`2000` 、`hello` 点确定。可以访问以下，图形化监控页面
+
+![ Hystrix Dashboard][88]
+
+**Hystrix  Monitor 图形化监控页面**
+
+![ Hystrix  Monitor 图形化监控页面][99]
 
 
 [11]: /images/2017/SpringCloud/hystrix/11.png
 [22]: /images/2017/SpringCloud/hystrix/22.png
 [33]: /images/2017/SpringCloud/hystrix/33.png
+[44]: /images/2017/SpringCloud/hystrix/44.png
+[55]: /images/2017/SpringCloud/hystrix/55.png
+[66]: /images/2017/SpringCloud/hystrix/66.png
+[77]: /images/2017/SpringCloud/hystrix/77.png
+[88]: /images/2017/SpringCloud/hystrix/88.png
+[99]: /images/2017/SpringCloud/hystrix/99.png
 
-[4]: http://www.ymq.io/images/2017/SpringCloud/hystrix/4.png
-[5]: http://www.ymq.io/images/2017/SpringCloud/hystrix/5.png
-[6]: http://www.ymq.io/images/2017/SpringCloud/hystrix/6.png
-[7]: http://www.ymq.io/images/2017/SpringCloud/hystrix/7.png
-[8]: http://www.ymq.io/images/2017/SpringCloud/hystrix/8.png
-[9]: http://www.ymq.io/images/2017/SpringCloud/hystrix/9.png
 
+# 源码下载
 
-## 源码下载
+**GitHub：**[https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-hystrix-dashboard](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-hystrix-dashboard)
 
-- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-hystrix/spring-cloud-ribbon-consumer-hystrix](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-hystrix/spring-cloud-ribbon-consumer-hystrix)
-- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-hystrix/spring-cloud-feign-consumer-hystrix](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-hystrix/spring-cloud-feign-consumer-hystrix)
-- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-hystrix/spring-cloud-ribbon-consumer-hystrix-dashboard](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-hystrix/spring-cloud-ribbon-consumer-hystrix-dashboard)
+**码云：**[https://gitee.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-hystrix-dashboard](https://gitee.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-hystrix-dashboard)
 
 # Contact
 
