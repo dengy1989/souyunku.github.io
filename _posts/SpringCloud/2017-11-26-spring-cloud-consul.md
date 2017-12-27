@@ -391,9 +391,9 @@ nohup java -jar spring-cloud-consul-client-0.0.1-SNAPSHOT.jar  > /dev/null 2>&1 
 [1]: http://www.ymq.io/images/2017/SpringCloud/consul/1.png
 [2]: http://www.ymq.io/images/2017/SpringCloud/consul/2.png
 [3]: http://www.ymq.io/images/2017/SpringCloud/consul/3.png
-[4]: http://www.ymq.io/images/2017/SpringCloud/consul/4.png
-[5]: http://www.ymq.io/images/2017/SpringCloud/consul/5.png
-[6]: http://www.ymq.io/images/2017/SpringCloud/consul/6.png
+[4]: http://www.ymq.io/images/2017/SpringCloud/consul/44.png
+[5]: http://www.ymq.io/images/2017/SpringCloud/consul/55.png
+[6]: http://www.ymq.io/images/2017/SpringCloud/consul/66.png
 
 # Contact
 
