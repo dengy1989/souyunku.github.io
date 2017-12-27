@@ -218,7 +218,9 @@ server:
 
 ## 源码下载
 
-- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka)
+**GitHub：**[https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka)
+
+**码云：**[https://gitee.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka](https://gitee.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka)
 
 # Contact
 
