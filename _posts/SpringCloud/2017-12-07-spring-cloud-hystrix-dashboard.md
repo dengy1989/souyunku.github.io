@@ -34,27 +34,30 @@ open的链路阻断了瀑布式错误， 可以让被淹没或者错误的服务
 
 # 准备工作
 
-在开始加入断路器之前，我们先拿之前两篇博客，构建的两个微服务代码为基础，进行下面的操作，主要使用下面几个工程：
+在开始加入断路器之前，我们先拿之前两篇博客，构建的两个微服务代码为基础，进行下面的操作
 
 **建议先阅读以下两篇文章**
 
 [Spring Cloud（四） 服务提供者 Eureka + 服务消费者 Feign](http://www.ymq.io/2017/12/06/spring-cloud-feign/)  
 [Spring Cloud（三） 服务提供者 Eureka + 服务消费者（rest + Ribbon）](http://www.ymq.io/2017/12/05/spring-cloud-ribbon-rest/)  
 
-- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-service](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-service)
-- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-provider](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-provider)
+## Eureka Service
 
-**主要修改以下项目**
+**导入第三篇文章中的项目：作为服务注册中心**
 
-- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-feign-consumer](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-feign-consumer)
-- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-ribbon-consumer](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-ribbon-consumer)
+`spring-cloud-eureka-service`
 
+## Eureka Provider
 
-## Ribbon Hystrix
+**导入第三篇文章中的项目：作为服务的提供者**
 
-**首先启动，`spring-cloud-eureka-service`,`spring-cloud-eureka-provider` 项目**
+`spring-cloud-eureka-provider-1`  
+`spring-cloud-eureka-provider-2`  
+`spring-cloud-eureka-provider-3`  
 
-### 修改依赖
+# Ribbon Hystrix
+
+## 添加依赖
 
 复制 `spring-cloud-ribbon-consumer` 项目,修改名称为`spring-cloud-ribbon-consumer-hystrix` 在项目 `pom.xml`中引入需要的依赖内容：
 
@@ -66,9 +69,9 @@ open的链路阻断了瀑布式错误， 可以让被淹没或者错误的服务
 </dependency>
 ```
 
-### 开启服务注册
+## 服务注册
 
-在程序的启动类 `RibbonConsumerApplication` 通过 `@EnableHystrix` 开启 Hystrix 断路器监控
+在程序的启动类 `RibbonConsumerApplication` 通过 `@EnableHystrix` 开启 `Hystrix` 断路器监控
 
 ```java
 package io.ymq.example.ribbon.consumer.hystrix;
@@ -99,20 +102,20 @@ public class RibbonConsumerApplication {
 ```
 
 
-### 消费提供者方法
+## 消费提供者方法
 
-修改 `ConsumerController` 类的，`hello` 方法，加上注解`@HystrixCommand(fallbackMethod = "defaultStores")`  该注解对该方法创建了熔断器的功能
+修改 `ConsumerController` 类的，`hello` 方法，加上注解`@HystrixCommand(fallbackMethod = "defaultStores")` 该注解对该方法创建了熔断器的功能
 ,并指定了`defaultStores`熔断方法，熔断方法直接返回了一个字符串， `"feign + hystrix ,提供者服务挂了"`
 
 
-@HystrixCommand 表明该方法为hystrix包裹，可以对依赖服务进行隔离、降级、快速失败、快速重试等等hystrix相关功能 
+`@HystrixCommand` 表明该方法为`hystrix`包裹，可以对依赖服务进行隔离、降级、快速失败、快速重试等等`hystrix`相关功能 
 该注解属性较多，下面讲解其中几个
 
- - fallbackMethod 降级方法
- - commandProperties 普通配置属性，可以配置HystrixCommand对应属性，例如采用线程池还是信号量隔离、熔断器熔断规则等等
- - ignoreExceptions 忽略的异常，默认HystrixBadRequestException不计入失败
- - groupKey() 组名称，默认使用类名称
- - commandKey 命令名称，默认使用方法名
+- fallbackMethod 降级方法
+- commandProperties 普通配置属性，可以配置HystrixCommand对应属性，例如采用线程池还是信号量隔离、熔断器熔断规则等等
+- ignoreExceptions 忽略的异常，默认HystrixBadRequestException不计入失败
+- groupKey() 组名称，默认使用类名称
+- commandKey 命令名称，默认使用方法名
 
 
 ```java
@@ -143,24 +146,39 @@ public class ConsumerController {
     }
 
     public String defaultStores() {
-        return "feign + hystrix ,提供者服务挂了";
+        return "Ribbon + hystrix ,提供者服务挂了";
     }
 
 }
 ```
 
-### 测试断路器
+## 测试断路器
 
-启动工程后
-- 访问：[http://127.0.0.1:9000/hello](http://127.0.0.1:9000/hello) ,发现一切正常
+依次启动项目：
 
-![eureka-provider 提供者服务响应][1]
+`spring-cloud-eureka-service`  
+`spring-cloud-eureka-provider-1`  
+`spring-cloud-eureka-provider-2`  
+`spring-cloud-eureka-provider-3`  
+`spring-cloud-ribbon-consumer-hystrix`
 
-**停止 eureka-provider  服务**
+启动该工程后，访问服务注册中心，查看服务是否都已注册成功：[http://localhost:8761/](http://localhost:8761/) 
 
-- 再次访问[http://127.0.0.1:9000/](http://127.0.0.1:9000/) ,断路器已经生效
+![查看各个服务注册状态][11]
 
-![feign + hystrix ,提供者服务挂了][2]
+
+**在命令窗口`curl http://localhost:9000/hello`，发现一切正常**
+
+或者浏览器`get` 请求`http://localhost:9000/hello` F5 刷新
+
+![eureka-provider [1-3] 提供者服务响应][22]
+
+**停止 spring-cloud-eureka-provider-1 提供者，端口为：8081服务**
+
+**再次访问命令窗口`curl http://localhost:9000/hello` ，断路器已经生效，提示：Ribbon + hystrix ,提供者服务挂了**
+
+![feign + hystrix ,提供者服务挂了][33]
+
 
 ## Feign Hystrix
 
@@ -379,9 +397,10 @@ public class ConsumerController {
 ![ hystrix 图形化监控页面][7]
 
 
-[1]: http://www.ymq.io/images/2017/SpringCloud/hystrix/1.png
-[2]: http://www.ymq.io/images/2017/SpringCloud/hystrix/2.png
-[3]: http://www.ymq.io/images/2017/SpringCloud/hystrix/3.png
+[11]: /images/2017/SpringCloud/hystrix/11.png
+[22]: /images/2017/SpringCloud/hystrix/22.png
+[33]: /images/2017/SpringCloud/hystrix/33.png
+
 [4]: http://www.ymq.io/images/2017/SpringCloud/hystrix/4.png
 [5]: http://www.ymq.io/images/2017/SpringCloud/hystrix/5.png
 [6]: http://www.ymq.io/images/2017/SpringCloud/hystrix/6.png
