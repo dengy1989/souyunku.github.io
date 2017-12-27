@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Spring Cloud（三）服务提供者 Eureka + 服务消费者（rest + Ribbon）
+title: Spring Cloud（三）服务提供者 Eureka + 服务消费者（rest + Ribbon）
 categories: SpringCloud
 description: Spring Cloud 服务提供者 Eureka + 服务消费者（rest + Ribbon）
 keywords: SpringCloud 
@@ -24,7 +24,7 @@ Ribbon是Netflix发布的开源项目，主要功能是提供客户端的软件�
 
 # Ribbon的核心组件
 
-`均为接口类型,有以下几个：`
+**均为接口类型,有以下几个**
 
 **ServerList** 
 
@@ -58,98 +58,16 @@ Ribbon在工作时首选会通过ServerList来获取所有可用的服务列表�
 
 复合判断server所在区域的性能和server的可用性选择server
 
-## Eureka Server
 
-**提供服务注册和发现服务**
+# 准备工作
 
-### 添加依赖
+本次项目示例，改造第一篇文章中的项目,使用`spring-cloud-eureka-service`作为服务注册中心，`spring-cloud-eureka-provider`,复制三分，项目名称依次修改为`spring-cloud-eureka-provider-1` `[1-3]`
 
-在项目 `spring-cloud-eureka-service` `pom.xml`中引入需要的依赖内容：
-
-```xml
-<dependency>
-	<groupId>org.springframework.cloud</groupId>
-	<artifactId>spring-cloud-starter-eureka-server</artifactId>
-</dependency>
-```
-
-### 开启服务注册
-
-通过 `@EnableEurekaServer` 注解启动一个服务注册中心提供给其他应用进行对话,这个注解需要在springboot工程的启动application类上加
-
-```java
-package io.ymq.example.eureka;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
-
-@SpringBootApplication
-@EnableEurekaServer
-public class EurekaApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(EurekaApplication.class, args);
-	}
-}
-```
-
-### 配置 Eureka 服务
-
-在默认设置下，该服务注册中心也会将自己作为客户端来尝试注册它自己，所以我们需要禁用它的客户端注册行为，只需要在`application.yml`配置文件中增加如下信息：
-
-```sh
-registerWithEureka: false
-fetchRegistry: false
-```
-
-完整配置
-
-```sh
-server:
-  port: 8761
-
-eureka:
-  instance:
-    hostname: localhost
-  client:
-    registerWithEureka: false
-    fetchRegistry: false
-    serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
-```
-
-### 启动服务注册中心
-
-
-启动工程后，访问：[http://localhost:8761/](http://localhost:8761/)
-
-可以看到下面的页面，其中还没有发现任何服务。
-
-![ System Status ][1]
-
-## Eureka Provider
+## 改造 Provider
 
 **服务提供者**
 
-- 将自身服务注册到 `Eureka Service`，从而使服务消费方能够找到
-
-
-### 添加依赖
-
-在项目 `spring-cloud-eureka-provider` `pom.xml`中引入需要的依赖内容：
-
-```xml
-<!-- spring boot eureka server -->
-<dependency>
-	<groupId>org.springframework.cloud</groupId>
-	<artifactId>spring-cloud-starter-eureka-server</artifactId>
-</dependency>
-```
-
-### 开启服务注册
-
-在应用主类中通过加上 @EnableEurekaClient，但只有Eureka可用，你也可以使用@EnableDiscoveryClient。需要配置才能找到Eureka服务器
+在项目：`spring-cloud-eureka-provider-1`，`spring-cloud-eureka-provider-2`，`spring-cloud-eureka-provider-3` 的启动类，都加入` @Value("${server.port}")`，修改`home()`方法， 来区分不同端口的`Controller` 响应，因为接下来，使用`ribbon`做均衡需要测试需要使用到
 
 ```java
 package io.ymq.example.eureka.provider;
@@ -181,11 +99,9 @@ public class EurekaProviderApplication {
 
 ```
 
-### 配置 Eureka Server 服务
+## 修改配置
 
-需要配置才能找到Eureka服务器。例：
-
-完整配置 `application.yml`
+在项目：`spring-cloud-eureka-provider-1`，`spring-cloud-eureka-provider-2`，`spring-cloud-eureka-provider-3`,修改`server: port:`端口依次为`8081`,`8082`,`8083`
 
 ```sh
 eureka:
@@ -198,71 +114,16 @@ spring:
     name: eureka-provider
 
 server:
-  port: 8762
+  port: 8081
 ```
 
-### 启动提供者
-
-启动该工程后，再次访问启动工程后：[http://localhost:8761/](http://localhost:8761/)
-
-可以如下图内容，我们定义的服务被成功注册了。
-
-![ eureka-provider][2]
-
-## 多个 Eureka Provider
-
-修改 `spring-cloud-eureka-provider` 配置文件`application.yml` 里的端口：`8762` 改成 `8763` maven 打包 后发布
-
-
-**maven 打包**
-
-```sh
-F:\spring-cloud-examples\spring-cloud-eureka-provider> mvn clean package
-
-....
-Results :
-
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
-
-[INFO]
-[INFO] --- maven-jar-plugin:2.6:jar (default-jar) @ spring-cloud-eureka-provider ---
-[INFO] Building jar: F:\spring-cloud-examples\spring-cloud-eureka-provider\target\spring-cloud-eureka-provider-0.0.1-SNAPSHOT.jar
-[INFO]
-[INFO] --- spring-boot-maven-plugin:1.5.9.RELEASE:repackage (default) @ spring-cloud-eureka-provider ---
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time: 23.848 s
-[INFO] Finished at: 2017-12-05T20:26:25+08:00
-[INFO] Final Memory: 47M/421M
-[INFO] ------------------------------------------------------------------------
-F:\spring-cloud-examples\spring-cloud-eureka-provider>
-```
-
-
-**把 maven打好的包，放入不同的目录，本地发布**
-```sh
-java -jar spring-cloud-eureka-provider-0.0.1-SNAPSHOT.jar
-```
-
-![发布 eureka-provider 8762 端口][3]
-
-![发布 eureka-provider 8763 端口][4]
-
-### 查看提供者服务
-
-启动该工程后，再次访问启动工程后：[http://localhost:8761/](http://localhost:8761/)
-
-
-![查看提供者服务][5]
-
-## Ribbon Consumer
+# Ribbon Consumer
 
 **服务消费者**
 
-### 添加依赖
+## 添加依赖
 
-在项目 `spring-cloud-ribbon-consumer` `pom.xml`中引入需要的依赖内容：
+新建 `spring-cloud-ribbon-consumer` 
 
 ```xml
 <!-- 客户端负载均衡 -->
@@ -278,9 +139,9 @@ java -jar spring-cloud-eureka-provider-0.0.1-SNAPSHOT.jar
 </dependency>
 ```
 
-### 开启服务负载均衡
+## 开启服务负载均衡
 
-在工程的启动类中,通过@EnableDiscoveryClient向服务中心注册；并且向程序的ioc注入一个bean: restTemplate;并通过@LoadBalanced注解表明这个restRemplate开启负载均衡的功能。
+在工程的启动类中,通过`@EnableDiscoveryClient`向服务注册中心注册；并且向程序的`ioc`注入一个`bean: restTemplate`并通过`@LoadBalanced`注解表明这个`restRemplate`开启负载均衡的功能。
 
 ```java
 package io.ymq.example.ribbon.consumer;
@@ -309,11 +170,11 @@ public class RibbonConsumerApplication {
 
 ```
 
-### 消费提供者方法
+## 消费提供者方法
 
-写一个 `controller`，调用提供者的 `home` 方法
+新建 `ConsumerController` 类，调用提供者的 `hello` 方法
 
-```
+```java
 package io.ymq.example.ribbon.consumer;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -341,9 +202,11 @@ public class ConsumerController {
 
 ```
 
-### 配置 Ribbon 服务
+## 添加配置
 
 完整配置 `application.yml`
+
+指定服务的注册中心地址，配置自己的服务端口，服务名称
 
 ```sh
 eureka:
@@ -357,45 +220,40 @@ spring:
 
 server:
   port: 9000
-
 ```
 
-### 启动消费者
+# 测试服务 
 
-启动该工程后，再次访问：[http://localhost:8761/](http://localhost:8761/) 
+## 启动服务
 
+依次启动项目：
 
-![查看 Ribbon 注册状态][6]
+`spring-cloud-eureka-service`  
+`spring-cloud-eureka-provider-1`  
+`spring-cloud-eureka-provider-2`  
+`spring-cloud-eureka-provider-3`  
+`spring-cloud-ribbon-consumer`  
 
-### 负载均衡响应
+启动该工程后，访问服务注册中心，查看服务是否都已注册成功：[http://localhost:8761/](http://localhost:8761/) 
 
+![查看服务注册状态][1]
 
-**浏览器 F5 刷新，发现已经实现负载均衡**
+## 负载均衡
 
-![测试提供者，负载均衡响应][7]
+**在命令窗口`curl http://localhost:9000/hello`，发现Ribbon已经实现负载均衡**
 
-![测试提供者，负载均衡响应][8]
+或者浏览器`get` 请求`http://localhost:9000/hello` F5 刷新
 
+![测试Ribbon，负载均衡响应][2]
 
 [1]: http://www.ymq.io/images/2017/SpringCloud/ribbon/1.png
 [2]: http://www.ymq.io/images/2017/SpringCloud/ribbon/2.png
-[3]: http://www.ymq.io/images/2017/SpringCloud/ribbon/3.png
-[4]: http://www.ymq.io/images/2017/SpringCloud/ribbon/4.png
-[5]: http://www.ymq.io/images/2017/SpringCloud/ribbon/5.png
-[6]: http://www.ymq.io/images/2017/SpringCloud/ribbon/6.png
-[7]: http://www.ymq.io/images/2017/SpringCloud/ribbon/7.png
-[8]: http://www.ymq.io/images/2017/SpringCloud/ribbon/8.png
-
-
-**注意：spring-cloud-eureka-provider** 项目，改成不同端口发布两次
 
 ## 源码下载
 
-- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-service](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-service)
-- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-provider](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-provider)
-- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-ribbon-consumer](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-ribbon-consumer)
+**GitHub：**[https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-ribbon](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-ribbon)  
 
-
+**码云：**[https://gitee.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-ribbon](https://gitee.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-ribbon)  
 
 # Contact
 
