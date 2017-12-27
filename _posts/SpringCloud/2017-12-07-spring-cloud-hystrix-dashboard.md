@@ -427,15 +427,15 @@ public class ConsumerController {
 ![ Hystrix  Monitor 图形化监控页面][99]
 
 
-[11]: /images/2017/SpringCloud/hystrix/11.png
-[22]: /images/2017/SpringCloud/hystrix/22.png
-[33]: /images/2017/SpringCloud/hystrix/33.png
-[44]: /images/2017/SpringCloud/hystrix/44.png
-[55]: /images/2017/SpringCloud/hystrix/55.png
-[66]: /images/2017/SpringCloud/hystrix/66.png
-[77]: /images/2017/SpringCloud/hystrix/77.png
-[88]: /images/2017/SpringCloud/hystrix/88.png
-[99]: /images/2017/SpringCloud/hystrix/99.png
+[11]: http://www.ymq.io/images/2017/SpringCloud/hystrix/11.png
+[22]: http://www.ymq.io/images/2017/SpringCloud/hystrix/22.png
+[33]: http://www.ymq.io/images/2017/SpringCloud/hystrix/33.png
+[44]: http://www.ymq.io/images/2017/SpringCloud/hystrix/44.png
+[55]: http://www.ymq.io/images/2017/SpringCloud/hystrix/55.png
+[66]: http://www.ymq.io/images/2017/SpringCloud/hystrix/66.png
+[77]: http://www.ymq.io/images/2017/SpringCloud/hystrix/77.png
+[88]: http://www.ymq.io/images/2017/SpringCloud/hystrix/88.png
+[99]: http://www.ymq.io/images/2017/SpringCloud/hystrix/99.png
 
 
 # 源码下载
