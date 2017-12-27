@@ -184,8 +184,8 @@ server:
 
 **码云：**[https://gitee.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-feign](https://gitee.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-feign)
 
-[1]: /images/2017/SpringCloud/feign/1.png
-[2]: /images/2017/SpringCloud/feign/2.png
+[1]: http://www.ymq.io/images/2017/SpringCloud/feign/1.png
+[2]: http://www.ymq.io/images/2017/SpringCloud/feign/2.png
 
 # Contact
 
