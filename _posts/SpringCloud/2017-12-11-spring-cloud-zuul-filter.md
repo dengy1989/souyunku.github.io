@@ -7,19 +7,51 @@ keywords: SpringCloud
 ---
 
 上一篇文章中，讲了Zuul 转发，动态路由，负载均衡，等等一些Zuul 的特性，这个一篇文章，讲Zuul Filter 使用，关于网关的作用，这里就不再次赘述了，重点是zuul的Filter ，我们可以实现安全控制，比如，只有请求参数中有token和密码的客户端才能访问服务端的资源。那么如何来实现Filter了？
-
+ 
 # Spring Cloud Zuul
+
+## zuul 执行流程
+
+![执行流程图][11]
+
+**Zuul**大部分功能都是通过过滤器来实现的。Zuul中定义了四种标准过滤器类型，这些过滤器类型对应于请求的典型生命周期。
+
+**PRE：**这种过滤器在请求被路由之前调用。我们可利用这种过滤器实现身份验证、在集群中选择请求的微服务、记录调试信息等。
+
+**ROUTING：**这种过滤器将请求路由到微服务。这种过滤器用于构建发送给微服务的请求，并使用Apache HttpClient或Netfilx Ribbon请求微服务。
+
+**OST：**这种过滤器在路由到微服务以后执行。这种过滤器可用来为响应添加标准的HTTP Header、收集统计信息和指标、将响应从微服务发送给客户端等。
+
+**ERROR：**在其他阶段发生错误时执行该过滤器。
+
+除了默认的过滤器类型，Zuul还允许我们创建自定义的过滤器类型。例如，我们可以定制一种STATIC类型的过滤器，直接在Zuul中生成响应，而不将请求转发到后端的微服务。
 
 ## 准备工作
 
-在开始测试服务之前，我们先拿之前两篇博客，构建的两个微服务代码为基础，进行下面的操作，主要使用下面几个工程：
+我们先拿之前两篇文章，构建的两个微服务代码为基础，进行下面的操作
 
-**建议先阅读以下文章**
+**建议先阅读以下两篇文章**
 
-[Spring Cloud（六）服务网关 zuul 快速入门-http://www.ymq.io/2017/12/10/spring-cloud-zuul/](http://www.ymq.io/2017/12/10/spring-cloud-zuul/)  
+[Spring Cloud（四） 服务提供者 Eureka + 服务消费者 Feign ](http://www.ymq.io/2017/12/06/spring-cloud-feign/)  
+[Spring Cloud（三） 服务提供者 Eureka + 服务消费者（rest + Ribbon）](http://www.ymq.io/2017/12/05/spring-cloud-ribbon-rest/)  
 
-- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-service](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-service)
-- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-provider-2](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-provider-2)
+[http://www.ymq.io/2017/12/06/spring-cloud-feign/](http://www.ymq.io/2017/12/06/spring-cloud-feign/)
+
+[http://www.ymq.io/2017/12/05/spring-cloud-ribbon-rest/](http://www.ymq.io/2017/12/05/spring-cloud-ribbon-rest/)
+
+## Eureka Service
+
+**导入第三篇文章中的项目：作为服务注册中心**
+
+`spring-cloud-eureka-service`
+
+## Eureka Provider
+
+**导入第三篇文章中的项目：作为服务的提供者**
+
+`spring-cloud-eureka-provider-1`  
+`spring-cloud-eureka-provider-2`  
+`spring-cloud-eureka-provider-3`  
 
 
 ## 简单使用
@@ -246,70 +278,65 @@ public PasswordFilter PasswordFilter() {
 - shouldFilter：这里可以写逻辑判断，是否要过滤，本文true,永远过滤。
 - run：过滤器的具体逻辑。可用很复杂，包括查sql，nosql去判断该请求到底有没有权限访问。
 
-### 测试服务
+## 测试服务
 
-依次启动四个服务：`spring-cloud-eureka-service`,`spring-cloud-eureka-provider`,`spring-cloud-eureka-provider-2`,`spring-cloud-zuul-service`
+
+依次启动项目：
+
+`spring-cloud-eureka-service`  
+`spring-cloud-eureka-provider-1`  
+`spring-cloud-eureka-provider-2`  
+`spring-cloud-eureka-provider-3`  
+`spring-cloud-zuul-filter`
+
+启动该工程后，访问服务注册中心，查看服务是否都已注册成功：[http://localhost:8761/](http://localhost:8761/) 
+
+![查看各个服务注册状态][22]
 
 **查看 eureka 监控，看服务是否都注册成功**
+
+### token 测试
 
 访问:[http://127.0.0.1:8761/](http://127.0.0.1:8761/)
 
 
-![浏览器访问][1]
 
 **步骤一** 提示 `token is empty` 
 
 访问:[http://127.0.0.1:9000/](http://127.0.0.1:9000/)
 
-![token is empty][2]
+![浏览器访问][33]
 
 **步骤二** 加上token `?token=token-uuid` ，已经验证通过了，提示 `The password cannot be empty` 
 
 访问:[http://127.0.0.1:9000/?token=token-uuid](http://127.0.0.1:9000/?token=token-uuid)
 
+![token is empty][44]
+
+### password 测试
+
 ![The password cannot be empty][3]
 
-**步骤三** 加上token 和 password `&password=123456` ，已经验证通过
+加上`token` 和 `password` `&password=123456` ，已经验证通过
 
 访问:[http://127.0.0.1:9000/?token=token-uuid&password=123456](http://127.0.0.1:9000/?token=token-uuid&password=123456)
 
 F5 刷新，每次都验证通过，并且负载均衡
 
-![Hello Zuul ,port:8763][4]
-
-![THello world ,port:8762][5]
-
-### zuul 执行流程
-
-![执行流程图][6]
-
-**Zuul**大部分功能都是通过过滤器来实现的。Zuul中定义了四种标准过滤器类型，这些过滤器类型对应于请求的典型生命周期。
-
-**PRE：**这种过滤器在请求被路由之前调用。我们可利用这种过滤器实现身份验证、在集群中选择请求的微服务、记录调试信息等。
-
-**ROUTING：**这种过滤器将请求路由到微服务。这种过滤器用于构建发送给微服务的请求，并使用Apache HttpClient或Netfilx Ribbon请求微服务。
-
-**OST：**这种过滤器在路由到微服务以后执行。这种过滤器可用来为响应添加标准的HTTP Header、收集统计信息和指标、将响应从微服务发送给客户端等。
-
-**ERROR：**在其他阶段发生错误时执行该过滤器。
-
-除了默认的过滤器类型，Zuul还允许我们创建自定义的过滤器类型。例如，我们可以定制一种STATIC类型的过滤器，直接在Zuul中生成响应，而不将请求转发到后端的微服务。
-
-                                     
-[1]: http://www.ymq.io/images/2017/SpringCloud/zuulFilter/1.png
-[2]: http://www.ymq.io/images/2017/SpringCloud/zuulFilter/2.png
-[3]: http://www.ymq.io/images/2017/SpringCloud/zuulFilter/3.png
-[4]: http://www.ymq.io/images/2017/SpringCloud/zuulFilter/4.png
-[5]: http://www.ymq.io/images/2017/SpringCloud/zuulFilter/5.png
-[6]: http://www.ymq.io/images/2017/SpringCloud/zuulFilter/6.png
+![Hello Zuul][55]
+                    
+[11]: /images/2017/SpringCloud/zuulFilter/11.png
+[22]: /images/2017/SpringCloud/zuulFilter/22.png
+[33]: /images/2017/SpringCloud/zuulFilter/33.png
+[44]: /images/2017/SpringCloud/zuulFilter/44.png
+[55]: /images/2017/SpringCloud/zuulFilter/55.png
 
 ## 源码下载
 
-- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-service](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-service)
-- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-provider](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-provider)
-- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-provider-2](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-provider-2)
-- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-zuul-filter](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-zuul-filter)
+**GitHub：**[https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-zuul-filter](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-zuul-filter)
 
+**码云：**[https://gitee.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-zuul-filter](https://gitee.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-zuul-filter)
+ 
 # Contact
 
  - 作者：鹏磊  
