@@ -325,11 +325,11 @@ F5 刷新，每次都验证通过，并且负载均衡
 
 ![Hello Zuul][55]
                     
-[11]: /images/2017/SpringCloud/zuulFilter/11.png
-[22]: /images/2017/SpringCloud/zuulFilter/22.png
-[33]: /images/2017/SpringCloud/zuulFilter/33.png
-[44]: /images/2017/SpringCloud/zuulFilter/44.png
-[55]: /images/2017/SpringCloud/zuulFilter/55.png
+[11]: http://www.ymq.io/images/2017/SpringCloud/zuulFilter/11.png
+[22]: http://www.ymq.io/images/2017/SpringCloud/zuulFilter/22.png
+[33]: http://www.ymq.io/images/2017/SpringCloud/zuulFilter/33.png
+[44]: http://www.ymq.io/images/2017/SpringCloud/zuulFilter/44.png
+[55]: http://www.ymq.io/images/2017/SpringCloud/zuulFilter/55.png
 
 ## 源码下载
 
