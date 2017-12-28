@@ -170,8 +170,12 @@ zuul:
 
 **建议先阅读以下两篇文章**
 
-[Spring Cloud（四） 服务提供者 Eureka + 服务消费者 Feign](http://www.ymq.io/2017/12/06/spring-cloud-feign/)  
+[Spring Cloud（四） 服务提供者 Eureka + 服务消费者 Feign ](http://www.ymq.io/2017/12/06/spring-cloud-feign/)  
 [Spring Cloud（三） 服务提供者 Eureka + 服务消费者（rest + Ribbon）](http://www.ymq.io/2017/12/05/spring-cloud-ribbon-rest/)  
+
+[http://www.ymq.io/2017/12/06/spring-cloud-feign/](http://www.ymq.io/2017/12/06/spring-cloud-feign/)
+
+[http://www.ymq.io/2017/12/05/spring-cloud-ribbon-rest/](http://www.ymq.io/2017/12/05/spring-cloud-ribbon-rest/)
 
 ## Eureka Service
 
