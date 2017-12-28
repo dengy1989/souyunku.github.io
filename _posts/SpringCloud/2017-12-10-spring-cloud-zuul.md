@@ -6,9 +6,9 @@ description: Spring Cloud（六）服务网关 zuul 快速入门
 keywords: SpringCloud 
 ---
 
-服务网关是微服务架构中一个不可或缺的部分。通过服务网关统一向外系统提供REST API的过程中，除了具备服务路由、均衡负载功能之外，它还具备了权限控制等功能。Spring Cloud Netflix中的Zuul就担任了这样的一个角色，为微服务架构提供了前门保护的作用，同时将权限控制这些较重的非业务逻辑内容迁移到服务路由层面，使得服务集群主体能够具备更高的可复用性和可测试性。
+服务网关是微服务架构中一个不可或缺的部分。通过服务网关统一向外系统提供`REST API`的过程中，除了具备服务路由、均衡负载功能之外，它还具备了权限控制等功能。`Spring Cloud` `Netflix`中的Zuul就担任了这样的一个角色，为微服务架构提供了前门保护的作用，同时将权限控制这些较重的非业务逻辑内容迁移到服务路由层面，使得服务集群主体能够具备更高的可复用性和可测试性。
 
-路由在微服务体系结构的一个组成部分。例如，/可以映射到您的Web应用程序，`/api/users`映射到用户服务，并将`/api/shop`映射到商店服务。`Zuul`是`Netflix`的基于JVM的路由器和服务器端负载均衡器。
+路由在微服务体系结构的一个组成部分。例如，/可以映射到您的Web应用程序，`/api/users`映射到用户服务，并将`/api/shop`映射到商店服务。`Zuul`是`Netflix`的基于`JVM`的路由器和服务器端负载均衡器。
 
 **Netflix使用Zuul进行以下操作：**
 
@@ -23,7 +23,7 @@ keywords: SpringCloud
  - 静态响应处理    
  - 主动/主动流量管理  
 
-Zuul的规则引擎允许基本上写任何JVM语言编写规则和过滤器，内置Java和Groovy。
+`Zuul`的规则引擎允许基本上写任何JVM语言编写规则和过滤器，内置`Java`和`Groovy`。
 
 # 什么是服务网关
 
@@ -56,7 +56,7 @@ Zuul的规则引擎允许基本上写任何JVM语言编写规则和过滤器，�
 
 # 服务网关技术选型
 
-![服务网关][1]
+![服务网关][11]
 
 **引入服务网关后的微服务架构如上，总体包含三部分：服务网关、open-service和service。**
 
@@ -99,11 +99,11 @@ Zuul的规则引擎允许基本上写任何JVM语言编写规则和过滤器，�
  
 # Spring Cloud Zuul
 
-## 简单使用
+# 简单使用
 
 **新建项目** `spring-cloud-zuul-service`
 
-### 添加依赖
+## 添加依赖
 
 ```xml
 <dependency>
@@ -112,12 +112,12 @@ Zuul的规则引擎允许基本上写任何JVM语言编写规则和过滤器，�
 </dependency>
 ```
 
-### 开启服务注册
+## 开启服务注册
 
 在程序的启动类 `ZuulApplication` 通过 `@EnableZuulProxy` 开启 Zuul 服务网关
 
 ```java
-package io.ymq.example;
+package io.ymq.example.zuul;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -131,9 +131,10 @@ public class ZuulApplication {
 		SpringApplication.run(ZuulApplication.class, args);
 	}
 }
+
 ```
 
-### 添加配置
+## 添加配置
 
 配置文件 `application.yml`
 
@@ -145,25 +146,49 @@ spring:
 server:
   port: 9000
 
+
 zuul:
   routes:
     blog:
         path: /ymq/**
-        url: http://www.ymq.io/
+        url: http://www.ymq.io/about
 ```
 
-
-### 测试访问
+## 测试访问
 
 **配置说明：**
 
-浏览器访问:[http://127.0.0.1:9000/ymq](http://127.0.0.1:9000/ymq) 重定向到我的博客
+浏览器访问:[http://127.0.0.1:9000/ymq](http://127.0.0.1:9000/ymq) 重定向到我的博客 
 
-![浏览器访问][2]
+![浏览器访问][22]
 
-## 服务转发
+# 服务转发
 
-### 添加依赖
+## 准备工作
+
+在开始加入断路器之前，我们先拿之前两篇博客，构建的两个微服务代码为基础，进行下面的操作
+
+**建议先阅读以下两篇文章**
+
+[Spring Cloud（四） 服务提供者 Eureka + 服务消费者 Feign](http://www.ymq.io/2017/12/06/spring-cloud-feign/)  
+[Spring Cloud（三） 服务提供者 Eureka + 服务消费者（rest + Ribbon）](http://www.ymq.io/2017/12/05/spring-cloud-ribbon-rest/)  
+
+## Eureka Service
+
+**导入第三篇文章中的项目：作为服务注册中心**
+
+`spring-cloud-eureka-service`
+
+## Eureka Provider
+
+**导入第三篇文章中的项目：作为服务的提供者**
+
+`spring-cloud-eureka-provider-1`  
+`spring-cloud-eureka-provider-2`  
+`spring-cloud-eureka-provider-3`  
+
+
+## 添加依赖
 
 项目继续改造，添加依赖
 
@@ -174,90 +199,72 @@ zuul:
 </dependency>
 ```
 
-### 修改配置
+## 修改配置
 
 配置文件 `application.yml`
 
 ```sh
+spring:
+  application:
+    name: zuul-service
+
+server:
+  port: 9000
+
+#zuul:
+#  routes:
+#    blog:
+#        path: /ymq/**
+#        url: http://www.ymq.io/about
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
 zuul:
   routes:
     api:
         path: /**
         serviceId: eureka-provider
 
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
 ```
 
 **配置说明：**
 
 浏览器访问:[http://127.0.0.1:9000/](http://127.0.0.1:9000/) ,Zuul 会去 Eureka 服务注册中心，找到`eureka-provider`服务以均衡负载的方式访问
 
-### 准备工作
 
-在开始测试服务之前，我们先拿之前两篇博客，构建的两个微服务代码为基础，进行下面的操作，主要使用下面几个工程：
+## 测试服务
 
-**建议先阅读以下两篇文章**
 
-[Spring Cloud（四） 服务提供者 Eureka + 服务消费者 Feign](http://www.ymq.io/2017/12/06/spring-cloud-feign/)  
-[Spring Cloud（三） 服务提供者 Eureka + 服务消费者（rest + Ribbon）](http://www.ymq.io/2017/12/05/spring-cloud-ribbon-rest/)  
+依次启动项目：
 
-- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-service](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-service)
-- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-provider](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-provider)
+`spring-cloud-eureka-service`  
+`spring-cloud-eureka-provider-1`  
+`spring-cloud-eureka-provider-2`  
+`spring-cloud-eureka-provider-3`  
+`spring-cloud-zuul-service`
 
-复制项目`spring-cloud-eureka-provider` 改为`spring-cloud-eureka-provider-2`  为了更好的体现 Zuul 访问服务负载均衡
+启动该工程后，访问服务注册中心，查看服务是否都已注册成功：[http://localhost:8761/](http://localhost:8761/) 
 
-**修改** `EurekaProviderApplication.java`  home 方法的返回值
-
-```java
-@SpringBootApplication
-@EnableEurekaClient
-@RestController
-public class EurekaProviderApplication {
-
-    @Value("${server.port}")
-    String port;
-
-    @RequestMapping("/")
-    public String home() {
-        return "Hello Zuul ,port:" + port;
-    }
-
-    public static void main(String[] args) {
-        SpringApplication.run(EurekaProviderApplication.class, args);
-    }
-}
-```
-
-**修改** `application.yml` 修改一下提供服务的端口,`8762` 改成8763
-
-```sh
-server:
-  port: 8763
-```
-
-### 测试服务
-
-依次启动四个服务：`spring-cloud-eureka-service`,`spring-cloud-eureka-provider`,`spring-cloud-eureka-provider-2`,`spring-cloud-zuul-service`
-
-**查看 eureka 监控，看服务是否都注册成功**
-
-![浏览器访问][3]
+![查看各个服务注册状态][33]
 
 **浏览器访问**
 
 访问:[http://127.0.0.1:9000/](http://127.0.0.1:9000/) ,Zuul 会去 Eureka 服务注册中心，找到`eureka-provider`服务以均衡负载的方式访问
 
-`F5 刷新`
+**在命令窗口`curl http://localhost:9000/`，发现一切正常**
 
-![F5刷新浏览器访问][4]
-![F5刷新浏览器访问][5]
+或者浏览器`get` 请求`http://localhost:9000/` F5 刷新
 
-### 网关的默认路由规则
+![测试转发服务][44]
 
-spring cloud zuul 默认情况下，`Zuul`会代理所有注册到`Eureka Server`的微服务，并且Zuul的路由规则如下：[http://ZUUL_HOST:ZUUL_PORT/]() 微服务在`Eureka`上的`serviceId/**`会被转发到`serviceId`对应的微服务。
+# 路由规则
+
+**网关的默认路由规则**
+
+`Spring cloud zuul` 默认情况下，`Zuul`会代理所有注册到`Eureka Server`的微服务，并且`Zuul`的路由规则如下：`[http://ZUUL_HOST:ZUUL_PORT/]()` 微服务在`Eureka`上的`serviceId/**`会被转发到`serviceId`对应的微服务。
 
 我们注释 `spring-cloud-zuul-service`项目中关于路由的配置：
 
@@ -273,31 +280,26 @@ spring cloud zuul 默认情况下，`Zuul`会代理所有注册到`Eureka Server
 
 访问:[http://127.0.0.1:9000/eureka-provider/](http://127.0.0.1:9000/eureka-provider/) ,Zuul 会去 Eureka 服务注册中心，找到`eureka-provider`服务以均衡负载的方式访问
 
-![F5刷新浏览器访问][6]
-![F5刷新浏览器访问][7]
+**在命令窗口`curl http://localhost:9000/`，发现一切正常**
 
-## ZuulFilter
+或者浏览器`get` 请求`http://localhost:9000/` F5 刷新
+
+![测试转发服务][44]
+
+# ZuulFilter
 
 在下一章，会深入介绍 Zuul 高级功能使用，`ZuulFilter` ,支持下鹏磊，关注下屏幕下方的微信公众号
+
+# 源码下载
+
+**GitHub：**[https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-zuul](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-zuul)
+
+**码云：**[https://gitee.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-zuul](https://gitee.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-zuul)
                                                
-[1]: http://www.ymq.io/images/2017/SpringCloud/zuul/1.png
-[2]: http://www.ymq.io/images/2017/SpringCloud/zuul/2.png
-[3]: http://www.ymq.io/images/2017/SpringCloud/zuul/3.png
-[4]: http://www.ymq.io/images/2017/SpringCloud/zuul/4.png
-[5]: http://www.ymq.io/images/2017/SpringCloud/zuul/5.png
-[6]: http://www.ymq.io/images/2017/SpringCloud/zuul/6.png
-[7]: http://www.ymq.io/images/2017/SpringCloud/zuul/7.png
-[8]: http://www.ymq.io/images/2017/SpringCloud/zuul/8.png
-[9]: http://www.ymq.io/images/2017/SpringCloud/zuul/9.png
-
-
-## 源码下载
-
-- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-service](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-service)
-- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-provider](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-provider)
-- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-provider-2](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-provider-2)
-- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-zuul-service](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-zuul-service)
-
+[11]: /images/2017/SpringCloud/zuul/11.png
+[22]: /images/2017/SpringCloud/zuul/22.png
+[33]: /images/2017/SpringCloud/zuul/33.png
+[44]: /images/2017/SpringCloud/zuul/44.png
 # Contact
 
  - 作者：鹏磊  
