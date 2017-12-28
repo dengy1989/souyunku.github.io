@@ -13,6 +13,8 @@ permalink: /about/
  - 我是鹏磊，认识自己的无知是认识世界的最可靠的方法。
  - 本博客内容涵盖Java后端技术、Spring Boot、Spring Cloud、微服务架构、大数据，云计算，运维开发、系统监控等相关的研究与知识分享。
 
+[公众号编辑器](http://md.souyunku.com/) 可以以优雅的方式在微信公众号去发布Markdown文章
+ 
 # Contact
 
  - 作者：鹏磊  
