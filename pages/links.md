@@ -8,7 +8,6 @@ menu: 链接
 permalink: /links/
 ---
 
-
 > 没有链接的博客是孤独的
 
 ## 分享文档
@@ -16,7 +15,6 @@ permalink: /links/
  * [awesome-github](https://github.com/AntBranch/awesome-github)
  * [IntelliJ-IDEA-Tutorial](https://github.com/judasn/IntelliJ-IDEA-Tutorial)
  * [Elasticsearch 5.4 中文文档]( http://cwiki.apachecn.org/pages/viewpage.action?pageId=4260364)
-
  
 ### 推荐网站
  * [公众号编辑器](http://md.souyunku.com/) 可以以优雅的方式在微信公众号去发布Markdown文章
