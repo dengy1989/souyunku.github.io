@@ -280,11 +280,11 @@ zuul:
 
 访问:[http://127.0.0.1:9000/eureka-provider/](http://127.0.0.1:9000/eureka-provider/) ,Zuul 会去 Eureka 服务注册中心，找到`eureka-provider`服务以均衡负载的方式访问
 
-**在命令窗口`curl http://localhost:9000/`，发现一切正常**
+**在命令窗口`curl http://127.0.0.1:9000/eureka-provider/`，发现一切正常**
 
-或者浏览器`get` 请求`http://localhost:9000/` F5 刷新
+或者浏览器`get` 请求`http://127.0.0.1:9000/eureka-provider/` F5 刷新
 
-![测试转发服务][44]
+![测试转发服务][55]
 
 # ZuulFilter
 
@@ -300,6 +300,8 @@ zuul:
 [22]: /images/2017/SpringCloud/zuul/22.png
 [33]: /images/2017/SpringCloud/zuul/33.png
 [44]: /images/2017/SpringCloud/zuul/44.png
+[55]: /images/2017/SpringCloud/zuul/55.png
+
 # Contact
 
  - 作者：鹏磊  
