@@ -208,7 +208,10 @@ spring.cloud.config.uri=http://localhost:8888/
 
 # 源码下载
 
+**GitHub：**[https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-config](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-config)
 
+**码云：**[https://gitee.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-config](https://gitee.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-config)
+ 
 # Contact
 
  - 作者：鹏磊  
