@@ -12,15 +12,21 @@ keywords: SpringCloud
 
 把上一篇，示例代码下载，才可以进行一下的操作，下载地址在文章末尾
 
- - `spring-cloud-eureka-service`
- - `spring-cloud-config-server-eureka-provider`
- - `spring-cloud-config-client-consumer`  
+ - `spring-cloud-eureka-service`  
+ - `spring-cloud-config-server`  
+ - `spring-cloud-eureka-provider-1`  
+ - `spring-cloud-eureka-provider-2`  
+ - `spring-cloud-eureka-provider-3`  
+ - `spring-cloud-feign-consumer`  
 
 # Config Client
 
-修改第九篇文章  Config Client **项目：spring-cloud-config-client-consumer** 
+修改第九篇文章项目
 
-
+ - `spring-cloud-eureka-provider-1`  
+ - `spring-cloud-eureka-provider-2`  
+ - `spring-cloud-eureka-provider-3`  
+ 
 # 添加依赖
 
 ```xml
@@ -31,12 +37,12 @@ keywords: SpringCloud
 </dependency>
 ```
 
-
 # 安全认证
 
 在 `application.properties` 添加以下配置.关闭安全认证
 
 ```sh
+#关闭刷新安全认证
 management.security.enabled=false
 ```
 
@@ -44,88 +50,102 @@ management.security.enabled=false
 
 # 开启 refresh
 
-在程序的启动类 `ConfigClientApplication` 通过 `@RefreshScope` 开启 SpringCloudConfig 客户端的 `refresh` 刷新范围，来获取服务端的最新配置，`@RefreshScope`要加在声明`@Controller`声明的类上，否则`refres`h之后`Conroller`拿不到最新的值，会默认调用缓存。
+在程序的启动类 `EurekaProviderApplication` 通过 `@RefreshScope` 开启 SpringCloudConfig 客户端的 `refresh` 刷新范围，来获取服务端的最新配置，`@RefreshScope`要加在声明`@Controller`声明的类上，否则`refres`h之后`Conroller`拿不到最新的值，会默认调用缓存。
 
 ```java
-package io.ymq.example.config.client;
+package io.ymq.example.eureka.provider;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RefreshScope
 @RestController
 @EnableEurekaClient
 @SpringBootApplication
-public class ConfigClientApplication {
+public class EurekaProviderApplication {
 
     @Value("${content}")
     String content;
 
+    @Value("${server.port}")
+    String port;
+
     @RequestMapping("/")
     public String home() {
-        return "content:" + content;
+        return "Hello world ,port:" + port+",content="+content;
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(ConfigClientApplication.class, args);
+        SpringApplication.run(EurekaProviderApplication.class, args);
     }
-
 }
-
 ```
  
 # 测试服务
 
-启动 `spring-cloud-eureka-service` ,`spring-cloud-config-server-eureka-provider` ,`spring-cloud-config-client-consumer`  三个项目
+按照顺序依次启动项目
 
-![查看服务注册情况][1]
+ - `spring-cloud-eureka-service`  
+ - `spring-cloud-config-server`  
+ - `spring-cloud-eureka-provider-1`  
+ - `spring-cloud-eureka-provider-2`  
+ - `spring-cloud-eureka-provider-3`  
+ - `spring-cloud-feign-consumer`  
 
-## 修改配置
+ 启动该工程后，访问服务注册中心，查看服务是否都已注册成功：[http://localhost:8761/](http://localhost:8761/) 
+ 
+![查看服务注册情况][11]
+
+
+
+## 修改Git仓库
 
 修改`Git`仓库配置，在 `content=hello dev` 后面加个 `123456`
+  
+![修改Git仓库][22]
 
-![修改git 仓库配置][3]
+## 访问服务
 
-## 查看 Config Server
+命令窗口，通过`curl http://127.0.0.1:9000/hello` 访问服务，或者在浏览器访问`http://127.0.0.1:9000/hello` F5 刷新
 
-通过 `Postman` 发送 `GET` 请求到：[http://localhost:8888/springCloudConfig/dev/master](http://localhost:8888/springCloudConfig/dev/master) 查看 `Config Server` 是否是最新的值
+**发现没有得到最新的值**
 
-![Config Server 已经是新的值][4]
+![访问服务][33]
 
-## 查看 Config Client
+# 刷新配置
 
-访问：[http://localhost:8088/](http://localhost:8088/) ,发现没有任何改变,由此可见，配置资源的更新不能即时通知到 Server Client
+通过 `Postman` 发送 `POST`请求到：[http://localhost:8081/refresh](http://localhost:8081/refresh)，[http://localhost:8083/refresh](http://localhost:8083/refresh)，我们可以看到以下内容：
 
-![访问服务][2]
+![刷新配置][44]
 
-## 刷新配置
+## 访问服务
 
-通过 `Postman` 发送 `POST`请求到：[http://localhost:8088/refresh](http://localhost:8088/refresh) ，我们可以看到以下内容：
+命令窗口，通过`curl http://127.0.0.1:9000/hello` 访问服务，或者在浏览器访问`http://127.0.0.1:9000/hello` F5 刷新
 
-**注意是 `PSOT` 请求**
+**发现：服务8082 没有刷新到最新配置** 因为没有手动触发更新
 
-![访问：http://localhost:8088/refresh][5]
-
-## 再次查看 Config Client
-
-访问：[http://localhost:8088/](http://localhost:8088/) 已经刷新了配置
-
-![访问服务][6]
-
-[1]: http://www.ymq.io/images/2017/SpringCloud/config-refresh/1.png
-[2]: http://www.ymq.io/images/2017/SpringCloud/config-refresh/2.png
-[3]: http://www.ymq.io/images/2017/SpringCloud/config-refresh/3.png
-[4]: http://www.ymq.io/images/2017/SpringCloud/config-refresh/4.png
-[5]: http://www.ymq.io/images/2017/SpringCloud/config-refresh/5.png
-[6]: http://www.ymq.io/images/2017/SpringCloud/config-refresh/6.png
+![访问服务][55]
 
 # 源码下载
 
-- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-service](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-eureka-service)
-- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-config-server-eureka-provider](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-config-server-eureka-provider)
-- [https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-config-client-consumer](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-config-client-consumer)
+**GitHub：**[https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-config-eureka-refresh](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-config-eureka-refresh)
+
+**[码云：**[https://gitee.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-config-eureka-refresh](https://gitee.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-config-eureka-refresh)
+
+[11]: /images/2017/SpringCloud/config-refresh/11.png
+[22]: /images/2017/SpringCloud/config-refresh/22.png
+[33]: /images/2017/SpringCloud/config-refresh/33.png
+[44]: /images/2017/SpringCloud/config-refresh/44.png
+[55]: /images/2017/SpringCloud/config-refresh/55.png
 
 # 下篇预告
 
 留了一个悬念,`Config Client` 实现配置的实时更新，我们可以使用 `/refresh` 接口触发，如果所有配置的更改，都需要手动触发，那岂不是维护成本很高，而使用	`Spring Cloud Bus` 消息总线实现方案，可以优雅的解决以上问题，下篇文章我们讲`Spring Cloud Bus` 的使用，关注下文章末尾公众号，支持下作者，感谢
-
 
 # Contact
 
