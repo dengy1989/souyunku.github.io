@@ -269,16 +269,16 @@ Dec 29 17:44:10 node6 rabbitmq-server[2948]: completed with 6 plugins.
 ![添加webhooks][10]
 
 
-[10]: /images/2017/SpringCloud/config-bus/10.png
-[11]: /images/2017/SpringCloud/config-bus/11.png
-[22]: /images/2017/SpringCloud/config-bus/22.png
-[33]: /images/2017/SpringCloud/config-bus/33.png
-[44]: /images/2017/SpringCloud/config-bus/44.png
-[55]: /images/2017/SpringCloud/config-bus/55.png
-[66]: /images/2017/SpringCloud/config-bus/66.png
-[77]: /images/2017/SpringCloud/config-bus/77.png
-[88]: /images/2017/SpringCloud/config-bus/88.png
-[99]: /images/2017/SpringCloud/config-bus/99.png
+[10]: http://www.ymq.io/images/2017/SpringCloud/config-bus/10.png
+[11]: http://www.ymq.io/images/2017/SpringCloud/config-bus/11.png
+[22]: http://www.ymq.io/images/2017/SpringCloud/config-bus/22.png
+[33]: http://www.ymq.io/images/2017/SpringCloud/config-bus/33.png
+[44]: http://www.ymq.io/images/2017/SpringCloud/config-bus/44.png
+[55]: http://www.ymq.io/images/2017/SpringCloud/config-bus/55.png
+[66]: http://www.ymq.io/images/2017/SpringCloud/config-bus/66.png
+[77]: http://www.ymq.io/images/2017/SpringCloud/config-bus/77.png
+[88]: http://www.ymq.io/images/2017/SpringCloud/config-bus/88.png
+[99]: http://www.ymq.io/images/2017/SpringCloud/config-bus/99.png
 
 ## 局部刷新
 
