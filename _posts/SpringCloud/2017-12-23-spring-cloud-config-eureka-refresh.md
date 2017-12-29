@@ -135,13 +135,13 @@ public class EurekaProviderApplication {
 
 **GitHub：**[https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-config-eureka-refresh](https://github.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-config-eureka-refresh)
 
-**[码云：**[https://gitee.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-config-eureka-refresh](https://gitee.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-config-eureka-refresh)
+**码云：**[https://gitee.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-config-eureka-refresh](https://gitee.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-config-eureka-refresh)
 
-[11]: /images/2017/SpringCloud/config-refresh/11.png
-[22]: /images/2017/SpringCloud/config-refresh/22.png
-[33]: /images/2017/SpringCloud/config-refresh/33.png
-[44]: /images/2017/SpringCloud/config-refresh/44.png
-[55]: /images/2017/SpringCloud/config-refresh/55.png
+[11]: http://www.ymq.io/images/2017/SpringCloud/config-refresh/11.png
+[22]: http://www.ymq.io/images/2017/SpringCloud/config-refresh/22.png
+[33]: http://www.ymq.io/images/2017/SpringCloud/config-refresh/33.png
+[44]: http://www.ymq.io/images/2017/SpringCloud/config-refresh/44.png
+[55]: http://www.ymq.io/images/2017/SpringCloud/config-refresh/55.png
 
 # 下篇预告
 
