@@ -12,7 +12,7 @@ keywords: java
 > 目前支持：七牛云，阿里云
 
 
-> GitHub： [https://github.com/souyunku/file-manager](https://github.com/souyunku/file-manager)
+> GitHub： [https://github.com/souyunku/Picture-Bed](https://github.com/souyunku/Picture-Bed)
 
 
 ### Configuration
