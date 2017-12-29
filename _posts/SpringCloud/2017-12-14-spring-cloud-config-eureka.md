@@ -263,9 +263,9 @@ spring.cloud.config.discovery.serviceId=config-server
 
 **码云：**[https://gitee.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-config-eureka](https://gitee.com/souyunku/spring-cloud-examples/tree/master/spring-cloud-config-eureka)
 
-[1]: /images/2017/SpringCloud/config-eureka/1.png
-[2]: /images/2017/SpringCloud/config-eureka/2.png
-[3]: /images/2017/SpringCloud/config-eureka/3.png
+[1]: http://www.ymq.io/images/2017/SpringCloud/config-eureka/1.png
+[2]: http://www.ymq.io/images/2017/SpringCloud/config-eureka/2.png
+[3]: http://www.ymq.io/images/2017/SpringCloud/config-eureka/3.png
 
 # Contact
 
