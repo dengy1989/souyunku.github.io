@@ -172,7 +172,7 @@ server:
 
 ## 负载均衡响应
 
-**在命令窗口`curl http://localhost:9000/hello`，发现Ribbon已经实现负载均衡**
+**在命令窗口`curl http://localhost:9000/hello`，发现Feign已经实现负载均衡**
 
 或者浏览器`get` 请求`http://localhost:9000/hello` F5 刷新
 
