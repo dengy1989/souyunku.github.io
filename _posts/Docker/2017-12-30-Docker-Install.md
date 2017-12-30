@@ -475,9 +475,9 @@ $ docker build - < context.tar.gz
 
 [https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-using-the-convenience-script](https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-using-the-convenience-script)
 
-[1]: /images/2017/docker/1.png
-[2]: /images/2017/docker/2.png
-[3]: /images/2017/docker/3.png
+[1]: http://www.ymq.io/images/2017/docker/1.png
+[2]: http://www.ymq.io/images/2017/docker/2.png
+[3]: http://www.ymq.io/images/2017/docker/3.png
 
 # Contact
 
