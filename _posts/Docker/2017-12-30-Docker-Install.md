@@ -448,7 +448,7 @@ $ docker build http://server/context.tar.gz
 ## 从标准输入中读取 `Dockerfile` 进行构建
 
 ```sh
-docker build - < Dockerfile
+$ docker build - < Dockerfile
 ```
 
 或
