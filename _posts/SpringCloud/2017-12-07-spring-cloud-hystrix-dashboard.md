@@ -426,6 +426,8 @@ public class ConsumerController {
 
 ![ Hystrix  Monitor 图形化监控页面][99]
 
+[8]: http://www.ymq.io/images/2017/SpringCloud/hystrix/8.png
+[9]: http://www.ymq.io/images/2017/SpringCloud/hystrix/9.png
 
 [11]: http://www.ymq.io/images/2017/SpringCloud/hystrix/11.png
 [22]: http://www.ymq.io/images/2017/SpringCloud/hystrix/22.png
