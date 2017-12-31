@@ -53,19 +53,37 @@ $ apt-get install \
 
 3.添加`Docker`的官方`GPG`密钥：
 
-```sh
-$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-```
-
-`9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88`通过搜索指纹的最后8个字符，确认您现在拥有指纹的密钥 。
+鉴于国内网络问题，强烈建议使用国内源，官方源请在注释中查看。
 
 ```sh
-$ sudo apt-key fingerprint 0EBFCD88
-pub   rsa4096 2017-02-22 [SCEA]
-      9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88
-uid           [ unknown] Docker Release (CE deb) <docker@docker.com>
-sub   rsa4096 2017-02-22 [S]
+$ curl -fsSL https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
+
+# 官方源
+# $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 ```
+
+4.添加 Docker 软件源
+
+鉴于国内网络问题，强烈建议使用国内源，官方源请在注释中查看。
+
+
+然后，我们需要向 `source.list` 中添加 `Docker` 软件源
+
+```sh
+$ sudo add-apt-repository \
+    "deb [arch=amd64] https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu \
+    $(lsb_release -cs) \
+    stable"
+	
+
+# 官方源
+# $ sudo add-apt-repository \
+#    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+#    $(lsb_release -cs) \
+#    stable"
+```
+
+以上命令会添加稳定版本的 `Docker CE APT` 镜像源，如果需要最新或者测试版本的 `Docker CE` 请将 `stable` 改为 `edge` 或者 `test`。从 `Docker 17.06` 开始，`edge test` 版本的 `APT` 镜像源也会包含稳定版本的 `Docker`。
 
 # 安装Docker CE
 
@@ -80,7 +98,6 @@ $ apt-get update
 ```sh
 $ apt-get install docker-ce
 ```
-
 3.在生产系统上，您应该安装特定版本的Docker CE，而不是始终使用最新版本。此输出被截断。列出可用的版本。
 
 ```sh
