@@ -315,16 +315,14 @@ public PasswordFilter PasswordFilter() {
 
 ### password 测试
 
-![The password cannot be empty][3]
-
 加上`token` 和 `password` `&password=123456` ，已经验证通过
 
 访问:[http://127.0.0.1:9000/?token=token-uuid&password=123456](http://127.0.0.1:9000/?token=token-uuid&password=123456)
 
 F5 刷新，每次都验证通过，并且负载均衡
+     
+ ![The password cannot be empty][55] 
 
-![Hello Zuul][55]
-                    
 [11]: http://www.ymq.io/images/2017/SpringCloud/zuulFilter/11.png
 [22]: http://www.ymq.io/images/2017/SpringCloud/zuulFilter/22.png
 [33]: http://www.ymq.io/images/2017/SpringCloud/zuulFilter/33.png
