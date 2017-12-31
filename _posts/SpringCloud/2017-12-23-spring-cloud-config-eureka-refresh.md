@@ -115,7 +115,7 @@ public class EurekaProviderApplication {
 
 **发现没有得到最新的值**
 
-![访问服务][7]
+![访问服务][33]
 
 # 刷新配置
 
