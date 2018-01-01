@@ -1,14 +1,14 @@
 # ---------------- #
 #   Main Configs   #
 # ---------------- #
-title: 鹏磊
+title: 鹏磊的技术博客
 author: 鹏磊
 subtitle: "Talk is cheap. Show me the code."
-description: "鹏磊"
+description: "鹏磊的技术博客"
 baseurl:
 url: http://www.ymq.io
 date_format: "ordinal"
-keywords: 鹏磊, penglei,www.ymq.io
+keywords: 鹏磊的技术博客,www.ymq.io,www.souyunku.com
 favicon: /favicon.ico
 #timezone: Asia/Shanghai
 encoding: "utf-8"
