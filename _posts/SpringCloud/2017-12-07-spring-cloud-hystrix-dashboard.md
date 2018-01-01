@@ -177,7 +177,7 @@ public class ConsumerController {
 
 或者浏览器`get` 请求`http://localhost:9000/hello` F5 刷新
 
-![eureka-provider [1-3] 提供者服务响应][22]
+![eureka-provider 提供者服务响应][22]
 
 **停止 spring-cloud-eureka-provider-1 提供者，端口为：8081服务**
 
@@ -270,7 +270,7 @@ public class HystrixClientFallbackFactory implements FallbackFactory<HomeClient>
 
 或者浏览器`get` 请求`http://localhost:9000/hello` F5 刷新
 
-![eureka-provider [1-3] 提供者服务响应][55]
+![eureka-provider 提供者服务响应][55]
 
 **停止 spring-cloud-eureka-provider-1 提供者，端口为：8081服务**
 
