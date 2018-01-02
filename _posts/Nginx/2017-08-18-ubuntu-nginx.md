@@ -14,8 +14,9 @@ keywords: Nginx
 
 ```sh		  
 $ apt-get update
-$ apt-get install build-essential libtool libpcre3 libpcre3-dev zlib1g-dev openssl openssl-devel
-
+$ apt-get install build-essential libtool libpcre3 libpcre3-dev zlib1g-dev
+$ apt-get install openssl
+$ apt-get install libssl-dev
 ```		
 
 ### 下载并解压
@@ -32,7 +33,7 @@ $ tar zxvf nginx-1.9.9.tar.gz
 
 ```sh
 $ cd nginx-1.9.9
-$ ./configure --prefix=/usr/local/nginx 
+$ ./configure --prefix=/usr/local/nginx \--with-http_ssl_module 
 ```	
 
 ### 安装
