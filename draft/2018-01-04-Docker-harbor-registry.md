@@ -1,18 +1,35 @@
 ---
 layout: post
-title: Docker Registry Server 搭建,配置免费域名HTTPS证书，及拥有权限认证、TLS 的私有仓库
+title: Docker Registry 企业级私有镜像仓库 Harbor 部署
 categories: Docker
-description: Docker Registry Server 搭建,配置免费域名HTTPS证书，及拥有权限认证、TLS 的私有仓库
+description: Docker Registry 企业级私有镜像仓库 Harbor 部署
 keywords: Docker
 ---
 
-上一篇文章搭建了一个具有基础功能的私有仓库，这次来搭建一个拥有权限认证、`TLS` 的私有仓库。
+上一篇文章搭建了一个具有基础功能，权限认证、`TLS` 的私有仓库，但是`Docker Registry` 作为镜像仓库，连管理界面都没有，甚至连一些运维必备的功能都是缺失的，还有什么 `Docker` 镜像仓库管理工具呢？
+这里有一个简单好用的企业级 `Registry` 服务器 - `Harbor`，推荐在生产环境上使用。
+
+# Harbor 简介
+
+`Harbor`是`VMware`公司开源的企业级`Docker Registry`项目，其目标是帮助用户迅速搭建一个企业级的`Docker registry`服务。
+
+它以`Docker`公司开源的`registry`为基础，提供了管理`UI`，基于角色的访问控制(`Role Based Access Control`)，`AD/LDAP`集成、以及审计日志(`Auditlogging`) 等企业用户需求的功能，
+通过添加一些企业必需的功能特性，例如安全、标识和管理等，扩展了开源 `Docker Distribution`。  
+
+作为一个企业级私有 `Registry` 服务器，`Harbor` 提供了更好的性能和安全。提升用户使用 `Registry` 构建和运行环境传输镜像的效率。  
+
+
+Harbor 支持安装在多个 `Registry` 节点的镜像资源复制，镜像全部保存在私有 `Registry` 中，确保数据和知识产权在公司内部网络中管控。  
+另外，`Harbor` 也提供了高级的安全特性，诸如用户管理，访问控制和活动审计等。
+
+`Harbor` 是由 `VMware` 中国研发团队负责开发的开源企业级 `Docker Registry`，不仅解决了我们直接使用 `Docker Registry` 的功能缺失，更解决了我们在生产使用 `Docker Registry` 面临的高可用、镜像仓库直接复制、镜像仓库性能等运维痛点。
 
 # 环境准备
 
  - 系统：Ubuntu 17.04 x64  
+ - Docker,Docker Compose
+ - python3
  - IP:198.13.48.154  
- - IP:45.76.144.121  
  - 域名：hub.ymq.io，此域名需要dns 解析到198.13.48.154 作为私有仓库地址  
  
 **本文出现的所有：`hub.ymq.io` 域名。使用时候请替换成自己的域名**
@@ -77,6 +94,54 @@ $ sudo apt-get install docker-ce
 
 ```sh
 $ sudo docker run hello-world
+```
+
+# Docker Compose
+
+## 安装 Compose
+
+在`Linux`上，您可以从`GitHub`上的`Compose`存储库版本页面下载`Docker Compose`二进制文件。按照链接中的说明进行操作，即`curl`在终端中运行命令以下载二进制文件。这些一步一步的说明也包括在下面。
+
+`GitHub`上的`Compose`存储库版本页面下载地址：[https://github.com/docker/compose/releases](https://github.com/docker/compose/releases)
+
+**1.运行此命令下载最新版本的`Docker Compose`：**
+
+```sh
+sudo curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+```
+
+**2.对二进制文件应用可执行权限：**
+
+```sh
+sudo chmod +x /usr/local/bin/docker-compose
+```
+
+## 测试安装
+
+```sh
+$ docker-compose --version
+docker-compose version 1.18.0, build 8dd22a9
+```
+
+# Python 环境
+
+## 安装 Python
+```sh
+apt-get install python3
+apt-get install python-minimal
+apt-get install python3-setuptools
+easy_install3 pip
+apt-get install python-argparse
+```
+
+## 测试安装
+
+```sh
+$ python --version
+Python 2.7.13
+
+$ pip -V
+pip 9.0.1 from /usr/local/lib/python3.5/dist-packages/pip-9.0.1-py3.5.egg (python 3.5)
 ```
 
 # 域名证书
@@ -155,8 +220,7 @@ MIIE9zCCA9+gAwIBAgISA6WV4ZFi6lr/kngVGx7/FoPMMA0GCSqGSIb3DQEBCwUA
 [Wed Jan  3 14:36:35 UTC 2018] And the full chain certs is there:  /root/.acme.sh/hub.ymq.io/fullchain.cer 
 ```
 
-
-# 搭建仓库
+# Harbor 仓库
 
 前提条件：域名的`dns` 解析到安装私有仓库的服务器`IP`上
 
@@ -178,44 +242,58 @@ $ sh acme.sh  --installcert  -d  hub.ymq.io   \
         --fullchain-file /opt/certs/fullchain.cer
 ```
 
-## 身份验证
+## Harbor 下载
 
-为用户创建一个带有一个条目的密码文件`testuser`，密码为 `testpassword`：
+下载Harbour版本的二进制文件 [https://github.com/vmware/harbor/releases](https://github.com/vmware/harbor/releases)
 
-```sh
-$ mkdir auth
-$ docker run \
-  --entrypoint htpasswd \
-  registry:2 -Bbn testuser testpassword > auth/htpasswd
-```
-
-## 创建仓库
-
-启动注册表，指示它使用`TLS`证书。这个命令将`certs/`目录绑定到容器中`/certs/`，并设置环境变量来告诉容器在哪里找到`fullchain.cer` 和`hub.ymq.io.key`文件。注册表在端口`443`（默认的`HTTPS`端口）上运行。
+目前最新版本 `V1.3.0`
 
 ```sh
-docker run -d \
-  --restart=always \
-  --name registry \
-  -v `pwd`/auth:/auth \
-  -e "REGISTRY_AUTH=htpasswd" \
-  -e "REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm" \
-  -e REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd \
-  -v `pwd`/certs:/certs \
-  -e REGISTRY_HTTP_ADDR=0.0.0.0:443 \
-  -e REGISTRY_HTTP_TLS_CERTIFICATE=/certs/fullchain.cer \
-  -e REGISTRY_HTTP_TLS_KEY=/certs/hub.ymq.io.key \
-  -p 443:443 \
-  registry:2
+$ wget https://storage.googleapis.com/harbor-releases/harbor-online-installer-v1.3.0.tgz
+$ tar -zxvf harbor-offline-installer-v1.3.0-rc4.tgz 
 ```
-
-查看日志
+## Harbor 配置
 
 ```sh
-$ docker logs -f registry
+$ cd harbor
+$ vim harbor.cfg
 ```
 
-## 登录仓库
+只需修改如下内容
+
+```sh
+hostname = hub.ymq.io
+ui_url_protocol = https
+customize_crt = off
+ssl_cert = /opt/certs/fullchain.cer
+ssl_cert_key = /opt/certs/hub.ymq.io.key
+```
+
+参数解释
+
+```sh
+hostname = 主机名：目标主机的主机名，用于访问UI和注册表服务。它应该是目标机器的IP地址或完全限定的域名（FQDN），例如198.13.48.154或 `hub.ymq.io`。不要使用localhost或127.0.0.1为主机名 - 注册表服务需要由外部客户端访问！
+ui_url_protocol = （http或https，默认为http）用于访问UI和令牌/通知服务的协议。如果公证处于启用状态，则此参数必须为https。默认情况下，这是http。
+customize_crt = （打开或关闭，默认打开）打开此属性时，准备脚本创建私钥和根证书，用于生成/验证注册表令牌。当由外部来源提供密钥和根证书时，将此属性设置为off
+ssl_cert =SSL证书的路径，仅当协议设置为https时才应用
+ssl_cert_key = SSL密钥的路径，仅当协议设置为https时才应用
+```
+
+## 默认安装
+
+```sh
+$ sudo ./install.sh
+```
+
+如果一切正常，你应该可以打开浏览器访问`http://hub.ymq.io`的管理门户（将`hub.ymq.io`更改为在你的配置中的主机名`harbor.cfg`）。请注意，默认的管理员用户名/密码是`admin / Harbor12345`。
+
+登录管理员门户并创建一个新项目，例如`myproject`。然后，您可以使用docker命令来登录和推送图像（默认情况下，注册表服务器在端口`80`上侦听）：
+
+## 测试仓库
+
+### 登录仓库
+
+登录仓库:Username:`admin` Password:`Harbor12345`。
 
 ```sh
 $ docker login hub.ymq.io
@@ -224,7 +302,7 @@ Password: 输入仓库密码
 Login Succeeded
 ```
 
-## 拉取镜像
+### 拉取镜像
 
 从 `Docker Hub`拉取 `ubuntu:16.04` 镜像
 
@@ -232,64 +310,29 @@ Login Succeeded
 $ docker pull ubuntu:16.04
 ```
 
-## 标记镜像
+### 标记镜像
 
-将镜像标记为 `hub.ymq.io/my-ubuntu`，在推送时，`Docker`会将其解释为仓库的位置。
 
-```sh
-$ docker tag ubuntu:16.04 hub.ymq.io/my-ubuntu
-```
-
-## 推送镜像
-
-将镜像推送到本地镜像标记的仓库`hub.ymq.io/my-ubuntu`
+将镜像标记为 `hub.ymq.io/myproject`，在推送时，`Docker`会将其解释为仓库的位置。
 
 ```sh
-$ docker push hub.ymq.io/my-ubuntu
+$ docker tag  ubuntu:16.04 hub.ymq.io/myproject/my-ubuntu
 ```
 
-## 删除镜像
+### 推送镜像
 
-删除本地缓存`ubuntu:16.04`和`hub.ymq.io/my-ubuntu` 镜像，以便您可以测试从私有仓库中拉取镜像。这不会`hub.ymq.io/my-ubuntu` 从您的私有仓库中删除镜像。
+将镜像推送到本地镜像标记的仓库`hub.ymq.io/myproject/`
 
 ```sh
-$ docker image remove ubuntu:16.04
-$ docker image remove hub.ymq.io/my-ubuntu
+$ docker push hub.ymq.io/myproject/my-ubuntu
 ```
-## 拉取镜像
-
-拉取 `hub.ymq.io` 仓库的 `my-ubuntu` 镜像。
 
 ```sh
-$ docker pull hub.ymq.io/my-ubuntu
+$ docker images hub.ymq.io/myproject/my-ubuntu 
 ```
 
-## 查看镜像
-
-```sh
-$ docker images hub.ymq.io/my-ubuntu
-REPOSITORY             TAG                 IMAGE ID            CREATED             SIZE
-hub.ymq.io/my-ubuntu   latest              00fd29ccc6f1        2 weeks ago         111MB
-```
-
-在浏览器中查看仓库中的镜像。需要输入账号密码
-
-![ hub.ymq.io ][1]
-![ hub.ymq.io ][2]
-
-## 操作API
-
-Docker Registry HTTP API V2 
-
-仓库操作 API 官方文档：[https://docs.docker.com/registry/spec/api/](https://docs.docker.com/registry/spec/api/)
-
-仓库搭建 官方文档：[https://docs.docker.com/registry/deploying/](https://docs.docker.com/registry/deploying/)
-
-# Harbor
-
-`Harbor`是`VMware`公司开源的企业级`DockerRegistry`项目，项目地址为：[https://github.com/vmware/harbor](https://github.com/vmware/harbor)
-
-其目标是帮助用户迅速搭建一个企业级的`Dockerregistry`服务。它以`Docker`公司开源的`registry`为基础，提供了管理`UI`，基于角色的访问控制(`Role Based Access Control`)，`AD/LDAP`集成、以及审计日志(`Auditlogging`) 等企业用户需求的功能，同时还原生支持中文。`Harbor`的每个组件都是以Docker容器的形式构建的，使用`Docker Compose`来对它进行部署
+官方文档:
+[https://github.com/vmware/harbor/blob/master/docs/installation_guide.md](https://github.com/vmware/harbor/blob/master/docs/installation_guide.md)
 
 ![ https://hub.ymq.io/harbor/projects][3]
 
