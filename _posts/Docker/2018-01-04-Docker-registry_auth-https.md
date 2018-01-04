@@ -274,8 +274,8 @@ hub.ymq.io/my-ubuntu   latest              00fd29ccc6f1        2 weeks ago      
 ![ hub.ymq.io ][1]
 ![ hub.ymq.io ][2]
 
-[1]: /images/2018/docker/1.png
-[2]: /images/2018/docker/2.png
+[1]: http://www.ymq.io/images/2018/docker/1.png
+[2]: http://www.ymq.io/images/2018/docker/2.png
 
 ## 操作API
 
