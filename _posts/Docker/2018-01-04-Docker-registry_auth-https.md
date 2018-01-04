@@ -274,9 +274,6 @@ hub.ymq.io/my-ubuntu   latest              00fd29ccc6f1        2 weeks ago      
 ![ hub.ymq.io ][1]
 ![ hub.ymq.io ][2]
 
-[1]: http://www.ymq.io/images/2018/docker/1.png
-[2]: http://www.ymq.io/images/2018/docker/2.png
-
 ## 操作API
 
 Docker Registry HTTP API V2 
@@ -284,6 +281,20 @@ Docker Registry HTTP API V2
 仓库操作 API 官方文档：[https://docs.docker.com/registry/spec/api/](https://docs.docker.com/registry/spec/api/)
 
 仓库搭建 官方文档：[https://docs.docker.com/registry/deploying/](https://docs.docker.com/registry/deploying/)
+
+# Harbor
+
+`Harbor`是`VMware`公司开源的企业级`DockerRegistry`项目，项目地址为：[https://github.com/vmware/harbor](https://github.com/vmware/harbor)
+
+其目标是帮助用户迅速搭建一个企业级的`Dockerregistry`服务。它以`Docker`公司开源的`registry`为基础，提供了管理`UI`，基于角色的访问控制(`Role Based Access Control`)，`AD/LDAP`集成、以及审计日志(`Auditlogging`) 等企业用户需求的功能，同时还原生支持中文。`Harbor`的每个组件都是以Docker容器的形式构建的，使用`Docker Compose`来对它进行部署
+
+![ https://hub.ymq.io/harbor/projects][3]
+
+**Harbor 的搭建，及使用，正在整理中，会在下篇文章体现，关注公众号：“搜云库” 我会在微信公众号首发**
+
+[1]: http://www.ymq.io/images/2018/docker/1.png
+[2]: http://www.ymq.io/images/2018/docker/2.png
+[3]: /images/2018/docker/harbor/1.png
 
 # Contact
 
