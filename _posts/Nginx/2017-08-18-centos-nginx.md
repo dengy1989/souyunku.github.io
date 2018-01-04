@@ -40,7 +40,7 @@ $ make
 $ make && make install
 ```	
 
-默认安装在`/usr/locale/nginx`
+默认安装在`/usr/local/nginx`
 
 里面有四个目录：
  - conf: 配置文件夹，最重要文件是nginx.conf

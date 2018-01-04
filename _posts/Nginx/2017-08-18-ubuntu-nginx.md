@@ -14,9 +14,8 @@ keywords: Nginx
 
 ```sh		  
 $ apt-get update
-$ apt-get install build-essential libtool libpcre3 libpcre3-dev zlib1g-dev
-$ apt-get install openssl
-$ apt-get install libssl-dev
+$ apt-get install build-essential libtool libpcre3 libpcre3-dev zlib1g-dev openssl openssl-devel
+
 ```		
 
 ### 下载并解压
@@ -33,7 +32,7 @@ $ tar zxvf nginx-1.9.9.tar.gz
 
 ```sh
 $ cd nginx-1.9.9
-$ ./configure --prefix=/usr/local/nginx \--with-http_ssl_module 
+$ ./configure --prefix=/usr/local/nginx 
 ```	
 
 ### 安装
@@ -43,7 +42,7 @@ $ make
 $ make && make install
 ```	
 
-默认安装在`/usr/locale/nginx`
+默认安装在`/usr/local/nginx`
 
 里面有四个目录：
  - conf: 配置文件夹，最重要文件是nginx.conf

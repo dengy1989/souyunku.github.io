@@ -29,8 +29,6 @@ $ tar zxvf nginx-1.9.9.tar.gz
 
 ### 编译
 
-编译时候可以指定编译参数，参考文章尾部：**常用编译选项**
-
 ```sh
 $ cd nginx-1.9.9
 $ ./configure --prefix=/usr/local/nginx \--with-http_ssl_module 
@@ -43,7 +41,7 @@ $ make
 $ make && make install
 ```	
 
-默认安装在`/usr/locale/nginx`
+默认安装在`/usr/local/nginx`
 
 里面有四个目录：
  - conf: 配置文件夹，最重要文件是nginx.conf
@@ -51,7 +49,6 @@ $ make && make install
  - logs: 日志文件夹
  - sbin: nginx 的可执行文件，启动、停止等操作
 
- 
 ## 常用命令
 
 ### 正确性检查
@@ -111,6 +108,7 @@ curl  https://get.acme.sh | sh
 
 ```sh
 cd ~/.acme.sh/
+apt install socat
 sh acme.sh  --issue -d docker.souyunku.com   --standalone
 ```
 
@@ -126,6 +124,10 @@ cp docker.souyunku.com.key /certs
 ### 配置Nginx
 
 ```sh
+vim /usr/local/nginx/conf/nginx.conf
+```
+
+```sh
 server {
 	listen 443;
 	ssl on;
@@ -133,6 +135,22 @@ server {
 	ssl_certificate_key  /certs/docker.souyunku.com.key;
 }
 ```
+
+每次修改nginx配置文件后都要进行检查
+
+```sh
+$ /usr/local/nginx/sbin/nginx -t
+```
+
+### 启动Nginx
+
+```sh
+$ /usr/local/nginx/sbin/nginx
+```
+
+### 测试证书
+
+浏览器访问：[https://docker.souyunku.com/](https://docker.souyunku.com/)
 
 # Contact
 
