@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Docker Registry Server 搭建,配置免费域名HTTPS证书，及拥有权限认证、TLS 的私有仓库
+title: Docker Registry Server 搭建,配置免费HTTPS证书，及拥有权限认证、TLS 的私有仓库
 categories: Docker
-description: Docker Registry Server 搭建,配置免费域名HTTPS证书，及拥有权限认证、TLS 的私有仓库
+description: Docker Registry Server 搭建,配置免费HTTPS证书，及拥有权限认证、TLS 的私有仓库
 keywords: Docker
 ---
 
@@ -12,7 +12,6 @@ keywords: Docker
 
  - 系统：Ubuntu 17.04 x64  
  - IP:198.13.48.154  
- - IP:45.76.144.121  
  - 域名：hub.ymq.io，此域名需要dns 解析到198.13.48.154 作为私有仓库地址  
  
 **本文出现的所有：`hub.ymq.io` 域名。使用时候请替换成自己的域名**
@@ -297,7 +296,7 @@ Docker Registry HTTP API V2
 
 [1]: http://www.ymq.io/images/2018/docker/1.png
 [2]: http://www.ymq.io/images/2018/docker/2.png
-[3]: /images/2018/docker/harbor/1.png
+[3]: http://www.ymq.io/images/2018/docker/harbor/1.png
 
 # Contact
 
