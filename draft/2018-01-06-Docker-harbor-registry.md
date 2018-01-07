@@ -382,12 +382,6 @@ hub.ymq.io/myproject/my-ubuntu   latest              00fd29ccc6f1        3 weeks
 官方文档:
 [https://github.com/vmware/harbor/blob/master/docs/installation_guide.md](https://github.com/vmware/harbor/blob/master/docs/installation_guide.md)
 
-
-Docker Compose 项目
-
-Docker Compose 是 Docker 官方编排（Orchestration）项目之一，负责快速在集群中部署分布式应用。
-
-
 # Docker Compose
 
 `Docker Compose` 是 `Docker` 官方编排（`Orchestration`）项目之一，负责快速在集群中部署分布式应用。
