@@ -402,7 +402,7 @@ hub.ymq.io/myproject/my-ubuntu   latest              00fd29ccc6f1        3 weeks
  - 作者：鹏磊  
  - 出处：[http://www.ymq.io/2018/01/06/Docker-harbor-registry/](http://www.ymq.io/2018/01/06/Docker-harbor-registry/)  
  - 版权归作者所有，转载请注明出处
- - Wechat：关注公众号，搜云库，专注于开发技术的研究与知识分享
+ - Wechat：关注公众号，"搜云库"，专注于开发技术的研究与知识分享
  
 ![关注公众号-搜云库](http://www.ymq.io/images/souyunku.png "搜云库")
 
