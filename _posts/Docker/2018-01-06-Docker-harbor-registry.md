@@ -407,4 +407,4 @@ hub.ymq.io/myproject/my-ubuntu   latest              00fd29ccc6f1        3 weeks
  
 ![关注公众号-搜云库](http://www.ymq.io/images/souyunku.png "搜云库")
 
-我的博客即将搬运同步至腾讯云+社区，邀请大家一同入驻：https://cloud.tencent.com/developer/support-plan
+我的博客即将搬运同步至腾讯云+社区，邀请大家一同入驻：[https://cloud.tencent.com/developer/support-plan](https://cloud.tencent.com/developer/support-plan)
