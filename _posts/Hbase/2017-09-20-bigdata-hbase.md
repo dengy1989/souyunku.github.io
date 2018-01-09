@@ -87,7 +87,7 @@ pwd{'密码': '222'} |
 
 **图 1. Hbase 中逻辑上数据的排布与物理上排布的关联**
 
-![](/images/2017/hbase/describe/image001.png)
+![](http://www.ymq.io/images/2017/hbase/describe/image001.png)
 
 
 
@@ -103,7 +103,7 @@ pwd{'密码': '222'} |
 
 **图 2\. HBase 的相关模块**
 
-![](/images/2017/hbase/describe/image002.png)
+![](http://www.ymq.io/images/2017/hbase/describe/image002.png)
 
 
 接下来，我们简单的一一介绍下 HBase 中相关模块的作用。
@@ -124,7 +124,7 @@ pwd{'密码': '222'} |
 
 **图 3\. HBase 的工作原理**
 
-![](/images/2017/hbase/describe/image003.png)
+![](http://www.ymq.io/images/2017/hbase/describe/image003.png)
 
 
 
@@ -138,7 +138,7 @@ pwd{'密码': '222'} |
 
 **图 4\. HFile 的结构**
 
-![](/images/2017/hbase/describe/image004.png)
+![](http://www.ymq.io/images/2017/hbase/describe/image004.png)
 
 
 从图中我们可以看到 HFile 由很多个数据块（Block）组成，并且有一个固定的结尾块。其中的数据块是由一个 Header 和多个 Key-Value 的键值对组成。在结尾的数据块中包含了数据相关的索引信息，系统也是通过结尾的索引信息找到 HFile 中的数据。HFile 中的数据块大小默认为 64KB。如果访问 HBase 数据库的场景多为有序的访问，那么建议将该值设置的大一些。如果场景多为随机访问，那么建议将该值设置的小一些。一般情况下，通过调整该值可以提高 HBase 的性能。
@@ -147,7 +147,7 @@ pwd{'密码': '222'} |
 
 **图 5\. HBase 的数据映射关系**
 
-![](/images/2017/hbase/describe/image005.png)
+![](http://www.ymq.io/images/2017/hbase/describe/image005.png)
 
 ## HBase 的使用建议
 
@@ -171,14 +171,14 @@ pwd{'密码': '222'} |
 
 **图 6\. Phoenix 的下载页面**
 
-![](/images/2017/hbase/describe/image006.png)
+![](http://www.ymq.io/images/2017/hbase/describe/image006.png)
 
 
 下载之后需要解压 Phoenix 的 tar 包，并将所有的 jar 文件拷贝到每台 Region Server 机器的 $HBASE_HOME/lib 下面，并重启所有的 Region Server。对于 Ambari 部署的 HBase，其 HBASE_HOME 目录便是/usr/hdp/2.4.0.0-169/hbase/lib/,添加 Jar 包到该目录之后，可以直接在 Ambari 的 WEB 中，重启整个 HBase。重启之后，我们便尽可以进入到刚才解压的 Phoenix 目录，进入其子目录 bin。在这个目录中 Phoenix 提供了 sqlline.py 脚本。我们可以通过该脚本连接 HBase，并测试相关的 SQL 语句。我们可以在 bin 目录中看到文件 hbase-site.xml，如果需要对 Phoenix 设置相关参数，就需要更改该文件，并将该文件同步给 HBase 中。Sqlline.py 最简单的使用方法，就是直接以 Zookeeper 机器名为参数即可，如下图：
 
 **图 7. Sqlline.py 使用示意图**
 
-![](/images/2017/hbase/describe/image007.png)
+![](http://www.ymq.io/images/2017/hbase/describe/image007.png)
 
 
 上图中，我们还使用了 sqlline.py 支持的 table 命令，该命令可以列出 HBase 中所有的表。这里需要注意 Phoenix 不支持直接显示 HBase Shell（HBase 自带一个 CLI 访问工具，后续文章在介绍）中创建的表格。原因很简单，当在 Phoenix 创建一张表时，Phoenix 是将表进行了重组装。而对 HBase Shell 创建的表 Phoenix 并未进行加工，所以无法直接显示。如果需要将 HBase Shell 中创建的表格关联到 Phoenix 中查看，就需要在 Phoenix 中创建一个视图（View）做关联。例如，我们现在 HBase Shell 中创建了一张表"table1"，并插入了几行数据，如下。
@@ -191,21 +191,21 @@ pwd{'密码': '222'} |
 
 **图 8\. Phoenix 执行表查询结果**
 
-![](/images/2017/hbase/describe/image008.png)
+![](http://www.ymq.io/images/2017/hbase/describe/image008.png)
 
 
 我们可以看到结果中多了一个 table1 的视图，这样 Phoenix 就将 table1 表的内容关联到了 Phoenix 的视图当中。我们可以使用 select 等语句访问其中的内容，如下：
 
 **图 9\. Phoenix 执行查询结果**
 
-![](/images/2017/hbase/describe/image009.png)
+![](http://www.ymq.io/images/2017/hbase/describe/image009.png)
 
 
 最后我们再回头解释下刚才创建视图的命令。在创建关联的视图时，我们需要确保视图和列的名称与原表的名称完全一致。Phoenix 默认使用大写字母，因此，当 HBase Shell 中使用的是小写，我们便需要使用双引号引用相关的名称。如果原名称是大写，就可以省去双引号。Pk 是我们定义的一个主键名（可以随便定义），这是由于在 HBase Shell 中并没有主键的概念，所以 Row-key 是没有一个名称的。cf1 和 name 加起来用于指向 HBase 中的一个单元格（Cell），示例的命令中我关联了两个单元格（如果你愿意，可以只关联一个）。在安装了 Phoenix 之后，我们应尽量避免直接使用 HBase Shell 来创建表，取而代之的便是直接使用 Phoenix。例如下图中，我使用 Phoenix 创建了一张表 t1，包含了 name 和 age 两个列，并插入了两行数据。具体的命令如下图：
 
 **图 10\. 如何在 Phoenix 中创建表**
 
-![](/images/2017/hbase/describe/image010.png)
+![](http://www.ymq.io/images/2017/hbase/describe/image010.png)
 
 
 看到这些命令之后，熟悉 SQL 的读者肯定不会觉得陌生。这便是 Phoenix 提供的最重要的功能之一——SQL 的支持。我们可以看到在 Phoenix 中，我们使用了丰富的数据类型，如 INTEGER 和 VARCHAR。这些都是无法直接在 HBase 中使用的。有兴趣的读者可以在 sqlline.py 中尝试更多的 SQL 语句。当需要从 sqlline.py 退出时，可以执行!quit 命令（可以通过使用!help 查看更多的命令）。退出 sqlline.py 之后，让我们在 HBase Shell 中看看 Phoenix 创建的表会是什么样子。如下：

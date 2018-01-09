@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Docker Registry企业级私有镜像仓库Harbor管理WEB UI, 可能是最详细的部署
+title: 可能是最详细的部署：Docker Registry企业级私有镜像仓库Harbor管理WEB UI
 categories: Docker
-description: Docker Registry企业级私有镜像仓库Harbor管理WEB UI,可能是最详细的部署
+description: 可能是最详细的部署：Docker Registry企业级私有镜像仓库Harbor管理WEB UI
 keywords: Docker
 ---
 
@@ -382,12 +382,6 @@ hub.ymq.io/myproject/my-ubuntu   latest              00fd29ccc6f1        3 weeks
 官方文档:
 [https://github.com/vmware/harbor/blob/master/docs/installation_guide.md](https://github.com/vmware/harbor/blob/master/docs/installation_guide.md)
 
-
-Docker Compose 项目
-
-Docker Compose 是 Docker 官方编排（Orchestration）项目之一，负责快速在集群中部署分布式应用。
-
-
 # Docker Compose
 
 `Docker Compose` 是 `Docker` 官方编排（`Orchestration`）项目之一，负责快速在集群中部署分布式应用。
@@ -406,10 +400,10 @@ Docker Compose 是 Docker 官方编排（Orchestration）项目之一，负责�
 # Contact
 
  - 作者：鹏磊  
- - 出处：[http://www.ymq.io](http://www.ymq.io)  
- - Email：[admin@souyunku.com](admin@souyunku.com)  
+ - 出处：[http://www.ymq.io/2018/01/06/Docker-harbor-registry/](http://www.ymq.io/2018/01/06/Docker-harbor-registry/)  
  - 版权归作者所有，转载请注明出处
- - Wechat：关注公众号，搜云库，专注于开发技术的研究与知识分享
+ - Wechat：关注公众号，"搜云库"，专注于开发技术的研究与知识分享
  
 ![关注公众号-搜云库](http://www.ymq.io/images/souyunku.png "搜云库")
 
+我的博客即将搬运同步至腾讯云+社区，邀请大家一同入驻：[https://cloud.tencent.com/developer/support-plan](https://cloud.tencent.com/developer/support-plan)
