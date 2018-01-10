@@ -1,8 +1,8 @@
 ---
 layout: post
-title: 离线部署 Cloudera Manager 5 和 CDH 5.12.1 及使用 CDH 部署 Hadoop 集群服务
+title: 离线部署  CDH 5.12.1 及使用 CDH 部署 Hadoop 大数据平台集群服务
 categories: CDH
-description: 离线部署 Cloudera Manager 5 和 CDH 5.12.1 及使用 CDH 部署 Hadoop 集群服务
+description: 离线部署  CDH 5.12.1 及使用 CDH 部署 Hadoop 大数据平台集群服务
 keywords: CDH
 ---
 
@@ -711,7 +711,7 @@ grant all on oozie.* TO 'oozie'@'%' IDENTIFIED BY 'oozie';
 # Contact
 
  - 作者：鹏磊  
- - 出处：[http://www.ymq.io](http://www.ymq.io)  
+ - 出处：[http://www.ymq.io/2017/09/24/Cloudera-Manager](http://www.ymq.io/2017/09/24/Cloudera-Manager/)  
  - Email：[admin@souyunku.com](admin@souyunku.com)  
  - 版权归作者所有，转载请注明出处
  - Wechat：关注公众号，搜云库，专注于开发技术的研究与知识分享
