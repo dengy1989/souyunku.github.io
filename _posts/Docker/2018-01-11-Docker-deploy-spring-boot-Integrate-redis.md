@@ -6,7 +6,7 @@ description: Docker 部署 SpringBoot 项目整合 Redis 镜像做访问计数De
 keywords: Docker
 ---
 
-Docker 部署SpringBoot项目整合redis 镜像做访问计数Demo
+Docker 部署SpringBoot项目整合 Redis 镜像做访问计数Demo
 
 # 最终效果如下
 
@@ -422,7 +422,7 @@ e68d43860361        souyunku-app:v1     "java -Djava.securit…"   About a minut
 # Contact
 
  - 作者：鹏磊  
- - 出处：[http://www.ymq.io](http://www.ymq.io)  
+ - 出处：[http://www.ymq.io/2018/01/11/Docker-deploy-spring-boot-Integrate-redis](http://www.ymq.io/2018/01/11/Docker-deploy-spring-boot-Integrate-redis/)  
  - Email：[admin@souyunku.com](admin@souyunku.com)  
  - 版权归作者所有，转载请注明出处
  - Wechat：关注公众号，搜云库，专注于开发技术的研究与知识分享
