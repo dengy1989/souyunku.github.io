@@ -234,14 +234,13 @@ $ docker run --name myweb -d -p 80:80 nginx
 
 直接访问：[http://localhost](http://localhost)；如果使用的是 Docker Toolbox，或者是在虚拟机、云服务器上安装的 Docker，则需要将 localhost 换为虚拟机地址或者实际云服务器地址。
 
+![ Welcome to nginx!][1]
 
 参考：Docker 官网 Get Docker CE for Ubuntu
 
 [https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-using-the-convenience-script](https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-using-the-convenience-script)
 
 [1]: http://www.ymq.io/images/2017/docker/1.png
-[2]: http://www.ymq.io/images/2017/docker/2.png
-[3]: http://www.ymq.io/images/2017/docker/3.png
 
 # Contact
 
