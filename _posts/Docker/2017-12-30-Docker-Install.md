@@ -35,11 +35,15 @@ $ apt-get remove docker docker-engine docker.io
 
 - 设置存储库
 
+## 1.更新软件包
+
 1.更新`apt`软件包索引：
 
 ```sh
 $ apt-get update
 ```
+
+## 2.设置存储库
 
 2.安装软件包以允许`apt`通过`HTTPS`使用存储库：
 
@@ -51,6 +55,8 @@ $ apt-get install \
     software-properties-common
 ```
 
+## 3.添加`GPG`密钥
+
 3.添加`Docker`的官方`GPG`密钥：
 
 鉴于国内网络问题，强烈建议使用国内源，官方源请在注释中查看。
@@ -61,6 +67,8 @@ $ curl -fsSL https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu/gpg | sudo apt-k
 # 官方源
 # $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 ```
+
+## 4.设置镜像源
 
 4.添加 Docker 软件源
 
@@ -87,17 +95,24 @@ $ sudo add-apt-repository \
 
 # 安装Docker CE
 
+## 1.更新软件包
+
 1.更新apt软件包索引。
 
 ```sh
 $ apt-get update
 ```
 
+## 2.安装Docker CE
+
 2.安装最新版本的Docker CE，或者转到下一步安装特定版本。任何现有的Docker安装都将被替换。
 
 ```sh
 $ apt-get install docker-ce
 ```
+
+## 3.列出版本
+
 3.在生产系统上，您应该安装特定版本的Docker CE，而不是始终使用最新版本。此输出被截断。列出可用的版本。
 
 ```sh
@@ -116,6 +131,8 @@ docker-ce | 17.06.0~ce-0~ubuntu | https://download.docker.com/linux/ubuntu zesty
 ```sh
 $ sudo apt-get install docker-ce=<VERSION>
 ```
+
+## 4.运行镜像
 
 4.通过运行`hello-world` 映像验证是否正确安装了`Docker CE` 。
 
@@ -161,18 +178,27 @@ For more examples and ideas, visit:
 
 要创建`docker`组并添加您的用户：
 
+## 1.创建用户组
+
 1.创建docker组。
 
 ```sh
 $ sudo groupadd docker
 ```
+
+## 2.添加用户组
+
 2.将您的用户添加到docker组中。
 
 ```sh
 $ sudo usermod -aG docker $USER
 ```
 
+## 3.注销系统
+
 3.注销并重新登录,如果在虚拟机上进行测试，则可能需要重新启动虚拟机才能使更改生效。
+
+## 4.运行镜像
 
 4.验证您可以不运行`docker`命令`sudo`。
 
@@ -182,11 +208,15 @@ $ docker run hello-world
 
 # 卸载Docker CE
 
+## 1.卸载
+
 1.卸载`Docker CE`软件包：
 
 ```sh
 $ sudo apt-get purge docker-ce
 ```
+
+## 2.删除
 
 2.主机上的图像，容器，卷或自定义配置文件不会自动删除。删除所有图像，容器和卷：
 
