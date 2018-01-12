@@ -97,13 +97,13 @@ spring.cloud.config.server.git.search-paths=spring-cloud-config
 eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka/
 ```
 
- - `spring.cloud.config.server.git.uri：`配置`git`仓库地址
- - `spring.cloud.config.server.git.searchPaths：`配置仓库路径
- - `spring.cloud.config.label：`配置仓库的分支
- - `spring.cloud.config.server.git.username：`访问`git`仓库的用户名
- - `spring.cloud.config.server.git.password：`访问`git`仓库的用户密码
-   
- - `eureka.client.serviceUrl.defaultZone：eureka`注册中心地址
+`spring.cloud.config.server.git.uri：`配置`git`仓库地址
+`spring.cloud.config.server.git.searchPaths：`配置仓库路径
+`spring.cloud.config.label：`配置仓库的分支
+`spring.cloud.config.server.git.username：`访问`git`仓库的用户名
+`spring.cloud.config.server.git.password：`访问`git`仓库的用户密码
+     
+`eureka.client.serviceUrl.defaultZone：eureka`注册中心地址
 
 Git仓库如果是私有仓库需要填写用户名密码，示例是公开仓库，所以不配置密码。
 
@@ -144,11 +144,11 @@ Git仓库如果是私有仓库需要填写用户名密码，示例是公开仓�
 
 http请求地址和资源文件映射如下:
 
- - `/{application}/{profile}[/{label}]`
- - `/{application}-{profile}.yml`
- - `/{label}/{application}-{profile}.yml`
- - `/{application}-{profile}.properties`
- - `/{label}/{application}-{profile}.properties`
+`/{application}/{profile}[/{label}]`
+`/{application}-{profile}.yml`
+`/{label}/{application}-{profile}.yml`
+`/{application}-{profile}.properties`
+`/{label}/{application}-{profile}.properties`
 
 
 # 客户端端配置
@@ -224,15 +224,15 @@ spring.cloud.config.discovery.enabled=true
 spring.cloud.config.discovery.serviceId=config-server
 ```
 
-- `spring.cloud.config.label` 指明远程仓库的分支
-- `spring.cloud.config.profile`
-- `dev`开发环境配置文件
-- `test`测试环境
-- `pro`正式环境
-- `#spring.cloud.config.uri= http://localhost:8888/` 指明配置服务中心的网址**（注释掉）**
-  
-- `spring.cloud.config.discovery.enabled=true` 是从配置中心读取文件。
-- `spring.cloud.config.discovery.serviceId=config-server`  配置中心的`servieId`，服务名称，通过服务名称去 `Eureka`注册中心找服务
+`spring.cloud.config.label` 指明远程仓库的分支
+`spring.cloud.config.profile`
+`dev`开发环境配置文件
+`test`测试环境
+`pro`正式环境
+`#spring.cloud.config.uri= http://localhost:8888/` 指明配置服务中心的网址**（注释掉）**
+
+`spring.cloud.config.discovery.enabled=true` 是从配置中心读取文件。
+`spring.cloud.config.discovery.serviceId=config-server`  配置中心的`servieId`，服务名称，通过服务名称去 `Eureka`注册中心找服务
  
 ## 测试服务
 
@@ -270,7 +270,7 @@ spring.cloud.config.discovery.serviceId=config-server
 # Contact
 
  - 作者：鹏磊  
- - 出处：[http://www.ymq.io](http://www.ymq.io)  
+ - 出处：[http://www.ymq.io/2017/12/14/spring-cloud-config-eureka](http://www.ymq.io/2017/12/14/spring-cloud-config-eureka/)  
  - Email：[admin@souyunku.com](admin@souyunku.com)  
  - 版权归作者所有，转载请注明出处
  - Wechat：关注公众号，搜云库，专注于开发技术的研究与知识分享

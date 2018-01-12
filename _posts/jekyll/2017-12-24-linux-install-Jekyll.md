@@ -130,7 +130,7 @@ git clone https://github.com/mzlogin/mzlogin.github.io.git
 ## 3、安装 Jekyll
 
 ```sh
-cd souyunku.github.io/
+cd mzlogin.github.io.git/
 bundle install
 ```
 

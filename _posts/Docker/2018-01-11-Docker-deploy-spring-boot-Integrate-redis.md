@@ -237,7 +237,7 @@ OS name: "linux", version: "4.10.0-35-generic", arch: "amd64", family: "unix"
 $ apt-get install git
 ```
 
-验证Maven
+验证Git
 
 ```sh
 root@souyunku:~# git --version
