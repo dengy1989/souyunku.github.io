@@ -514,10 +514,10 @@ root@souyunku:# docker run --name MySpringBootMavenPlugin -d -p 8080:80 docker-s
 
 [https://github.com/souyunku/other-projects/tree/master/docker-spring-boot-demo-maven-plugin](https://github.com/souyunku/other-projects/tree/master/docker-spring-boot-demo-maven-plugin)
 
-[1]: /images/2018/docker/maven-plugin/1.gif
-[2]: /images/2018/docker/maven-plugin/2.png
-[3]: /images/2018/docker/maven-plugin/3.png
-[4]: /images/2018/docker/maven-plugin/4.png
+[1]: http://www.ymq.io/images/2018/docker/maven-plugin/1.gif
+[2]: http://www.ymq.io/images/2018/docker/maven-plugin/2.png
+[3]: http://www.ymq.io/images/2018/docker/maven-plugin/3.png
+[4]: http://www.ymq.io/images/2018/docker/maven-plugin/4.png
 
 # Contact
 
