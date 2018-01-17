@@ -69,6 +69,8 @@ $ hostname
 
 [参考：linux修改主机名](http://www.ymq.io/2017/07/31/linux-localdomain/)
 
+[http://www.ymq.io/2017/07/31/linux-localdomain/](http://www.ymq.io/2017/07/31/linux-localdomain/)
+
 ## 修改 hosts
 
 
@@ -220,7 +222,7 @@ Cluster status of node rabbit@node3
 
 ## 登录后台
 
-<img src="/images/2017/rabbit/cluster/nodes.png" />
+<img src="http://www.ymq.io/images/2017/rabbit/cluster/nodes.png" />
  
 上面配置RabbitMQ默认集群模式，但并不保证队列的高可用性，尽管交换机、绑定这些可以复制到集群里的任何一个节点，但是队列内容不会复制，虽然该模式解决一部分节点压力，但队列节点宕机直接导致该队列无法使用，只能等待重启，所以要想在队列节点宕机或故障也能正常使用，就要复制队列内容到集群里的每个节点，需要创建镜像队列
 
@@ -286,7 +288,7 @@ $ rabbitmqctl cluster_status
 # Contact
 
  - 作者：鹏磊  
- - 出处：[http://www.ymq.io](http://www.ymq.io)  
+ - 出处：[http://www.ymq.io/2017/08/17/rabbit-install-cluster](http://www.ymq.io/2017/08/17/rabbit-install-cluster/)  
  - Email：[admin@souyunku.com](admin@souyunku.com)  
  - 版权归作者所有，转载请注明出处
  - Wechat：关注公众号，搜云库，专注于开发技术的研究与知识分享
