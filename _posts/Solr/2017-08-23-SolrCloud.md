@@ -65,9 +65,20 @@ Leader：赢得选举的Shard replicas，每个Shard有多个replicas，这几�
 # 四、Solr 文档
 
 [Apache SolrCloud 参考指南](http://lucene.apache.org/solr/guide/6_6/solrcloud.html)  
+
+[http://lucene.apache.org/solr/guide/6_6/solrcloud.html](http://lucene.apache.org/solr/guide/6_6/solrcloud.html)
+
 [Apache Solr文档](https://cwiki.apache.org/confluence/display/solr/)  
+
+[https://cwiki.apache.org/confluence/display/solr/](https://cwiki.apache.org/confluence/display/solr/)
+
 [Solr 参数配置](https://cwiki.apache.org/confluence/display/solr/Format+of+solr.xml)  
+
+[https://cwiki.apache.org/confluence/display/solr/Format+of+solr.xml](https://cwiki.apache.org/confluence/display/solr/Format+of+solr.xml)
+
 [Solr控制脚本参考](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=50234737)
+
+[https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=50234737](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=50234737)
 
 
 ## 环境
@@ -76,7 +87,12 @@ VMware版本号：12.0.0
 CentOS版本：CentOS 7.3.1611  
 Solr 版本：solr-6.6.0  
 ZooKeeper版本：ZooKeeper-3.4.9.tar.gz 具体参考[《CentOs7.3 搭建 ZooKeeper-3.4.9 Cluster 集群服务》](https://segmentfault.com/a/1190000010807875)  
+
+[https://segmentfault.com/a/1190000010807875](https://segmentfault.com/a/1190000010807875)
+
 JDK环境：jdk-8u144-linux-x64.tar.gz  具体参考[《CentOs7.3 安装 JDK1.8》](https://segmentfault.com/a/1190000010716919)  
+
+[https://segmentfault.com/a/1190000010716919](https://segmentfault.com/a/1190000010716919)
 
 
 ## 注意事项
@@ -407,11 +423,10 @@ Connecting to ZooKeeper at node1:2181,node2:2181,node3:2181 ...
 Removing Zookeeper node /configs/mynewconfig from ZooKeeper at node1:2181,node2:2181,node3:2181 recurse: true
 ```
 
-
 # Contact
 
  - 作者：鹏磊  
- - 出处：[http://www.ymq.io](http://www.ymq.io)  
+ - 出处：[http://www.ymq.io/2017/08/23/SolrCloud](http://www.ymq.io/2017/08/23/SolrCloud/)  
  - Email：[admin@souyunku.com](admin@souyunku.com)  
  - 版权归作者所有，转载请注明出处
  - Wechat：关注公众号，搜云库，专注于开发技术的研究与知识分享

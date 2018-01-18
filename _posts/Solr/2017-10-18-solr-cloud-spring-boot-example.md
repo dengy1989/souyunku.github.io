@@ -18,6 +18,8 @@ SolrCloud是基于Solr和Zookeeper的分布式搜索方案。当索引越来越�
 
 [CentOs7.3 搭建 SolrCloud 集群服务](https://segmentfault.com/a/1190000010836061)
 
+[https://segmentfault.com/a/1190000010836061](https://segmentfault.com/a/1190000010836061)
+
 # 测试用例
 
 # Github 代码
@@ -471,7 +473,7 @@ github [https://github.com/souyunku/spring-boot-examples/tree/master/spring-boot
 # Contact
 
  - 作者：鹏磊  
- - 出处：[http://www.ymq.io](http://www.ymq.io)  
+ - 出处：[http://www.ymq.io/2017/10/18/solr-cloud-spring-boot-example](http://www.ymq.io/2017/10/18/solr-cloud-spring-boot-example)  
  - Email：[admin@souyunku.com](admin@souyunku.com)  
  - 版权归作者所有，转载请注明出处
  - Wechat：关注公众号，搜云库，专注于开发技术的研究与知识分享
