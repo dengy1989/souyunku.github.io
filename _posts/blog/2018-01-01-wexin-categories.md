@@ -31,6 +31,7 @@ keywords: wexin
 
 ### Docker 容器
 
+- [Docker Compose 1.18.0 之服务编排详解](https://mp.weixin.qq.com/s?__biz=MzA3MTUzOTcxOQ==&mid=2452964477&idx=1&sn=3cfa2332fc3f5fa0cb7613987b48f449)
 - [Docker CE 安装 初窥 Dockerfile 部署 Nginx](https://mp.weixin.qq.com/s?__biz=MzA3MTUzOTcxOQ==&mid=2452964410&idx=1&sn=a1d189b731662f062ab5c8ae6c1d4662)
 - [Docker Container 容器操作](https://mp.weixin.qq.com/s?__biz=MzA3MTUzOTcxOQ==&mid=2452964415&idx=1&sn=a1485845724a3595cbeb22abfd19c6ad)
 - [Docker Hub 仓库使用，及搭建 Docker Registry](https://mp.weixin.qq.com/s?__biz=MzA3MTUzOTcxOQ==&mid=2452964418&idx=1&sn=9f7b142968b75eaa7d0934d1045e0ce9)
