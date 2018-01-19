@@ -266,7 +266,7 @@ RUN bash -c 'touch /app.jar'
 EXPOSE 9000
 ```
 
-**docker-compose.yml ** 内容
+**docker-compose.yml** 内容
 
 ```sh
 root@souyunku:/opt# cat docker-compose.yml 
@@ -548,7 +548,3 @@ dns:
  - Wechat：关注公众号，"搜云库"，专注于开发技术的研究与知识分享
  
 ![关注公众号-搜云库](http://www.ymq.io/images/souyunku.png "搜云库")
-
-
-
-
