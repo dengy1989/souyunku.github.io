@@ -1,9 +1,9 @@
 ---
 layout: post
 title: 基于 Spring Cloud 完整的微服务架构实战
-categories: SpringCloud
+categories: java
 description: 基于 Spring Cloud 完整的微服务架构实战
-keywords: SpringCloud 
+keywords: java 
 ---
 
 # 基于 Spring Cloud 完整的微服务架构实战

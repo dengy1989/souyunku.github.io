@@ -12,20 +12,20 @@ keywords: SpringCloud
 
 把上一篇，示例代码下载，才可以进行一下的操作，下载地址在文章末尾
 
- - `spring-cloud-eureka-service`  
- - `spring-cloud-config-server`  
- - `spring-cloud-eureka-provider-1`  
- - `spring-cloud-eureka-provider-2`  
- - `spring-cloud-eureka-provider-3`  
- - `spring-cloud-feign-consumer`  
+`spring-cloud-eureka-service`  
+`spring-cloud-config-server`  
+`spring-cloud-eureka-provider-1`  
+`spring-cloud-eureka-provider-2`  
+`spring-cloud-eureka-provider-3`  
+`spring-cloud-feign-consumer`  
 
 # Config Client
 
 修改第九篇文章项目
 
- - `spring-cloud-eureka-provider-1`  
- - `spring-cloud-eureka-provider-2`  
- - `spring-cloud-eureka-provider-3`  
+`spring-cloud-eureka-provider-1`  
+`spring-cloud-eureka-provider-2`  
+`spring-cloud-eureka-provider-3`  
  
 # 添加依赖
 
@@ -90,12 +90,12 @@ public class EurekaProviderApplication {
 
 按照顺序依次启动项目
 
- - `spring-cloud-eureka-service`  
- - `spring-cloud-config-server`  
- - `spring-cloud-eureka-provider-1`  
- - `spring-cloud-eureka-provider-2`  
- - `spring-cloud-eureka-provider-3`  
- - `spring-cloud-feign-consumer`  
+`spring-cloud-eureka-service`  
+`spring-cloud-config-server`  
+`spring-cloud-eureka-provider-1`  
+`spring-cloud-eureka-provider-2`  
+`spring-cloud-eureka-provider-3`  
+`spring-cloud-feign-consumer`  
 
  启动该工程后，访问服务注册中心，查看服务是否都已注册成功：[http://localhost:8761/](http://localhost:8761/) 
  
@@ -150,7 +150,7 @@ public class EurekaProviderApplication {
 # Contact
 
  - 作者：鹏磊  
- - 出处：[http://www.ymq.io](http://www.ymq.io)  
+ - 出处：[http://www.ymq.io/2017/12/23/spring-cloud-config-eureka-refresh](http://www.ymq.io/2017/12/23/spring-cloud-config-eureka-refresh/o)  
  - Email：[admin@souyunku.com](admin@souyunku.com)  
  - 版权归作者所有，转载请注明出处
  - Wechat：关注公众号，搜云库，专注于开发技术的研究与知识分享

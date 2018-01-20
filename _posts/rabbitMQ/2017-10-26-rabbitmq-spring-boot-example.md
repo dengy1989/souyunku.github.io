@@ -19,8 +19,6 @@ RabbitMQ是一个开源的AMQP实现，服务器端用Erlang语言编写，支�
 
 通常我们谈到队列服务, 会有三个概念： 发消息者、队列、收消息者，`RabbitMQ` 在这个基本概念之上, 多做了一层抽象, 在发消息者和 队列之间, 加入了交换器 (`Exchange`). 这样发消息者和队列就没有直接联系, 转而变成发消息者把消息给交换器, 交换器根据调度策略再把消息再给队列。
 
-
-
 # 准备
 
 ## 环境安装 
@@ -29,7 +27,11 @@ RabbitMQ是一个开源的AMQP实现，服务器端用Erlang语言编写，支�
 
 [CentOs7.3 搭建 RabbitMQ 3.6 单机服务与使用](https://segmentfault.com/a/1190000010693696)
 
+[http://www.ymq.io/2017/08/16/rabbit-install](http://www.ymq.io/2017/08/16/rabbit-install/)
+
 [CentOs7.3 搭建 RabbitMQ 3.6 Cluster 集群服务与使用](https://segmentfault.com/a/1190000010702020)
+
+[http://www.ymq.io/2017/08/17/rabbit-install-cluster](http://www.ymq.io/2017/08/17/rabbit-install-cluster/)
 
 # Github 代码
 
@@ -584,7 +586,7 @@ github [https://github.com/souyunku/spring-boot-examples/tree/master/spring-boot
 # Contact
 
  - 作者：鹏磊  
- - 出处：[http://www.ymq.io](http://www.ymq.io)  
+ - 出处：[http://www.ymq.io/2017/10/26/rabbitmq-spring-boot-example](http://www.ymq.io/2017/10/26/rabbitmq-spring-boot-example/)  
  - Email：[admin@souyunku.com](admin@souyunku.com)  
  - 版权归作者所有，转载请注明出处
  - Wechat：关注公众号，搜云库，专注于开发技术的研究与知识分享
