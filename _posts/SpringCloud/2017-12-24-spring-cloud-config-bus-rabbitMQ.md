@@ -72,12 +72,12 @@ Spring Boot 中使用 RabbitMQ:
 
 把上一篇，示例代码下载，才可以进行一下的操作，下载地址在文章末尾
 
- - `spring-cloud-eureka-service`  
- - `spring-cloud-config-server`  
- - `spring-cloud-eureka-provider-1`  
- - `spring-cloud-eureka-provider-2`  
- - `spring-cloud-eureka-provider-3`  
- - `spring-cloud-feign-consumer`  
+`spring-cloud-eureka-service`  
+`spring-cloud-config-server`  
+`spring-cloud-eureka-provider-1`  
+`spring-cloud-eureka-provider-2`  
+`spring-cloud-eureka-provider-3`  
+`spring-cloud-feign-consumer`  
  
 # Config Server
 
@@ -113,9 +113,9 @@ spring.rabbitmq.password=123456
 
 修改第上一篇文章项目
 
- - `spring-cloud-eureka-provider-1`  
- - `spring-cloud-eureka-provider-2`  
- - `spring-cloud-eureka-provider-3`  
+`spring-cloud-eureka-provider-1`  
+`spring-cloud-eureka-provider-2`  
+`spring-cloud-eureka-provider-3`  
  
 ## 添加依赖
 
@@ -187,12 +187,12 @@ Dec 29 17:44:10 node6 rabbitmq-server[2948]: completed with 6 plugins.
 
 按照顺序依次启动项目
 
- - `spring-cloud-eureka-service`  
- - `spring-cloud-config-server`  
- - `spring-cloud-eureka-provider-1`  
- - `spring-cloud-eureka-provider-2`  
- - `spring-cloud-eureka-provider-3`  
- - `spring-cloud-feign-consumer`  
+`spring-cloud-eureka-service`  
+`spring-cloud-config-server`  
+`spring-cloud-eureka-provider-1`  
+`spring-cloud-eureka-provider-2`  
+`spring-cloud-eureka-provider-3`  
+`spring-cloud-feign-consumer`  
 
  启动该工程后，访问服务注册中心，查看服务是否都已注册成功：[http://127.0.0.1:8761/](http://127.0.0.1:8761/) 
  
@@ -405,7 +405,7 @@ Dec 29 17:44:10 node6 rabbitmq-server[2948]: completed with 6 plugins.
 # Contact
 
  - 作者：鹏磊  
- - 出处：[http://www.ymq.io](http://www.ymq.io)  
+ - 出处：[http://www.souyunku.com/2017/12/24/spring-cloud-config-bus-rabbitMQ](http://www.souyunku.com/2017/12/24/spring-cloud-config-bus-rabbitMQ/)  
  - Email：[admin@souyunku.com](admin@souyunku.com)  
  - 版权归作者所有，转载请注明出处
  - Wechat：关注公众号，搜云库，专注于开发技术的研究与知识分享
