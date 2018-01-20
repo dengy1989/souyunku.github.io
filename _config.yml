@@ -1,14 +1,14 @@
 # ---------------- #
 #   Main Configs   #
 # ---------------- #
-title: 鹏磊的技术博客
+title: 搜云库
 author: 鹏磊
 subtitle: "Talk is cheap. Show me the code."
-description: "鹏磊的技术博客"
+description: "搜云库"
 baseurl:
-url: http://www.ymq.io
+url: http://www.souyunku.com
 date_format: "ordinal"
-keywords: 鹏磊的技术博客,www.ymq.io,www.souyunku.com
+keywords: 搜云库、内容涵盖 Spring Boot、Spring Cloud、微服务架构、大数据，云计算，运维开发、系统监控等相关的研究与知识分享
 favicon: /favicon.ico
 #timezone: Asia/Shanghai
 encoding: "utf-8"
@@ -18,8 +18,8 @@ side_bar_repo_limit: 5
 #      Author      #
 # ---------------- #
 author:  Peng Lei
-organization: www.ymq.io
-organization_url: http://www.ymq.io
+organization: souyunku.com
+organization_url: http://souyunku.com
 github_username: souyunku
 location: beijing, China
 email: admin@souyunku.com
