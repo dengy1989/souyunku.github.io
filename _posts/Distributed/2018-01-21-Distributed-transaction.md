@@ -134,11 +134,11 @@ eBay 的架构师Dan Pritchett，曾在一篇解释BASE 原理的论文《Base�
 出处：网易云   
 地址：[https://www.zhihu.com/question/64921387](https://www.zhihu.com/question/64921387)  
  
-[1]: /images/2018/Distributed/transaction/1.jpg
-[2]: /images/2018/Distributed/transaction/2.jpg
-[3]: /images/2018/Distributed/transaction/3.jpg
-[4]: /images/2018/Distributed/transaction/4.jpg
-[5]: /images/2018/Distributed/transaction/5.jpg
+[1]: http://www.ymq.io/images/2018/Distributed/transaction/1.jpg
+[2]: http://www.ymq.io/images/2018/Distributed/transaction/2.jpg
+[3]: http://www.ymq.io/images/2018/Distributed/transaction/3.jpg
+[4]: http://www.ymq.io/images/2018/Distributed/transaction/4.jpg
+[5]: http://www.ymq.io/images/2018/Distributed/transaction/5.jpg
 
 # Contact
 
