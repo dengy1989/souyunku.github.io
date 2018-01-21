@@ -22,10 +22,3 @@ permalink: /about/
  - Wechat：关注公众号，搜云库，专注于开发技术的研究与知识分享
  
 ![关注公众号-搜云库](http://www.ymq.io/images/souyunku.png "搜云库")
-
-  
-<audio  autoplay="autoplay" title="文静 - 一人饮酒醉">
-  <source src="/music/yirenyinjiuzui.mp3" type="audio/mpeg" />
-</audio>
-
-
