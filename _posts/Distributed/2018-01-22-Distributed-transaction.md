@@ -232,15 +232,15 @@ In partitioned databases, trading some consistency for availability can lead to 
 
 出处：http://blog.csdn.net/zheng0518/article/details/51194942
 
-[1]: /images/2018/Distributed/transaction-6/1.png
-[2]: /images/2018/Distributed/transaction-6/2.png
-[3]: /images/2018/Distributed/transaction-6/3.png
-[4]: /images/2018/Distributed/transaction-6/4.png
-[5]: /images/2018/Distributed/transaction-6/5.png
-[6]: /images/2018/Distributed/transaction-6/6.png
-[7]: /images/2018/Distributed/transaction-6/7.png
-[8]: /images/2018/Distributed/transaction-6/8.png
-[9]: /images/2018/Distributed/transaction-6/9.png
+[1]: http://www.ymq.io/images/2018/Distributed/transaction-6/1.png
+[2]: http://www.ymq.io/images/2018/Distributed/transaction-6/2.png
+[3]: http://www.ymq.io/images/2018/Distributed/transaction-6/3.png
+[4]: http://www.ymq.io/images/2018/Distributed/transaction-6/4.png
+[5]: http://www.ymq.io/images/2018/Distributed/transaction-6/5.png
+[6]: http://www.ymq.io/images/2018/Distributed/transaction-6/6.png
+[7]: http://www.ymq.io/images/2018/Distributed/transaction-6/7.png
+[8]: http://www.ymq.io/images/2018/Distributed/transaction-6/8.png
+[9]: http://www.ymq.io/images/2018/Distributed/transaction-6/9.png
 
 # Contact
 
