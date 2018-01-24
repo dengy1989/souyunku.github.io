@@ -105,7 +105,7 @@ XA是一个分布式事务协议，由Tuxedo提出。XA中大致分为两部分�
 [4]: http://www.ymq.io/images/2018/Distributed/transaction-2/4.png
 [5]: http://www.ymq.io/images/2018/Distributed/transaction-2/5.png
 
-**出处：**[http://www.cnblogs.com/wchxj/p/7899712.html?utm_source=tuicool&utm_medium=referral](http://www.cnblogs.com/wchxj/p/7899712.html?utm_source=tuicool&utm_medium=referral)
+**出处：**[http://www.cnblogs.com/wchxj/p/7899712.html](http://www.cnblogs.com/wchxj/p/7899712.html)
 
 # Contact
 
