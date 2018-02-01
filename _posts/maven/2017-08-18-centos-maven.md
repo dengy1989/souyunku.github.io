@@ -14,6 +14,8 @@ $ wget https://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/3.5.0/binaries/
 $ tar xzf apache-maven-3.5.0-bin.tar.gz
 ```
 
+入果连接失效，前往https://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/  选择最新版本
+
 ## 重命名
 
 ```sh
@@ -68,6 +70,16 @@ Default locale: en_US, platform encoding: UTF-8
 OS name: "linux", version: "3.10.0-514.26.2.el7.x86_64", arch: "amd64", family: "unix"
 ```
 
+默认 maven 中央仓库在国外的原因，可以根据需要在 `/lib/maven/conf/setting.xml` 中的 `<mirrors></mirrors>` 添加以下内容
+
+```sh
+<mirror>
+    <id>aliyun</id>
+    <mirrorOf>central</mirrorOf>
+    <name>aliyun maven</name>
+    <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+</mirror>
+```
 
 # Contact
 
