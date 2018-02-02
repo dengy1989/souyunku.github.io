@@ -6,16 +6,14 @@ description: 搭建 Apache RocketMQ 单机环境
 keywords: RocketMQ
 ---
 
-# 快速开始
-
-本快速入门指南是在您的本地机器上设置RocketMQ消息系统以发送和接收消息的详细说明。
+本文快速入门,RocketMQ消息系统的安装部署,发送,和接收消息的详细说明。
 
 # 环境需要
 
 64位操作系统，建议使用Linux / Unix / 
 
 - CentOs7.3
-- 64bit JDK 1.8+;
+- 64bit JDK 1.8+
 - Maven 3.2.x
 
 JDK Maven 的安装自行 Google 或者去我博客 [http://www.ymq.io](http://www.ymq.io) 搜索安装
