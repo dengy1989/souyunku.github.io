@@ -362,9 +362,6 @@ public class SpringBootMongodbApplicationTests {
 }
 ```
 
-[1]: http://www.ymq.io/images/2018/MongoDB/1.png
-
-
 **扩展阅读**
 
 手把手教你 MongoDB 的安装与详细使用（一）
@@ -375,7 +372,6 @@ public class SpringBootMongodbApplicationTests {
 
 [http://www.ymq.io/2018/01/29/MongoDB-2/](http://www.ymq.io/2018/01/29/MongoDB-2/)
 
-
 # 源码下载
 
 **GitHub：**[https://github.com/souyunku/spring-boot-examples/tree/master/spring-boot-mongodb](https://github.com/souyunku/spring-boot-examples/tree/master/spring-boot-mongodb)
@@ -383,6 +379,19 @@ public class SpringBootMongodbApplicationTests {
 **码云：**[https://gitee.com/souyunku/spring-boot-examples/tree/master/spring-boot-mongodb](https://gitee.com/souyunku/spring-boot-examples/tree/master/spring-boot-mongodb)
 
 **参考：**[https://docs.spring.io/spring-boot/docs/1.5.1.RELEASE/reference/html/boot-features-nosql.html#boot-features-mongodb](https://docs.spring.io/spring-boot/docs/1.5.1.RELEASE/reference/html/boot-features-nosql.html#boot-features-mongodb)
+
+
+## 福利
+
+**[Spring Boot 学习教程](https://github.com/souyunku/spring-boot-examples) 会不定时更新技术, 欢迎 Star 和 Fork。**
+
+![ ][2]
+
+[https://github.com/souyunku/spring-boot-examples](https://github.com/souyunku/spring-boot-examples)
+
+[2]: http://www.ymq.io/images/2018/SpringBoot/1.png
+
+[1]: http://www.ymq.io/images/2018/MongoDB/1.png
 
 # Contact
 
