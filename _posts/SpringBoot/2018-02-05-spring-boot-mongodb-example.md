@@ -384,6 +384,8 @@ public class SpringBootMongodbApplicationTests {
 
 **[Spring Boot 学习教程](https://github.com/souyunku/spring-boot-examples) 会不定时更新技术, 欢迎 Star 和 Fork。**
 
+[https://github.com/souyunku/spring-boot-examples](https://github.com/souyunku/spring-boot-examples)
+
 ![ ][2]
 
 [https://github.com/souyunku/spring-boot-examples](https://github.com/souyunku/spring-boot-examples)
