@@ -380,8 +380,7 @@ public class SpringBootMongodbApplicationTests {
 
 **参考：**[https://docs.spring.io/spring-boot/docs/1.5.1.RELEASE/reference/html/boot-features-nosql.html#boot-features-mongodb](https://docs.spring.io/spring-boot/docs/1.5.1.RELEASE/reference/html/boot-features-nosql.html#boot-features-mongodb)
 
-
-## 福利
+# 福利
 
 **[Spring Boot 学习教程](https://github.com/souyunku/spring-boot-examples) 会不定时更新技术, 欢迎 Star 和 Fork。**
 
