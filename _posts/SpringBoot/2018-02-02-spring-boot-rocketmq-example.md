@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Spring Boot 中使用 RocketMQ
-categories: RocketMQ
+categories: [RocketMQ,SpringBoot]
 description: Spring Boot 中使用 RocketMQ
 keywords: RocketMQ
 ---

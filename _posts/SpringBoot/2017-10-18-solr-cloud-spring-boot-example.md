@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Spring Boot 中使用 SolrCloud 
-categories: [Solr,SpringBoot]
+categories: [SolrCloud,SpringBoot]
 description: Spring Boot 中使用 SolrCloud 
 keywords: SolrCloud  
 ---
