@@ -6,6 +6,8 @@ description: Spring Boot 中使用 MongoDB 增删改查
 keywords: MongoDB 
 ---
 
+本文快速入门,MongoDB 结合SpringBoot starter-data-mongodb 进行藏删改查
+
 # 1、什么是MongoDB ?
 
 MongoDB 是由C++语言编写的，是一个基于分布式文件存储的开源数据库系统。
