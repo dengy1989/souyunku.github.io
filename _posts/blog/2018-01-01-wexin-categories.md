@@ -6,6 +6,8 @@ description: 搜云库文章目录
 keywords: wexin 
 ---
 
+点击上面 蓝色字体，“搜云库”免费关注
+
 ## 搜云库文章目录
 
 ### Spring Cloud
@@ -28,6 +30,7 @@ keywords: wexin
 - [Spring Boot 中使用 Dubbo](https://mp.weixin.qq.com/s?__biz=MzA3MTUzOTcxOQ==&mid=2452964335&idx=1&sn=d5d3cafbd7a6ae875c46f85beb513f6b)
 - [Spring Boot 中使用 RabbitMQ](https://mp.weixin.qq.com/s?__biz=MzA3MTUzOTcxOQ==&mid=2452964457&idx=1&sn=671a360aeb2dbf5460211f4e43554cd9)
 - [Spring Boot 中使用 SolrCloud](https://mp.weixin.qq.com/s?__biz=MzA3MTUzOTcxOQ==&mid=2452964464&idx=1&sn=9e980846ef997a6eba958794935c1b5f)
+- [Spring Boot 中使用 RocketMQ](https://mp.weixin.qq.com/s?__biz=MzA3MTUzOTcxOQ==&mid=2452964513&idx=2&sn=064e03758202a395881e9318dcaaaf8e&chksm=88ede9c9bf9a60df307c21a4c7b66512aca9159f900a06a8bb76a966d3706f3d0b580cea895c#rd)  
 
 ### Docker 容器
 
@@ -41,7 +44,10 @@ keywords: wexin
 - [Docker Maven Plugin 生成 Docker 镜像 push 到 DockerHub上 ](https://mp.weixin.qq.com/s?__biz=MzA3MTUzOTcxOQ==&mid=2452964451&idx=1&sn=4865f254dcfa69fe0e98e7dde4a6cd5b)
 
 ### 环境搭建
-
+- [搭建 Apache RocketMQ 单机环境](https://mp.weixin.qq.com/s?__biz=MzA3MTUzOTcxOQ==&mid=2452964513&idx=1&sn=3c926d8f96048ba17dee17541c69893f&chksm=88ede9c9bf9a60dfb530bc3f7d892c826e99fba5a6c533744dcd25ebc6ab8839cbf79e607c5d#rd)  
+- [手把手教你 MongoDB 的安装与详细使用（一）](https://mp.weixin.qq.com/s?__biz=MzA3MTUzOTcxOQ==&mid=2452964503&idx=1&sn=1335ece54312f9ed91232ce34d222dd5&chksm=88ede9ffbf9a60e9e03efc28fb4fb469b8212d2ea52208c3db4a1b37b4437b8accbff4a2ed86#rd)  
+- [手把手教你 MongoDB 的安装与详细使用（二）](https://mp.weixin.qq.com/s?__biz=MzA3MTUzOTcxOQ==&mid=2452964506&idx=1&sn=9f473a0797b6f091629a6e42dc870133&chksm=88ede9f2bf9a60e4d20402824eaf9803261276073a988659d3b45c82bf4f9bc7f589a08e2086#rd)  
+- [搭建 MongoDB分片（sharding） / 分区 / 集群环境](https://mp.weixin.qq.com/s?__biz=MzA3MTUzOTcxOQ==&mid=2452964509&idx=1&sn=9476cda64a51956ae7c7a10352ca31b5&chksm=88ede9f5bf9a60e32f03832ced791e6fd95defa18a3ccc854f2a0ad51527a3ffc7d892132fe8#rd)  
 - [搭建 SolrCloud 集群服务](https://mp.weixin.qq.com/s?__biz=MzA3MTUzOTcxOQ==&mid=2452964464&idx=2&sn=f944f824c58acc709aea4e86498af426)
 - [搭建 Solr 单机服务](https://mp.weixin.qq.com/s?__biz=MzA3MTUzOTcxOQ==&mid=2452964464&idx=3&sn=32f023390ebdfe1d30bdf8c109316f83&scene=19#wechat_redirect)
 - [搭建 RabbitMQ 集群服务](https://mp.weixin.qq.com/s?__biz=MzA3MTUzOTcxOQ==&mid=2452964457&idx=3&sn=abb501f40f3314ecf28b5a96ab028f5c)
