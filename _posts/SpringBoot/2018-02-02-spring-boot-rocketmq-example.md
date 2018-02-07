@@ -232,7 +232,7 @@ RocketMQ web界面监控RocketMQ-Console-Ng部署
 
 ```sh
 git clone https://github.com/apache/rocketmq-externals.git
-rocketmq-externals/rocketmq-console/
+cd rocketmq-externals/rocketmq-console/
 mvn clean package -Dmaven.test.skip=true
 ```
 
@@ -241,8 +241,52 @@ mvn clean package -Dmaven.test.skip=true
 `rocketmq.config.namesrvAddr` `NameServer` 地址,默认启动端口8080
 
 ```sh
-nohup java -jar target/rocketmq-console-ng-1.0.0.jar --rocketmq.config.namesrvAddr=127.0.0.1:9876
+nohup java -jar target/rocketmq-console-ng-1.0.0.jar --rocketmq.config.namesrvAddr=127.0.0.1:9876  > /dev/null 2>&1 &
 ```
+
+# 关于报错
+
+关闭防火墙
+
+
+```sh
+org.apache.rocketmq.client.exception.MQClientException: No route info of this topic, PushTopic
+See http://rocketmq.apache.org/docs/faq/ for further details.
+```
+
+开启服务器自动创建Topic功能
+
+`autoCreateTopicEnable=true`
+
+
+```sh
+Caused by: org.apache.rocketmq.remoting.exception.RemotingConnectException: connect to <192.168.0.4:10911> failed
+```
+
+这个错，主要是启动的时候指定的ip 是 `-n localhost:9876`
+
+
+**在服务器使用，不能使用连接rocketmq 解决步骤**
+
+```sh
+步骤一，启动 Name Server
+nohup sh bin/mqnamesrv > /dev/null 2>&1 &
+
+步骤二，指定 Broker 外网IP
+添加
+vi /opt/apache-rocketmq/conf/broker.conf
+brokerIP1=116.196.97.159
+
+输入终端执行
+export NAMESRV_ADDR=116.196.97.159:9876
+
+步骤三，启动 Broker
+nohup sh bin/mqbroker -n 116.196.97.159:9876 > autoCreateTopicEnable=true -c /opt/apache-rocketmq/conf/broker.conf /dev/null 2>&1 &
+
+步骤四，启动监控页面
+nohup java -jar target/rocketmq-console-ng-1.0.0.jar --rocketmq.config.namesrvAddr=116.196.97.159:9876  > /dev/null 2>&1 &
+```
+
 
 # 访问监控服务
 

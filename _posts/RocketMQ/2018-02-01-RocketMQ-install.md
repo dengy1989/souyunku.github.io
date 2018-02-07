@@ -26,11 +26,18 @@ JDK Maven 的安装自行 Google 或者去我博客 [http://www.ymq.io](http://w
 
 现在执行以下命令来解压4.2.0源码版本并构建二进制文件
 
+关闭防火墙
+
 ```sh
-& unzip rocketmq-all-4.2.0-source-release.zip
-& cd rocketmq-all-4.2.0/
-& mvn -Prelease-all -DskipTests clean install -U
-& mv distribution/target/apache-rocketmq /opt/apache-rocketmq
+systemctl stop firewalld.service 
+```
+
+```sh
+unzip rocketmq-all-4.2.0-source-release.zip
+cd rocketmq-all-4.2.0/
+mvn -Prelease-all -DskipTests clean install -U
+mv distribution/target/apache-rocketmq /opt/apache-rocketmq
+cd /opt/apache-rocketmq
 ```
 
 编译成功的响应
@@ -68,7 +75,7 @@ JDK Maven 的安装自行 Google 或者去我博客 [http://www.ymq.io](http://w
 默认 RocketMQ Server 内存需要很大的
 
 ```sh
-vi /bin/runserver.sh
+vi bin/runserver.sh
 ```
 
 ```sh
@@ -82,9 +89,8 @@ JAVA_OPT="${JAVA_OPT} -server -Xms1g -Xmx1g -Xmn512m -XX:MetaspaceSize=128m -XX:
 ```
 
 ```sh
-& cd /opt/apache-rocketmq
-& nohup sh bin/mqnamesrv > /dev/null 2>&1 &
-& tail -f ~/logs/rocketmqlogs/namesrv.log
+nohup sh bin/mqnamesrv > /dev/null 2>&1 &
+tail -f ~/logs/rocketmqlogs/namesrv.log
 ```
 
 会看到如下响应信息
@@ -98,7 +104,7 @@ JAVA_OPT="${JAVA_OPT} -server -Xms1g -Xmx1g -Xmn512m -XX:MetaspaceSize=128m -XX:
 默认 RocketMQ Broker 内存需要很大的
 
 ```sh
-vi /bin/runbroker.sh
+vi bin/runbroker.sh
 ```
 
 ```sh
@@ -114,8 +120,8 @@ JAVA_OPT="${JAVA_OPT} -server -Xms1g -Xmx1g -Xmn512m"
 **启动Broker**
 
 ```sh
-& nohup sh bin/mqbroker -n localhost:9876 > /dev/null 2>&1 &
-& tail -f ~/logs/rocketmqlogs/broker.log
+nohup sh bin/mqbroker -n localhost:9876 > /dev/null 2>&1 &
+tail -f ~/logs/rocketmqlogs/broker.log
 ```
 
 会看到如下响应信息
