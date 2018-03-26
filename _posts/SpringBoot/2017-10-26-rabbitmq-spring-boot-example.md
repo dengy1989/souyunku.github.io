@@ -6,125 +6,576 @@ description: Spring Boot 中使用 RabbitMQ
 keywords: RabbitMQ 
 ---
 
-# 一、什么是MongoDB ?
+`RabbitMQ`是一个开源的`AMQP`实现，服务器端用Erlang语言编写，支持多种客户端，如：`Python、Ruby、.NET、Java、JMS、C、PHP、ActionScript、XMPP、STOMP`等，支持AJAX。用于在分布式系统中存储转发消息，在易用性、扩展性、高可用性等方面表现不俗。
 
-MongoDB 是由C++语言编写的，是一个基于分布式文件存储的开源数据库系统。
+`AMQP`，即`Advanced message Queuing` `Protocol`，高级消息队列协议，是应用层协议的一个开放标准，为面向消息的中间件设计。消息中间件主要用于组件之间的解耦，消息的发送者无需知道消息使用者的存在，反之亦然。
 
-在高负载的情况下，添加更多的节点，可以保证服务器性能。
+`AMQP`的主要特征是面向消息、队列、路由（包括点对点和发布/订阅）、可靠性、安全。
 
-MongoDB 旨在为WEB应用提供可扩展的高性能数据存储解决方案。
-
-MongoDB 将数据存储为一个文档，数据结构由键值(key=>value)对组成。
-
-MongoDB 文档类似于 JSON 对象。字段值可以包含其他文档，数组及文档数组。
-
-![ ][1]
-
-# 二、MongoDB 优缺点
-
-**优点**
-
-- 文档结构的存储方式，能够更便捷的获取数据
-- 内置GridFS，支持大容量的存储
-- 海量数据下，性能优越
-- 动态查询
-- 全索引支持,扩展到内部对象和内嵌数组
-- 查询记录分析
-- 快速,就地更新
-- 高效存储二进制大对象 (比如照片和视频)
-- 复制（复制集）和支持自动故障恢复
-- 内置 Auto- Sharding 自动分片支持云级扩展性，分片简单
-- MapReduce 支持复杂聚合
-- 商业支持,培训和咨询
+RabbitMQ是一个开源的AMQP实现，服务器端用Erlang语言编写，支持多种客户端，如：`Python、Ruby、.NET、Java、JMS、C、PHP、ActionScript、XMPP、STOMP`等，支持`AJAX`。用于在分布式系统中存储转发消息，在易用性、扩展性、高可用性等方面表现不俗。
 
 
-**缺点**
+# 常用概念
 
-- 不支持事务操作
-- MongoDB 占用空间过大 （不过这个确定对于目前快速下跌的硬盘价格来说，也不算什么缺点了）
-- MongoDB没有如MySQL那样成熟的维护工具
-- 无法进行关联表查询，不适用于关系多的数据
-- 复杂聚合操作通过mapreduce创建，速度慢
-- 模式自由,自由灵活的文件存储格式带来的数据错
-- MongoDB 在你删除记录后不会在文件系统回收空间。除非你删掉数据库。但是空间没有被浪费
-
-# 三、优缺点详细解释
-
-**1.内置GridFS，支持大容量的存储：**
-
-GridFS是一个出色的分布式文件系统，可以支持海量的数据存储。
-内置了GridFS了MongoDB，能够满足对大数据集的快速范围查询。
-
-**2.内置 Auto- Sharding 自动分片支持云级扩展性，分片简单**
-
-提供基于Range的Auto Sharding机制：
-
-一个collection可按照记录的范围，分成若干个段，切分到不同的Shard上。
-
-Shards可以和复制结合，配合Replica sets能够实现Sharding+fail-over，不同的Shard之间可以负载均衡。  
-查询是对客户端是透明的。客户端执行查询，统计，MapReduce等操作，这些会被MongoDB自动路由到后端的数据节点。  
-这让我们关注于自己的业务，适当的 时候可以无痛的升级。MongoDB的Sharding设计能力最大可支持约20 petabytes，足以支撑一般应用。  
-这可以保证MongoDB运行在便宜的PC服务器集群上。PC集群扩充起来非常方便并且成本很低，避免了“sharding”操作的复杂性和成本。  
- 
-**3.海量数据下，性能优越：**
-
-在使用场合下，千万级别的文档对象，近10G的数据，对有索引的ID的查询不会比mysql慢，而对非索引字段的查询，则是全面胜出。 mysql实际无法胜任大数据量下任意字段的查询，而mongodb的查询性能实在让我惊讶。写入性能同样很令人满意，同样写入百万级别的数 据，mongodb比我以前试用过的couchdb要快得多，基本10分钟以下可以解决。补上一句，观察过程中mongodb都远算不上是CPU杀手。
-
-**4.全索引支持,扩展到内部对象和内嵌数组**
-
-索引通常能够极大的提高查询的效率，如果没有索引，MongoDB在读取数据时必须扫描集合中的每个文件并选取那些符合查询条件的记录。
-
-这种扫描全集合的查询效率是非常低的，特别在处理大量的数据时，查询可以要花费几十秒甚至几分钟，这对网站的性能是非常致命的。
-
-索引是特殊的数据结构，索引存储在一个易于遍历读取的数据集合中，索引是对数据库表中一列或多列的值进行排序的一种结构。
-
-**5.MapReduce 支持复杂聚合**
-
-MongoDB中聚合(aggregate)主要用于处理数据(诸如统计平均值,求和等)，并返回计算后的数据结果。有点类似sql语句中的 count(*)。
-
-**与关系型数据库相比，MongoDB的缺点：**
-
-**mongodb不支持事务操作：**
-
-所以事务要求严格的系统（如果银行系统）肯定不能用它。
-
-**mongodb不支持事务操作：**
-
-所以事务要求严格的系统（如果银行系统）肯定不能用它。
-
-**mongodb占用空间过大：**
-
-关于其原因，在官方的FAQ中，提到有如下几个方面：
-
-1、空间的预分配：为避免形成过多的硬盘碎片，mongodb每次空间不足时都会申请生成一大块的硬盘空间，而且申请的量从64M、128M、256M那 样的指数递增，直到2G为单个文件的最大体积。随着数据量的增加，你可以在其数据目录里看到这些整块生成容量不断递增的文件。
-
-2、字段名所占用的空间：为了保持每个记录内的结构信息用于查询，mongodb需要把每个字段的key-value都以BSON的形式存储，如果 value域相对于key域并不大，比如存放数值型的数据，则数据的overhead是最大的。一种减少空间占用的方法是把字段名尽量取短一些，这样占用 空间就小了，但这就要求在易读性与空间占用上作为权衡了。
-
-3、删除记录不释放空间：这很容易理解，为避免记录删除后的数据的大规模挪动，原记录空间不删除，只标记“已删除”即可，以后还可以重复利用。
-
-4、可以定期运行db.repairDatabase()来整理记录，但这个过程会比较缓慢
-
-MongoDB没有如MySQL那样成熟的维护工具，这对于开发和IT运营都是个值得注意的地方。
-
-# 新建项目
+通常我们谈到队列服务, 会有三个概念： 发消息者、队列、收消息者，`RabbitMQ` 在这个基本概念之上, 多做了一层抽象, 在发消息者和 队列之间, 加入了交换器 (`Exchange`). 这样发消息者和队列就没有直接联系, 转而变成发消息者把消息给交换器, 交换器根据调度策略再把消息再给队列。
 
 
 
+# 准备
 
+## 环境安装 
 
+**任选其一**
 
+[CentOs7.3 搭建 RabbitMQ 3.6 单机服务与使用](https://segmentfault.com/a/1190000010693696)
 
-[1]: http://www.ymq.io/images/2017/rabbit/example/1.png
-[2]: http://www.ymq.io/images/2017/rabbit/example/2.png
-[3]: http://www.ymq.io/images/2017/rabbit/example/3.png
-[4]: http://www.ymq.io/images/2017/rabbit/example/4.png
+[CentOs7.3 搭建 RabbitMQ 3.6 Cluster 集群服务与使用](https://segmentfault.com/a/1190000010702020)
 
-
+# Github 代码
 
 代码我已放到 Github ，导入`spring-boot-rabbitmq` 项目 
 
 github [https://github.com/souyunku/spring-boot-examples/tree/master/spring-boot-rabbitmq](https://github.com/souyunku/spring-boot-examples/tree/master/spring-boot-rabbitmq)
 
+
+![ 项目结构 ][1]
+
+## 添加依赖
+
+在项目中添加 `spring-boot-starter-amqp` 依赖
+
+```xml
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-amqp</artifactId>
+</dependency>
+```
+
+## 参数配置
+
+```java
+spring.application.name=ymq-rabbitmq-spring-boot
+
+spring.rabbitmq.host=10.4.98.15
+spring.rabbitmq.port=5672
+spring.rabbitmq.username=admin
+spring.rabbitmq.password=admin
+```
+
+## 交换机(Exchange) 
+
+**1.Direct Exchange** 根据route key 直接找到队列  
+**2.Topic Exchange** 根据route key 匹配队列  
+**3.Topic Exchange** 不处理route key 全网发送，所有绑定的队列都发送  
+
+
+## Direct Exchange
+
+![ Direct Exchange 图解][2]
+
+`Direct Exchange` 是`RabbitMQ`默认的交换机模式，也是最简单的模式，根据`key`全文匹配去寻找队列。
+
+**任何发送到`Direct Exchange`的消息都会被转发到`RouteKey`中指定的`Queue`。** 
+ 
+1.一般情况可以使用`rabbitMQ`自带的`Exchange：""`(该`Exchange`的名字为空字符串，下文称其为`default Exchange`)。    
+2.这种模式下不需要将`Exchange`进行任何绑定(`binding`)操作    
+3.消息传递时需要一个`RouteKey`，可以简单的理解为要发送到的队列名字。    
+4.如果`vhost`中不存在`RouteKey`中指定的队列名，则该消息会被抛弃。    
+ 
+
+### 配置队列
+
+```java
+@Configuration
+public class RabbitDirectConfig {
+
+    @Bean
+    public Queue helloQueue() {
+        return new Queue("hello");
+    }
+
+    @Bean
+    public Queue directQueue() {
+        return new Queue("direct");
+    }
+
+    //-------------------配置默认的交换机模式，可以不需要配置以下-----------------------------------
+    @Bean
+    DirectExchange directExchange() {
+        return new DirectExchange("directExchange");
+    }
+
+    //绑定一个key "direct"，当消息匹配到就会放到这个队列中
+    @Bean
+    Binding bindingExchangeDirectQueue(Queue directQueue, DirectExchange directExchange) {
+        return BindingBuilder.bind(directQueue).to(directExchange).with("direct");
+    }
+    // 推荐使用 helloQueue（） 方法写法，这种方式在 Direct Exchange 模式 多此一举，没必要这样写
+    //---------------------------------------------------------------------------------------------
+}
+
+```
+
+### 监听队列
+
+```java
+@Component
+@RabbitListener(queues = "hello")
+public class helloReceiver {
+
+    @RabbitHandler
+    public void process(String message) {
+        System.out.println("接收者 helloReceiver," + message);
+    }
+}
+```
+
+```java
+@Component
+@RabbitListener(queues = "direct")
+public class DirectReceiver {
+
+    @RabbitHandler
+    public void process(String message) {
+        System.out.println("接收者 DirectReceiver," + message);
+    }
+}
+
+```
+### 发送消息
+
+```java
+package io.ymq.rabbitmq.test;
+
+import io.ymq.rabbitmq.run.Startup;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+/**
+ * 描述: 默认的交换机模式
+ *
+ * @author: yanpenglei
+ * @create: 2017/10/25 1:03
+ */
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = Startup.class)
+public class RabbitDirectTest {
+
+    @Autowired
+    private AmqpTemplate rabbitTemplate;
+
+    @Test
+    public void sendHelloTest() {
+
+        String context = "此消息在，默认的交换机模式队列下，有 helloReceiver 可以收到";
+
+        String routeKey = "hello";
+
+        context = "routeKey:" + routeKey + ",context:" + context;
+
+        System.out.println("sendHelloTest : " + context);
+
+        this.rabbitTemplate.convertAndSend(routeKey, context);
+    }
+
+    @Test
+    public void sendDirectTest() {
+
+        String context = "此消息在，默认的交换机模式队列下，有 DirectReceiver 可以收到";
+
+        String routeKey = "direct";
+
+        String exchange = "directExchange";
+
+        context = "context:" + exchange + ",routeKey:" + routeKey + ",context:" + context;
+
+        System.out.println("sendDirectTest : " + context);
+
+        // 推荐使用 sendHello（） 方法写法，这种方式在 Direct Exchange 多此一举，没必要这样写
+        this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
+    }
+}
+```
+
+按顺序执行：响应
+
+```
+接收者 helloReceiver,routeKey:hello,context:此消息在，默认的交换机模式队列下，有 helloReceiver 可以收到
+
+接收者 DirectReceiver,context:directExchange,routeKey:direct,context:此消息在，默认的交换机模式队列下，有 DirectReceiver 可以收到
+```
+
+## Fanout Exchange 
+
+![ Fanout Exchange 图解][3]
+
+**任何发送到`Fanout Exchange` 的消息都会被转发到与该`Exchange`绑定`(Binding)`的所有`Queue上`。**
+  
+1.可以理解为路由表的模式  
+2.这种模式不需要 `RouteKey`  
+3.这种模式需要提前将`Exchange`与`Queue`进行绑定，一个`Exchange`可以绑定多个`Queue`，一个`Queue`可以同多个`Exchange`进行绑定。  
+4.如果接受到消息的`Exchange`没有与任何`Queue`绑定，则消息会被抛弃。  
+
+
+### 配置队列
+
+```java
+@Configuration
+public class RabbitFanoutConfig {
+
+    final static String PENGLEI = "fanout.penglei.net";
+
+    final static String SOUYUNKU = "fanout.souyunku.com";
+    @Bean
+    public Queue queuePenglei() {
+        return new Queue(RabbitFanoutConfig.PENGLEI);
+    }
+
+    @Bean
+    public Queue queueSouyunku() {
+        return new Queue(RabbitFanoutConfig.SOUYUNKU);
+    }
+
+    /**
+     * 任何发送到Fanout Exchange的消息都会被转发到与该Exchange绑定(Binding)的所有队列上。
+     */
+    @Bean
+    FanoutExchange fanoutExchange() {
+        return new FanoutExchange("fanoutExchange");
+    }
+
+    @Bean
+    Binding bindingExchangeQueuePenglei(Queue queuePenglei, FanoutExchange fanoutExchange) {
+        return BindingBuilder.bind(queuePenglei).to(fanoutExchange);
+    }
+
+    @Bean
+    Binding bindingExchangeQueueSouyunku(Queue queueSouyunku, FanoutExchange fanoutExchange) {
+        return BindingBuilder.bind(queueSouyunku).to(fanoutExchange);
+    }
+
+}
+```
+
+### 监听队列
+
+```java
+@Component
+@RabbitListener(queues = "fanout.penglei.net")
+public class FanoutReceiver1 {
+
+    @RabbitHandler
+    public void process(String message) {
+        System.out.println("接收者 FanoutReceiver1," + message);
+    }
+}
+```
+
+```java
+@Component
+@RabbitListener(queues = "fanout.souyunku.com")
+public class FanoutReceiver2 {
+
+    @RabbitHandler
+    public void process(String message) {
+        System.out.println("接收者 FanoutReceiver2," + message);
+    }
+}
+```
+
+### 发送消息
+
+```java
+package io.ymq.rabbitmq.test;
+
+import io.ymq.rabbitmq.run.Startup;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+/**
+ * 描述: 广播模式或者订阅模式队列
+ *
+ * @author: yanpenglei
+ * @create: 2017/10/25 1:08
+ */
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = Startup.class)
+public class RabbitFanoutTest {
+
+    @Autowired
+    private AmqpTemplate rabbitTemplate;
+
+    @Test
+    public void sendPengleiTest() {
+
+        String context = "此消息在，广播模式或者订阅模式队列下，有 FanoutReceiver1 FanoutReceiver2 可以收到";
+
+        String routeKey = "topic.penglei.net";
+
+        String exchange = "fanoutExchange";
+
+        System.out.println("sendPengleiTest : " + context);
+
+        context = "context:" + exchange + ",routeKey:" + routeKey + ",context:" + context;
+
+        this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
+    }
+
+    @Test
+    public void sendSouyunkuTest() {
+
+        String context = "此消息在，广播模式或者订阅模式队列下，有 FanoutReceiver1 FanoutReceiver2 可以收到";
+
+        String routeKey = "topic.souyunku.com";
+
+        String exchange = "fanoutExchange";
+
+        context = "context:" + exchange + ",routeKey:" + routeKey + ",context:" + context;
+
+        System.out.println("sendSouyunkuTest : " + context);
+
+        this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
+    }
+}
+
+```
+
+
+按顺序执行：响应
+
+```
+接收者 FanoutReceiver1,context:fanoutExchange,routeKey:topic.penglei.net,context:此消息在，广播模式或者订阅模式队列下，有 FanoutReceiver1 FanoutReceiver2 可以收到
+接收者 FanoutReceiver2,context:fanoutExchange,routeKey:topic.penglei.net,context:此消息在，广播模式或者订阅模式队列下，有 FanoutReceiver1 FanoutReceiver2 可以收到
+
+
+接收者 FanoutReceiver2,context:fanoutExchange,routeKey:topic.souyunku.com,context:此消息在，广播模式或者订阅模式队列下，有 FanoutReceiver1 FanoutReceiver2 可以收到
+接收者 FanoutReceiver1,context:fanoutExchange,routeKey:topic.souyunku.com,context:此消息在，广播模式或者订阅模式队列下，有 FanoutReceiver1 FanoutReceiver2 可以收到
+
+```
+
+## Topic Exchange
+
+![ Topic Exchange 图解][4]
+
+**任何发送到`Topic Exchange`的消息都会被转发到所有关心`RouteKey`中指定话题的`Queue`上**
+
+1.这种模式较为复杂，简单来说，就是每个队列都有其关心的主题，所有的消息都带有一个`标题``(RouteKey)`，`Exchange`会将消息转发到所有关注主题能与`RouteKey`模糊匹配的队列。  
+2.这种模式需要`RouteKey`，也许要提前绑定`Exchange`与`Queue`。  
+3.在进行绑定时，要提供一个该队列关心的主题，如`#.log.#`表示该队列关心所有涉及log的消息(一个RouteKey为`MQ.log.error`的消息会被转发到该队列)。  
+4.`#`表示0个或若干个关键字，`*`表示一个关键字。如`topic.*`能与`topic.warn`匹配，无法与`topic.warn.timeout`匹配；但是`topic.#`能与上述两者匹配。  
+5.同样，如果`Exchange`没有发现能够与`RouteKey`匹配的`Queue`，则会抛弃此消息。  
+
+### 配置队列
+
+```java
+@Configuration
+public class RabbitTopicConfig {
+
+    final static String MESSAGE = "topic.message";
+
+    final static String MESSAGES = "topic.message.s";
+
+    final static String YMQ = "topic.ymq";
+
+    @Bean
+    public Queue queueMessage() {
+        return new Queue(RabbitTopicConfig.MESSAGE);
+    }
+
+    @Bean
+    public Queue queueMessages() {
+        return new Queue(RabbitTopicConfig.MESSAGES);
+    }
+
+    @Bean
+    public Queue queueYmq() {
+        return new Queue(RabbitTopicConfig.YMQ);
+    }
+
+    /**
+     * 交换机(Exchange) 描述：接收消息并且转发到绑定的队列，交换机不存储消息
+     */
+    @Bean
+    TopicExchange topicExchange() {
+        return new TopicExchange("topicExchange");
+    }
+
+    //綁定队列 queueMessages() 到 topicExchange 交换机,路由键只接受完全匹配 topic.message 的队列接受者可以收到消息
+    @Bean
+    Binding bindingExchangeMessage(Queue queueMessage, TopicExchange topicExchange) {
+        return BindingBuilder.bind(queueMessage).to(topicExchange).with("topic.message");
+    }
+
+    //綁定队列 queueMessages() 到 topicExchange 交换机,路由键只要是以 topic.message 开头的队列接受者可以收到消息
+    @Bean
+    Binding bindingExchangeMessages(Queue queueMessages, TopicExchange topicExchange) {
+        return BindingBuilder.bind(queueMessages).to(topicExchange).with("topic.message.#");
+    }
+
+    //綁定队列 queueYmq() 到 topicExchange 交换机,路由键只要是以 topic 开头的队列接受者可以收到消息
+    @Bean
+    Binding bindingExchangeYmq(Queue queueYmq, TopicExchange topicExchange) {
+        return BindingBuilder.bind(queueYmq).to(topicExchange).with("topic.#");
+    }
+
+}
+
+```
+
+### 监听队列
+
+```java
+@Component
+@RabbitListener(queues = "topic.message")
+public class TopicReceiver1 {
+
+    @RabbitHandler
+    public void process(String message) {
+        System.out.println("接收者 TopicReceiver1," + message);
+    }
+
+}
+```
+
+```java
+@Component
+@RabbitListener(queues = "topic.message.s")
+public class TopicReceiver2 {
+
+    @RabbitHandler
+    public void process(String message) {
+        System.out.println("接收者 TopicReceiver2," + message);
+    }
+
+}
+```
+
+```java
+@Component
+@RabbitListener(queues = "topic.ymq")
+public class TopicReceiver3 {
+
+    @RabbitHandler
+    public void process(String message) {
+        System.out.println("接收者 TopicReceiver3," + message);
+    }
+
+}
+
+```
+
+
+### 发送消息
+
+```java
+package io.ymq.rabbitmq.test;
+
+import io.ymq.rabbitmq.run.Startup;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+/**
+ * 描述: 配置转发消息模式队列
+ *
+ * @author: yanpenglei
+ * @create: 2017/10/25 1:20
+ */
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = Startup.class)
+public class RabbitTopicTest {
+
+    @Autowired
+    private AmqpTemplate rabbitTemplate;
+
+    @Test
+    public void sendMessageTest() {
+
+        String context = "此消息在，配置转发消息模式队列下， 有 TopicReceiver1 TopicReceiver2 TopicReceiver3 可以收到";
+
+        String routeKey = "topic.message";
+
+        String exchange = "topicExchange";
+
+        context = "context:" + exchange + ",routeKey:" + routeKey + ",context:" + context;
+
+        System.out.println("sendMessageTest : " + context);
+
+        this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
+    }
+
+    @Test
+    public void sendMessagesTest() {
+
+
+        String context = "此消息在，配置转发消息模式队列下，有  TopicReceiver2 TopicReceiver3 可以收到";
+
+        String routeKey = "topic.message.s";
+
+        String exchange = "topicExchange";
+
+        context = "context:" + exchange + ",routeKey:" + routeKey + ",context:" + context;
+
+        System.out.println("sendMessagesTest : " + context);
+
+        this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
+    }
+
+    @Test
+    public void sendYmqTest() {
+
+        String context = "此消息在，配置转发消息模式队列下，有 TopicReceiver3 可以收到";
+
+        String routeKey = "topic.ymq";
+
+        String exchange = "topicExchange";
+
+        context = "context:" + exchange + ",routeKey:" + routeKey + ",context:" + context;
+
+        System.out.println("sendYmqTest : " + context);
+
+        this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
+    }
+}
+
+```
+
+
+按顺序执行：响应
+
+```
+接收者 TopicReceiver2,context:topicExchange,routeKey:topic.message,context:此消息在，配置转发消息模式队列下， 有 TopicReceiver1 TopicReceiver2 TopicReceiver3 可以收到
+接收者 TopicReceiver1,context:topicExchange,routeKey:topic.message,context:此消息在，配置转发消息模式队列下， 有 TopicReceiver1 TopicReceiver2 TopicReceiver3 可以收到
+接收者 TopicReceiver3,context:topicExchange,routeKey:topic.message,context:此消息在，配置转发消息模式队列下， 有 TopicReceiver1 TopicReceiver2 TopicReceiver3 可以收到
+
+
+接收者 TopicReceiver3,context:topicExchange,routeKey:topic.message.s,context:此消息在，配置转发消息模式队列下，有  TopicReceiver2 TopicReceiver3 可以收到
+接收者 TopicReceiver2,context:topicExchange,routeKey:topic.message.s,context:此消息在，配置转发消息模式队列下，有  TopicReceiver2 TopicReceiver3 可以收到
+
+
+接收者 TopicReceiver3,context:topicExchange,routeKey:topic.ymq,context:此消息在，配置转发消息模式队列下，有 TopicReceiver3 可以收到
+
+```
+
+代码我已放到 Github ，导入`spring-boot-rabbitmq` 项目 
+
+github [https://github.com/souyunku/spring-boot-examples/tree/master/spring-boot-rabbitmq](https://github.com/souyunku/spring-boot-examples/tree/master/spring-boot-rabbitmq)
+
+[1]: http://www.ymq.io/images/2017/rabbit/example/1.png
+[2]: http://www.ymq.io/images/2017/rabbit/example/2.png
+[3]: http://www.ymq.io/images/2017/rabbit/example/3.png
+[4]: http://www.ymq.io/images/2017/rabbit/example/4.png
 
 # Contact
 
