@@ -16,7 +16,6 @@ permalink: /about/
 # Contact
 
  - 站点：[http://www.souyunku.com](http://www.souyunku.com)
- - Email：[admin@souyunku.com](admin@souyunku.com)
  - Wechat：关注公众号，搜云库，专注于开发技术的研究与知识分享
  
 ![关注公众号-搜云库](http://www.ymq.io/images/souyunku.png "关注公众号-搜云库")
