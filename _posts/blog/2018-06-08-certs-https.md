@@ -26,7 +26,7 @@ github [https://github.com/Neilpang/acme.sh](https://github.com/Neilpang/acme.sh
 5.  更新 **acme.sh**
 6.  测试 **https**
 
-# 1. 安装 acme.sh
+# 1. 安装 acme.sh
 
 安装很简单, 一个命令:
 
