@@ -154,7 +154,7 @@ acme.sh --upgrade  --auto-upgrade  0
 
 点击菜单：融合CDN-->域名管理-->配置--> HTTPS 配置
 
-点击 [SSL证书管理 - ](https://portal.qiniu.com/certificate/ssl#cert)[https://portal.qiniu.com/certificate/ssl#cert](https://portal.qiniu.com/certificate/ssl#cert)情，您可以在SSL证书服务页面申请或上传自有证书。
+点击 [SSL证书管理 - ](https://portal.qiniu.com/certificate/ssl#cert)[https://portal.qiniu.com/certificate/ssl#cert](https://portal.qiniu.com/certificate/ssl#cert)，您可以在SSL证书服务页面申请或上传自有证书。
 
 - 内容 ( PEM格式 )  对应证书内容  *.cre 后缀
 - 私钥 ( PEM格式 ) 对应证书内容  *.key 后缀
