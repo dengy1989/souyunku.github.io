@@ -6,7 +6,7 @@ author: 鹏磊
 subtitle: "Talk is cheap. Show me the code."
 description: "搜云库"
 baseurl:
-url: http://www.souyunku.com
+url: https://www.souyunku.com
 date_format: "ordinal"
 keywords: 搜云库、内容涵盖 Spring Boot、Spring Cloud、微服务架构、大数据，云计算，运维开发、系统监控等相关的研究与知识分享
 favicon: /favicon.ico
@@ -19,7 +19,7 @@ side_bar_repo_limit: 5
 # ---------------- #
 author:  Peng Lei
 organization: souyunku.com
-organization_url: http://souyunku.com
+organization_url: https://www.souyunku.com
 github_username: souyunku
 location: beijing, China
 email: admin@souyunku.com
