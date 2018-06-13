@@ -16,23 +16,23 @@ Dubbo处理服务暴露的关键就在Invoker转换到Exporter的过程(如上�
 
 # 服务发布过程大致分成3步
 
-1、获取注册中心信息，构建协议信息，然后将其组合。
-2、通过ProxyFactory将HelloServiceImpl封装成一个Invoker执行 。
-3、使用Protocol将invoker导出成一个Exporter（包括去注册中心注册服务等）。
+1、获取注册中心信息，构建协议信息，然后将其组合。  
+2、通过ProxyFactory将HelloServiceImpl封装成一个Invoker执行 。  
+3、使用Protocol将invoker导出成一个Exporter（包括去注册中心注册服务等）。  
 
 这里面就涉及到几个大的概念，ProxyFactory、Invoker、Protocol、Exporter
 
 # Export 服务暴露的步骤
 
-1、首先会检查各种配置信息`<dubbo:service/>、<dubbo:registry/>、<dubbo:protocol/> `等标签的配置，填充各种属性，总之就是保证我在开始暴露服务之前，所有的东西都准备好了，并且是正确的。
-2、加载所有的注册中心，因为我们暴露服务需要注册到注册中心中去。
-3、根据配置的所有协议和注册中心url分别进行导出。
-4、进行导出的时候，又是一波属性的获取设置检查等操作。
-5、如果配置的不是remote，则做本地导出。
-6、如果配置的不是local，则暴露为远程服务。
-7、不管是本地还是远程服务暴露，首先都会获取Invoker。
-8、获取完Invoker之后，转换成对外的Exporter，缓存起来。
-9、执行DubboProtocol类的export方法，打开socket侦听服务,并接收客户端发来的各种请求。
+1、首先会检查各种配置信息`<dubbo:service/>、<dubbo:registry/>、<dubbo:protocol/>   `等标签的配置，填充各种属性，总之就是保证我在开始暴露服务之前，所有的东西都准备好了，并且是正确的。   
+2、加载所有的注册中心，因为我们暴露服务需要注册到注册中心中去。   
+3、根据配置的所有协议和注册中心url分别进行导出。   
+4、进行导出的时候，又是一波属性的获取设置检查等操作。   
+5、如果配置的不是remote，则做本地导出。   
+6、如果配置的不是local，则暴露为远程服务。   
+7、不管是本地还是远程服务暴露，首先都会获取Invoker。   
+8、获取完Invoker之后，转换成对外的Exporter，缓存起来。   
+9、执行DubboProtocol类的export方法，打开socket侦听服务,并接收客户端发来的各种请求。   
 
 ## 概念介绍
 
@@ -50,7 +50,7 @@ Dubbo处理服务暴露的关键就在Invoker转换到Exporter的过程(如上�
 - 将HelloService标记为dubbo服务，使用HelloServiceImpl对象来提供具体的服务。
 - 使用zooKeeper作为注册中心。
 
-### Invoker
+## Invoker
 
 Invoker，一个可执行对象，能够根据方法名称、参数得到相应的执行结果。接口如下：
 
@@ -101,7 +101,7 @@ Invoker这个可执行对象的执行过程分成三种类型：
 看下Invoker的实现情况：
 ![Invoker的实现情况](http://www.ymq.io/images/2018/dubbo/dubbo-invoker.jpg)
 
-### ProxyFactory
+## ProxyFactory
 
 对于Server端，主要负责将服务如HelloServiceImpl统一进行包装成一个Invoker，通过反射来执行具体的HelloServiceImpl对象的方法
 
@@ -164,7 +164,7 @@ public Result invoke(Invocation invocation) throws RpcException {
 
 综上所述，服务发布的第二个过程就是：使用ProxyFactory将HelloServiceImpl封装成一个本地执行的Invoker。
 
-### Protocol
+## Protocol
 
 从上面得知服务发布的第一、二个过程：
 
@@ -310,7 +310,7 @@ private ExchangeHandler requestHandler = new ExchangeHandlerAdapter() {
 
 而对于通信这块，接下来会专门来详细的说明，从reply参数可知，重点在了解**ExchangeChannel**。
 
-### Exporter
+## Exporter
 
 负责维护invoker的生命周期，包含一个Invoker对象，接口定义如下：
 
@@ -328,7 +328,7 @@ public interface Exporter<T> {
 
 以上就是本文简略地介绍了及服务发布过程中的几个 ProxyFactory、Invoker、Protocol、Exporter 概念
 
-参考：[http://dubbo.apache.org/books/dubbo-dev-book/implementation.html](http://dubbo.apache.org/books/dubbo-dev-book/implementation.html)
+参考：[http://dubbo.apache.org/books/dubbo-dev-book/implementation.html](http://dubbo.apache.org/books/dubbo-dev-book/implementation.html)  
 参考：[https://blog.csdn.net/qq418517226/article/details/51818769](https://blog.csdn.net/qq418517226/article/details/51818769)
 
 # Contact
