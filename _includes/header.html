@@ -5,9 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="baidu-site-verification" content="O9Y1aw6ctc" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-	<meta name="Keywords" content="搜云库,Spring Cloud,Spring Boot,Docker,Dubbo,MongoDB,RabbitMQ,ZooKeeper,Redis,Kafka,MySQL,SolrCloud,Elastic,Stack,ELK,Java,jvm,Python,微服务,大数据,云计算"/>
-	<meta name="Description" content="搜云库,专注于开发技术的研究与知识分享"/>
-    <title>{% if page.title %}{{ page.title }} {% endif %}{{ site.title }},</title>
+	<meta name="keywords" content="{{ page.excerpt | strip_html | strip_newlines}},Spring Cloud,Spring Boot,Docker,Dubbo,MongoDB,RabbitMQ,ZooKeeper,Redis,Kafka,MySQL,SolrCloud,Elastic,Stack,ELK,Java,jvm,Python,微服务,大数据,云计算"/>
+    <meta name="og:keywords" content="{{ page.excerpt | strip_html | strip_newlines}},Spring Cloud,Spring Boot,Docker,Dubbo,MongoDB,RabbitMQ,ZooKeeper,Redis,Kafka,MySQL,SolrCloud,Elastic,Stack,ELK,Java,jvm,Python,微服务,大数据,云计算">
+	<meta name="description" content="{{ page.excerpt | strip_html | strip_newlines}},搜云库,专注于开发技术的研究与知识分享">
+    <meta name="og:description" content="{{ page.excerpt | strip_html | strip_newlines}},搜云库,专注于开发技术的研究与知识分享">
+	
+    <title>{% if page.title %}{{ page.title }} {% endif %}{{ site.title }}</title>
     <link rel="stylesheet" href="https://yun.souyunku.com/assets/vendor/primer-css/css/primer.css">
     <link rel="stylesheet" href="https://yun.souyunku.com/assets/vendor/primer-markdown/dist/user-content.min.css">
     <link rel="stylesheet" href="https://yun.souyunku.com/assets/vendor/octicons/octicons/octicons.css">
@@ -34,28 +37,8 @@
     <link rel="shortcut icon" href="https://yun.souyunku.com/favicon.ico">
     {% if page.title %}
     <meta property="og:title" content="{{ page.title }}">
-      {% if page.keywords %}
-      {% assign keywords = page.keywords %}
-      {% else %}
-      {% assign keywords = site.keywords %}
-      {% endif %}
-    <meta name="keywords" content="{{ keywords | strip_html | strip_newlines}}">
-    <meta name="og:keywords" content="{{ keywords | strip_html | strip_newlines}}">
-      {% if page.excerpt %}
-    <meta name="description" content="{{ page.excerpt | strip_html | strip_newlines}}">
-    <meta name="og:description" content="{{ page.excerpt | strip_html | strip_newlines}}">
-      {% else if page.description %}
-    <meta name="description" content="{{ page.description | strip_html | strip_newlines}}">
-    <meta name="og:description" content="{{ page.description | strip_html | strip_newlines}}">
-      {% else if content %}
-    <meta name="description" content="{{ content | strip_html | strip_newlines | truncatewords: 100 }}">
-    <meta name="og:description" content="{{ content | strip_html | strip_newlines | truncatewords: 100 }}">
-      {% endif %}
-    {% else %}
-    <meta name="keywords" content="{{ site.keywords }}">
-    <meta name="description" content="{{ site.description }}">
-    {% endif %}
-    {% if page.og_image_url %}
+    
+
     <meta property="og:image" content="{{ page.og_image_url }}">
     {% else %}
         {% if page.photo_url %}
