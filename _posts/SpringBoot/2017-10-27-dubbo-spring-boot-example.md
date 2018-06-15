@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Spring Boot 中使用 Dubbo 详解
-categories: [Dubbo,SpringBoot]
+categories: [dubbo,SpringBoot]
 description: Spring Boot 中使用 Dubbo 详解
 keywords: Dubbo 
 ---
