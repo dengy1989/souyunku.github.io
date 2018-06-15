@@ -328,7 +328,7 @@ public class MyWebMvcConfigurer extends WebMvcConfigurerAdapter {
 
 ## 日志切面
 
-```
+```java
 @Aspect
 @Component
 public class LogAspect {
