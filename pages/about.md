@@ -21,4 +21,4 @@ permalink: /about/
  - 站点：[https://www.souyunku.com](https://www.souyunku.com)
  - Wechat：关注公众号，搜云库，专注于开发技术的研究与知识分享
  
-![关注公众号-搜云库](http://www.ymq.io/images/souyunku.png "关注公众号-搜云库")
+<img src="http://www.ymq.io/images/souyunku.png" alt="关注公众号-搜云库">
