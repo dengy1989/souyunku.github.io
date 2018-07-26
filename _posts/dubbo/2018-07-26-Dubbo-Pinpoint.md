@@ -61,20 +61,11 @@ Inspector
 - gson，Jackson，Json Lib
 - log4j，Logback
 
-## 说明
-
-- 本次基础环境搭建我就不讲了，如不会，请自行搜索或者参考我博客文章【[https://www.souyunku.com](https://www.souyunku.com)】
-- 说下我的测试环境：hadoop-2.7.4 集群，hbase-1.3.1 集群，zookeeper-3.4.9 单机，一共四台机器
-- 为避免部分端口不通等可疑问题, 建议关闭防火墙
-
 ## 部署
 
-**本次基础环境搭建我就不讲了**，如不会，请自行搜索或者参考我博客文章【[https://www.souyunku.com]
-
-(https://www.souyunku.com)】
+**本次基础环境搭建我就不讲了**，如不会，请自行搜索或者参考我博客文章[https://www.souyunku.com](https://www.souyunku.com)
 - 说下我的测试环境：hadoop-2.7.4 集群，hbase-1.3.1 集群，zookeeper-3.4.9 单机，一共四台机器
 - 为避免部分端口不通等可疑问题, 建议关闭防火墙
-
 
 ### 下载
 
@@ -215,10 +206,16 @@ java -javaagent:/opt/pinpoint-bootstrap-1.7.3.jar -Dpinpoint.agentId=dubbo-consu
 [7]: http://www.ymq.io/images/2018/pinpoint/7.png
 [8]: http://www.ymq.io/images/2018/pinpoint/8.png
 
+参考：
+
+[https://segmentfault.com/a/1190000011290541](https://segmentfault.com/a/1190000011290541)
+
+[http://dubbo.apache.org/#!/blog/pinpoint.md?lang=en-us](http://dubbo.apache.org/#!/blog/pinpoint.md?lang=en-us)
+
 # Contact
 
  - 作者：鹏磊
- - 出处：[http://www.ymq.io/2018/07/26/dubbo](http://http://www.ymq.io/dubbo)
+ - 出处：[http://www.ymq.io/2018/07/26/Dubbo-Pinpoint](http://http://www.ymq.io/2018/07/26/Dubbo-Pinpoint)
  - 版权归作者所有，转载请注明出处
  - Wechat：关注公众号，搜云库，专注于开发技术的研究与知识分享
  
