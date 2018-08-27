@@ -67,11 +67,10 @@ ruby dk.rb install
 > 
 
 ``` sh
-gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/
-gem sources -l
-*** CURRENT SOURCES ***
-
-https://gems.ruby-china.org
+$ gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/
+$ gem sources -l
+https://gems.ruby-china.com
+# 确保只有 gems.ruby-china.com
 ```
 
 <img src="/images/2017/jekyll/ruby-gems.png"  />
