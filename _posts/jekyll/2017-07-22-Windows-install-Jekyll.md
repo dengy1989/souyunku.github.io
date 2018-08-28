@@ -110,6 +110,12 @@ cd myblog
 jekyll serve  
 ```
 
+或者
+
+```
+ bundle exec jekyll serve -H 0.0.0.0 -P 80
+```
+
 <img src="/images/2017/jekyll/jekyll-serve.png"  />
 
 <img src="/images/2017/jekyll/myblog-succ.png"  />
