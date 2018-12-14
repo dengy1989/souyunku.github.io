@@ -18,8 +18,6 @@ permalink: /links/
  
 ### 推荐网站
  * [公众号编辑器](http://md.souyunku.com/) 可以以优雅的方式在微信公众号去发布Markdown文章
- * [六阿哥博客](https://blog.6ag.cn/) 记录一个程序员的成长历程
- * [龙果学院](http://www.roncoo.com) 龙果,dubbo,dubbox,dubbo视频教程,分布式系统架构,微服务架构,第三方支付系统,java教程,架构师培训,高级架构师视频教程
 
 ### 其它
 
